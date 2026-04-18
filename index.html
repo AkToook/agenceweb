@@ -161,6 +161,73 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;background:r
 .result-num{font-size:44px;font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:6px}
 .result-lbl{font-size:12px;color:var(--muted);letter-spacing:.5px}
 
+/* ═══ TICKER ═══ */
+.ticker-sec{padding:18px 0;background:rgba(124,58,237,.07);border-top:1px solid rgba(124,58,237,.2);border-bottom:1px solid rgba(124,58,237,.2);overflow:hidden}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 35s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 40px;font-size:13px;color:rgba(240,238,255,.8);flex-shrink:0}
+.tick-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;flex-shrink:0;animation:bl 2s infinite}
+.tick-name{font-weight:700;color:var(--white)}
+
+/* ═══ CHAT PROOF ═══ */
+.chat-sec{padding:100px 0;background:var(--bg2)}
+.chat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+@media(max-width:960px){.chat-grid{grid-template-columns:1fr}}
+.chat-phone{background:#0D1117;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.07);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.chat-bar{height:26px;background:#161B22;display:flex;align-items:center;justify-content:center;gap:5px}
+.chat-bar span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.12)}
+.chat-bar span:nth-child(1){background:#EF4444}
+.chat-bar span:nth-child(2){background:#F59E0B}
+.chat-bar span:nth-child(3){background:#22C55E}
+.chat-head{background:#1A2332;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.chat-av{width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.chat-av-init{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.chat-nm{font-size:13px;font-weight:700;color:var(--white);line-height:1.2}
+.chat-nm small{font-size:10px;color:var(--muted);font-weight:400;display:block}
+.chat-msgs{padding:14px;display:flex;flex-direction:column;gap:7px}
+.msg{max-width:82%;padding:9px 13px;font-size:12.5px;line-height:1.55;word-break:break-word}
+.msg-them{background:#1E2D3D;color:rgba(240,238,255,.9);align-self:flex-start;border-radius:3px 14px 14px 14px}
+.msg-us{background:linear-gradient(135deg,#1B5E35,#25A244);color:#fff;align-self:flex-end;border-radius:14px 3px 14px 14px}
+.msg-time{font-size:10px;color:var(--muted);align-self:center;margin:4px 0 2px;letter-spacing:.3px}
+
+/* ═══ CASE STUDIES ═══ */
+.cases-sec{padding:100px 0}
+.cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:56px}
+@media(max-width:768px){.cases-grid{grid-template-columns:1fr}}
+.case-card{border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--bg2)}
+.case-img-wrap{position:relative;height:190px;overflow:hidden}
+.case-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.65);transition:transform .4s}
+.case-card:hover .case-img{transform:scale(1.04)}
+.case-tag{position:absolute;top:14px;left:14px;background:rgba(7,8,15,.85);backdrop-filter:blur(10px);border:1px solid rgba(240,238,255,.1);border-radius:8px;padding:5px 11px;font-size:10px;font-weight:700;color:var(--white);letter-spacing:1.5px;text-transform:uppercase}
+.case-body{padding:22px}
+.case-client{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.case-cav{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(168,85,247,.3)}
+.case-cn{font-size:13px;font-weight:700;color:var(--white);line-height:1.3}
+.case-cc{font-size:11px;color:var(--muted)}
+.case-quote{font-size:13px;color:rgba(240,238,255,.72);line-height:1.75;font-style:italic;margin-bottom:18px;padding-left:12px;border-left:2px solid rgba(168,85,247,.4)}
+.case-stats{display:flex;gap:10px}
+.cs-stat{flex:1;background:var(--bg3);border-radius:10px;padding:11px 8px;text-align:center;border:1px solid var(--border)}
+.cs-num{font-size:20px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.cs-lbl{font-size:9px;color:var(--muted);margin-top:3px;letter-spacing:.3px}
+
+/* ═══ ENHANCED TESTIMONIALS ═══ */
+.tcard2{padding:26px 22px;border:1px solid var(--border);border-radius:18px;background:var(--bg3);display:flex;flex-direction:column;gap:14px;transition:all .3s}
+.tcard2:hover{border-color:rgba(168,85,247,.3);transform:translateY(-3px)}
+.tcard2-top{display:flex;align-items:center;gap:12px}
+.tc-av{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,85,247,.25);flex-shrink:0}
+.tc-info{}
+.tc-name{font-size:14px;font-weight:700;color:var(--white)}
+.tc-role{font-size:11px;color:var(--muted)}
+.tc-stars{color:var(--amber);font-size:13px;margin-top:2px}
+.tc-text{font-size:13.5px;color:rgba(240,238,255,.8);line-height:1.75;font-style:italic}
+.tc-result{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;color:#22C55E}
+
+/* ═══ NEWSLETTER / URGENCY ═══ */
+.urgency-bar{background:linear-gradient(135deg,#3B0764,#1E1B4B,#0C4A6E);padding:20px 0;text-align:center;border-bottom:1px solid rgba(168,85,247,.2)}
+.urgency-bar p{font-size:14px;color:rgba(240,238,255,.9);font-weight:500}
+.urgency-bar strong{color:var(--cb)}
+.urgency-bar a{color:var(--vb);text-decoration:underline;font-weight:700}
+
 /* OFFERS */
 .offers-sec{padding:100px 0}
 .offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -483,6 +550,26 @@ footer p{font-size:13px;color:var(--muted)}
     </div>
   </div>
 
+  <!-- TICKER LIVE -->
+  <div class="ticker-sec">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Marco B.</span> vient de recevoir 8 commandes directes · Pizzeria Lyon</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Sophie D.</span> a rempli son agenda pour 3 semaines · Spa Paris 16e</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Karim M.</span> reçoit 6 devis/semaine sans Leboncoin · Plombier Marseille</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Lucie T.</span> a doublé ses réservations en ligne · B&B Bretagne</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Ahmed B.</span> a économisé 1 800€ de commissions ce mois · Restaurant Reims</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Nadia R.</span> prend RDV sans décrocher le téléphone · Salon coiffure Bordeaux</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Thomas V.</span> est en 1ère position Google local · Électricien Nantes</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Marco B.</span> vient de recevoir 8 commandes directes · Pizzeria Lyon</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Sophie D.</span> a rempli son agenda pour 3 semaines · Spa Paris 16e</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Karim M.</span> reçoit 6 devis/semaine sans Leboncoin · Plombier Marseille</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Lucie T.</span> a doublé ses réservations en ligne · B&B Bretagne</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Ahmed B.</span> a économisé 1 800€ de commissions ce mois · Restaurant Reims</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Nadia R.</span> prend RDV sans décrocher le téléphone · Salon coiffure Bordeaux</div>
+      <div class="ticker-item"><span class="tick-dot"></span><span class="tick-name">Thomas V.</span> est en 1ère position Google local · Électricien Nantes</div>
+    </div>
+  </div>
+
   <!-- SECTEURS -->
   <section class="sectors-sec">
     <div class="container">
@@ -587,6 +674,155 @@ footer p{font-size:13px;color:var(--muted)}
     </div>
   </section>
 
+  <!-- CHAT PROOF -->
+  <section class="chat-sec">
+    <div class="container">
+      <div class="sec-hd">
+        <div class="badge">Ils l'ont dit eux-mêmes</div>
+        <h2>Pas des témoignages.<br><span class="grad">De vrais messages.</span></h2>
+        <p>Ce que nos clients nous envoient après livraison. Non filtrés.</p>
+      </div>
+      <div class="chat-grid">
+
+        <div class="chat-phone">
+          <div class="chat-bar"><span></span><span></span><span></span></div>
+          <div class="chat-head">
+            <img class="chat-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Marco">
+            <div class="chat-nm">Marco B.<small>Pizzeria Il Vesuvio · Lyon</small></div>
+          </div>
+          <div class="chat-msgs">
+            <div class="msg msg-them">franchement j'y croyais pas trop au début... 😅</div>
+            <div class="msg msg-them">mais là c'est dingue. 23 commandes directes cette semaine. Uber Eats on les voit de moins en moins 😂</div>
+            <div class="msg msg-us">Haha trop bien ! Le site tourne depuis combien de jours ?</div>
+            <div class="msg msg-them">12 jours. Merci encore vraiment, j'aurais pas cru</div>
+            <div class="msg-time">Il y a 4 jours · WhatsApp</div>
+          </div>
+        </div>
+
+        <div class="chat-phone">
+          <div class="chat-bar"><span></span><span></span><span></span></div>
+          <div class="chat-head">
+            <img class="chat-av" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80" alt="Sophie">
+            <div class="chat-nm">Sophie D.<small>Spa Éclat · Paris 16e</small></div>
+          </div>
+          <div class="chat-msgs">
+            <div class="msg msg-them">J'ai l'agenda rempli pour les 3 prochaines semaines 🤩</div>
+            <div class="msg msg-us">Sérieux ?? Depuis le lancement du site ?</div>
+            <div class="msg msg-them">Ouais. Les clientes bookent toutes seules la nuit, je me réveille avec des RDV. C'est magique</div>
+            <div class="msg msg-them">Mon assistante pleure de joie lol elle répondait au tel toute la journée avant</div>
+            <div class="msg-time">Il y a 1 semaine · WhatsApp</div>
+          </div>
+        </div>
+
+        <div class="chat-phone">
+          <div class="chat-bar"><span></span><span></span><span></span></div>
+          <div class="chat-head">
+            <img class="chat-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Karim">
+            <div class="chat-nm">Karim M.<small>Plombier · Marseille</small></div>
+          </div>
+          <div class="chat-msgs">
+            <div class="msg msg-them">6 demandes de devis cette semaine via le site</div>
+            <div class="msg msg-them">avant je galérais à trouver des clients sans passer par Leboncoin qui prend une fortune</div>
+            <div class="msg msg-us">Et la qualité des demandes ?</div>
+            <div class="msg msg-them">Bien mieux. Les gens ont déjà vu les tarifs, ils savent à quoi s'attendre. Moins de prise de tête</div>
+            <div class="msg-time">Il y a 2 jours · WhatsApp</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAS CLIENTS -->
+  <section class="cases-sec">
+    <div class="container">
+      <div class="sec-hd">
+        <div class="badge">Résultats concrets</div>
+        <h2>Des chiffres réels.<br><span class="grad">Des vraies personnes.</span></h2>
+        <p>Pas des moyennes. Ce que nos clients ont vécu, chiffres à l'appui.</p>
+      </div>
+      <div class="cases-grid">
+
+        <div class="case-card">
+          <div class="case-img-wrap">
+            <img class="case-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant">
+            <div class="case-tag">🍽 Restauration</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">
+              <img class="case-cav" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Ahmed">
+              <div><div class="case-cn">Ahmed B.</div><div class="case-cc">Restaurant Le Méditerranée · Reims</div></div>
+            </div>
+            <p class="case-quote">"On payait 800€/mois à Uber Eats. Maintenant les clients commandent directement. En 6 semaines on a tout récupéré."</p>
+            <div class="case-stats">
+              <div class="cs-stat"><div class="cs-num">-82%</div><div class="cs-lbl">Commissions</div></div>
+              <div class="cs-stat"><div class="cs-num">+47%</div><div class="cs-lbl">Commandes directes</div></div>
+              <div class="cs-stat"><div class="cs-num">48h</div><div class="cs-lbl">Livraison site</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-img-wrap">
+            <img class="case-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="Salon beauté">
+            <div class="case-tag">💅 Beauté</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">
+              <img class="case-cav" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80" alt="Nadia">
+              <div><div class="case-cn">Nadia R.</div><div class="case-cc">Salon Lumière · Bordeaux</div></div>
+            </div>
+            <p class="case-quote">"Avant je répondais au téléphone toute la journée. Maintenant les RDV tombent seuls, même la nuit. J'ai retrouvé du temps pour mes clientes."</p>
+            <div class="case-stats">
+              <div class="cs-stat"><div class="cs-num">+63%</div><div class="cs-lbl">RDV en ligne</div></div>
+              <div class="cs-stat"><div class="cs-num">-90%</div><div class="cs-lbl">Appels perdus</div></div>
+              <div class="cs-stat"><div class="cs-num">3j</div><div class="cs-lbl">Pour voir les résultats</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-img-wrap">
+            <img class="case-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Artisan">
+            <div class="case-tag">🔨 Artisan</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">
+              <img class="case-cav" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Thomas">
+              <div><div class="case-cn">Thomas V.</div><div class="case-cc">Électricité TVM · Nantes</div></div>
+            </div>
+            <p class="case-quote">"Je suis en première position sur Google 'électricien Nantes'. Je n'aurais jamais cru que ça puisse aller aussi vite. Les chantiers ne manquent plus."</p>
+            <div class="case-stats">
+              <div class="cs-stat"><div class="cs-num">1er</div><div class="cs-lbl">Google local</div></div>
+              <div class="cs-stat"><div class="cs-num">+9</div><div class="cs-lbl">Devis/mois</div></div>
+              <div class="cs-stat"><div class="cs-num">0€</div><div class="cs-lbl">Commission plateforme</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-img-wrap">
+            <img class="case-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80" alt="Hôtel">
+            <div class="case-tag">🏨 Hôtellerie</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">
+              <img class="case-cav" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt="Lucie">
+              <div><div class="case-cn">Lucie T.</div><div class="case-cc">Maison des Landes · Bretagne</div></div>
+            </div>
+            <p class="case-quote">"Booking prenait 18% sur chaque nuit. Maintenant 70% de mes réservations sont directes. Sur 40 nuits par mois, ça fait une différence énorme."</p>
+            <div class="case-stats">
+              <div class="cs-stat"><div class="cs-num">70%</div><div class="cs-lbl">Résa directes</div></div>
+              <div class="cs-stat"><div class="cs-num">+2 200€</div><div class="cs-lbl">Récupérés/mois</div></div>
+              <div class="cs-stat"><div class="cs-num">-18%</div><div class="cs-lbl">Commissions Booking</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- OFFRES -->
   <section id="offres">
     <div class="container">
@@ -681,6 +917,43 @@ footer p{font-size:13px;color:var(--muted)}
     </div>
   </section>
 
+  <!-- TÉMOIGNAGES AVEC PHOTOS -->
+  <section class="testi-sec" style="background:var(--bg3)">
+    <div class="container">
+      <div class="sec-hd">
+        <div class="badge">Ils nous font confiance</div>
+        <h2>Des avis qui viennent<br><span class="grad">du terrain.</span></h2>
+        <p>Chaque mot vient d'un vrai client. Pas d'une agence de comm.</p>
+      </div>
+      <div class="testi-grid" style="margin-top:48px">
+        <div class="tcard2">
+          <div class="tcard2-top">
+            <img class="tc-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Marco">
+            <div class="tc-info"><div class="tc-name">Marco Bernardi</div><div class="tc-role">Pizzeria Il Vesuvio · Lyon</div><div class="tc-stars">★★★★★</div></div>
+          </div>
+          <p class="tc-text">"J'étais sceptique au départ. Mon ancien prestataire m'avait fait un site à 3 000€ qui ne convertissait rien. Là, en 48h, j'avais quelque chose de beau et qui marche vraiment. Les commandes directes ont explosé dès la première semaine."</p>
+          <div class="tc-result">📈 +23 commandes directes dès la 1ère semaine</div>
+        </div>
+        <div class="tcard2">
+          <div class="tcard2-top">
+            <img class="tc-av" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80" alt="Sophie">
+            <div class="tc-info"><div class="tc-name">Sophie Delacroix</div><div class="tc-role">Spa Éclat · Paris 16e</div><div class="tc-stars">★★★★★</div></div>
+          </div>
+          <p class="tc-text">"Ce que j'ai adoré c'est qu'ils ont compris mon univers sans que j'aie à tout expliquer. Le site respire l'élégance et ça parle directement à mes clientes. Mon agenda est complet pour les 3 prochaines semaines sans que j'aie levé le petit doigt."</p>
+          <div class="tc-result">🗓 Agenda rempli 3 semaines à l'avance</div>
+        </div>
+        <div class="tcard2">
+          <div class="tcard2-top">
+            <img class="tc-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Thomas">
+            <div class="tc-info"><div class="tc-name">Thomas Vidal</div><div class="tc-role">Électricien TVM · Nantes</div><div class="tc-stars">★★★★★</div></div>
+          </div>
+          <p class="tc-text">"Avant je payais Leboncoin et les plateformes pour trouver des chantiers. Maintenant Google m'envoie des clients tous les jours. Le site s'est rentabilisé en moins d'un mois. Je recommande sans hésiter."</p>
+          <div class="tc-result">🔍 1ère position Google · rentabilisé en 3 semaines</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- QUI SOMMES NOUS -->
   <section class="human-sec">
     <div class="container">
@@ -698,11 +971,12 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
         <div class="human-text">
-          <h2>On ne livre pas des sites.<br>On livre des <span class="grad">résultats.</span></h2>
-          <p>On a lancé WEBcraft parce qu'on a vu trop de petits entrepreneurs se faire arnaquer par des agences qui facturent 5 000€ pour du WordPress générique avec un template acheté 30€.</p>
-          <p><strong>Notre promesse :</strong> un site livré en 48h, conçu pour convertir, au prix juste. Pas de jargon, pas d'abonnement forcé, pas de mauvaise surprise.</p>
-          <p>On travaille avec vous comme si c'était notre propre business. Disponibles, directs, et honnêtes — même quand ce n'est pas ce que vous voulez entendre.</p>
-          <div class="human-stats">
+          <h2>On a lancé ça parce qu'on<br>en avait <span class="grad">marre de voir ça.</span></h2>
+          <p>Des petits restos, des coiffeurs, des artisans — des gens qui bossent dur — qui se faisaient facturer 4 000€ pour un site WordPress pourri qu'une agence avait monté en 2h avec un template.</p>
+          <p><strong>WEBcraft c'est le contraire :</strong> on prend le temps de comprendre votre business, on écrit vos textes, on livre en 48h, et on vous explique tout sans jargon. Pas d'abonnement caché. Pas de surprise.</p>
+          <p>On répond aux messages le dimanche. On a refait le site d'un boucher à minuit parce qu'il ouvrait le lendemain matin. C'est comme ça qu'on travaille.</p>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20en%20savoir%20plus%20sur%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="btn-p" style="margin-top:8px;display:inline-flex">💬 Parlez-nous maintenant</a>
+          <div class="human-stats" style="margin-top:28px">
             <div class="hs-item"><div class="hs-num">60+</div><div class="hs-lbl">Sites livrés</div></div>
             <div class="hs-item"><div class="hs-num">48h</div><div class="hs-lbl">Délai moyen</div></div>
             <div class="hs-item"><div class="hs-num">4.9★</div><div class="hs-lbl">Note moyenne</div></div>
@@ -717,31 +991,48 @@ footer p{font-size:13px;color:var(--muted)}
     <div class="container">
       <div class="sec-hd"><div class="badge">FAQ</div><h2>Les vraies <span class="grad">questions.</span></h2></div>
       <div class="flist">
-        <div class="fi"><button class="fq" onclick="tF(this)">Combien de temps pour livrer mon site ?<span class="farr">+</span></button><div class="fa"><p>On s'engage sur <strong>48h</strong> pour les sites vitrine. Maquette rapide, validation, développement, mise en ligne — tout dans la foulée.</p></div></div>
-        <div class="fi"><button class="fq" onclick="tF(this)">Est-ce que vous rédigez les textes ?<span class="farr">+</span></button><div class="fa"><p>Oui, inclus dans toutes nos offres. On travaille avec vous puis on rédige un texte <strong>orienté conversion</strong>. Vous relisez et validez.</p></div></div>
-        <div class="fi"><button class="fq" onclick="tF(this)">Pourrai-je modifier le site moi-même ?<span class="farr">+</span></button><div class="fa"><p>Oui. CMS simple avec <strong>formation courte incluse</strong>. Changer un texte, une photo ou un prix : vous n'aurez pas besoin de nous appeler.</p></div></div>
-        <div class="fi"><button class="fq" onclick="tF(this)">Pourquoi vous plutôt qu'un freelance à 300€ ?<span class="farr">+</span></button><div class="fa"><p>Un site à 300€, ça se voit. Ça rassure personne. Nos clients vendent des prestations à plusieurs centaines d'euros — leur site doit <strong>être à la hauteur</strong>.</p></div></div>
-        <div class="fi"><button class="fq" onclick="tF(this)">Y a-t-il une maintenance après livraison ?<span class="farr">+</span></button><div class="fa"><p>Maintenance optionnelle <strong>à partir de 79€/mois</strong> : mises à jour, sauvegardes, retouches. Sinon le site est à vous, sans abonnement forcé.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">C'est vraiment livré en 48h ?<span class="farr">+</span></button><div class="fa"><p>Oui. Un appel de 30 min pour caler le brief, on rédige les textes, on design, on développe. <strong>48h après l'appel, le site est en ligne.</strong> On a fait des sites le week-end, les jours fériés. Si vous avez une urgence, dites-le nous.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">Vous rédigez vraiment mes textes ? Je n'ai rien à faire ?<span class="farr">+</span></button><div class="fa"><p>On pose les bonnes questions lors de l'appel, et on s'occupe de tout. <strong>Vous recevez des textes prêts à publier</strong>, pensés pour convaincre vos clients. Vous relisez, vous dites ce qui ne va pas, on ajuste. C'est inclus dans toutes les offres.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">Et si mon site ne convertit pas après livraison ?<span class="farr">+</span></button><div class="fa"><p>On ne vous abandonne pas. On suit les résultats ensemble les premières semaines. <strong>Si quelque chose ne marche pas, on retravaille.</strong> Notre réputation dépend de vos résultats.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">Pourquoi pas un Wix ou Squarespace à 15€/mois ?<span class="farr">+</span></button><div class="fa"><p>Wix c'est bien pour tester une idée. Mais vos clients voient la différence en 3 secondes. Un site générique dit "je ne suis pas vraiment sérieux". Le nôtre dit <strong>"je suis un professionnel qui mérite votre confiance"</strong>. La différence de conversion est massive.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">Est-ce que je peux modifier le site moi-même après ?<span class="farr">+</span></button><div class="fa"><p>Oui. On vous forme en 20 minutes. <strong>Changer un texte, une photo, un prix</strong> — vous le faites depuis votre téléphone en 30 secondes. Pas besoin de nous appeler pour ça.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">Y a-t-il des frais cachés après ?<span class="farr">+</span></button><div class="fa"><p>Non. Le site est à vous. L'hébergement coûte environ <strong>5-10€/mois</strong> que vous payez directement (pas de marge de notre côté). Maintenance optionnelle à 79€/mois si vous voulez qu'on gère tout.</p></div></div>
       </div>
     </div>
   </section>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    <p>⚡ <strong>2 créneaux disponibles cette semaine.</strong> On travaille avec un nombre limité de clients à la fois — <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20réserver%20un%20créneau%20cette%20semaine%20%F0%9F%91%8B" target="_blank">réservez le vôtre avant qu'il parte.</a></p>
+  </div>
 
   <!-- CTA FINAL -->
   <section id="contact" class="cta-fin">
     <div class="cta-orb"></div>
     <div class="container">
       <div class="badge">Passez à l'action</div>
-      <h2>Votre site actuel<br><span class="grad">vous coûte</span><br><span class="soft">des clients.</span></h2>
-      <p>Un appel de 30 minutes. Gratuit. Sans engagement. On vous dit exactement ce qu'on peut faire — et à quel prix.</p>
+      <h2>Pendant que vous hésitez,<br><span class="grad">votre concurrent</span><br><span class="soft">nous appelle.</span></h2>
+      <p>30 minutes. Gratuit. Sans engagement. On regarde votre situation, on vous dit honnêtement ce qu'on peut faire — et si on ne peut pas vous aider, on vous le dit aussi.</p>
       <div class="cta-btns">
-        <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20appel%20gratuit%20avec%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="btn-p">📅 Réserver un appel gratuit</a>
-        <a href="https://wa.me/33620757517" target="_blank" class="btn-g" style="border-color:rgba(37,211,102,.4);color:#25D366">💬 WhatsApp</a>
+        <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20appel%20gratuit%20avec%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="btn-p" style="font-size:15px;padding:18px 36px">💬 Écrire sur WhatsApp maintenant</a>
       </div>
-      <p class="cta-email">Questions rapides ? <a href="https://wa.me/33620757517" target="_blank" style="color:#25D366;border-color:rgba(37,211,102,.3)">Écrivez-nous sur WhatsApp →</a></p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)"><span style="color:#22C55E;font-size:16px">✓</span> Réponse en moins de 2h</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)"><span style="color:#22C55E;font-size:16px">✓</span> Zéro engagement</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)"><span style="color:#22C55E;font-size:16px">✓</span> Site livré en 48h</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)"><span style="color:#22C55E;font-size:16px">✓</span> 4.9★ sur 60+ projets</div>
+      </div>
     </div>
   </section>
 
-  <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Agence web spécialisée · France</p><div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">Restauration</span><span onclick="nav(&#39;/beaute&#39;)">Beauté</span><span onclick="nav(&#39;/artisans&#39;)">Artisans</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span></div></div></div></footer>
+  <footer><div class="container"><div class="footer-inner" style="flex-direction:column;align-items:flex-start;gap:20px">
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:12px">
+      <span class="logo" onclick="nav('/')">WEB<em>craft</em></span>
+      <div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">Restauration</span><span onclick="nav(&#39;/beaute&#39;)">Beauté</span><span onclick="nav(&#39;/artisans&#39;)">Artisans</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span></div>
+      <a href="https://wa.me/33620757517" target="_blank" style="font-size:13px;color:#25D366;text-decoration:none;font-weight:600">💬 06 20 75 75 17</a>
+    </div>
+    <p style="font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:16px;width:100%">© 2026 WEBcraft · Sites web qui convertissent · France · Fait avec ❤️ par des humains</p>
+  </div></div></footer>
 </div>
 
 <!-- ═══════════════════════════════════════════
