@@ -70,6 +70,14 @@ body.hovering .cur-ring{width:48px;height:48px;opacity:.6}
 .wa-float:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.5);color:#fff}
 .wa-float svg{width:22px;height:22px;flex-shrink:0}
 @media(max-width:600px){.wa-float span{display:none}.wa-float{padding:14px}}
+/* ── SOCIAL PROOF TOAST ── */
+.sp-toast{position:fixed;bottom:110px;left:28px;z-index:9990;background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 16px 48px rgba(0,0,0,.6);transform:translateY(20px);opacity:0;transition:all .45s cubic-bezier(.16,1,.3,1);pointer-events:none;max-width:280px}
+.sp-toast.show{transform:translateY(0);opacity:1}
+.sp-toast-av{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.sp-toast-txt{font-size:12px;line-height:1.5}
+.sp-toast-name{color:var(--white);font-weight:700}
+.sp-toast-action{color:var(--muted)}
+.sp-toast-time{font-size:11px;color:var(--cb);font-weight:600;margin-top:2px}
 /* HUMAN SECTION */
 .human-sec{padding:90px 0;background:var(--bg)}
 .human-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
@@ -2118,6 +2126,32 @@ document.querySelectorAll('.tilt').forEach(card=>{
   card.addEventListener('mouseleave',()=>{card.style.transform=''});
 });
 
+// ── SOCIAL PROOF TOAST ────────────────────────────────────
+(function(){
+  const proofs=[
+    {name:'Ahmed R.',action:'vient de réserver un appel gratuit',time:'il y a 3 minutes',av:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80'},
+    {name:'Sophie M.',action:'a commandé un site pour son salon',time:'il y a 12 minutes',av:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80'},
+    {name:'Thomas V.',action:'vient de recevoir son site en 48h',time:'il y a 28 minutes',av:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80'},
+    {name:'Nadia K.',action:'a réservé un créneau cette semaine',time:'il y a 1 heure',av:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80'},
+    {name:'Pierre L.',action:'vient de lancer son restaurant en ligne',time:'il y a 2 heures',av:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80'},
+  ];
+  const toast=document.getElementById('spToast');
+  if(!toast) return;
+  let idx=0;
+  function showToast(){
+    const p=proofs[idx%proofs.length]; idx++;
+    document.getElementById('spToastAv').src=p.av;
+    document.getElementById('spToastAv').alt=p.name;
+    document.getElementById('spToastName').textContent=p.name;
+    document.getElementById('spToastAction').textContent=p.action;
+    document.getElementById('spToastTime').textContent=p.time;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),5000);
+  }
+  setTimeout(showToast, 4000);
+  setInterval(showToast, 18000);
+})();
+
 // ── COUNTER ANIMATION ─────────────────────────────────────
 (function(){
   const counters=document.querySelectorAll('[data-count]');
@@ -2144,6 +2178,16 @@ document.querySelectorAll('.tilt').forEach(card=>{
   counters.forEach(c=>io.observe(c));
 })();
 </script>
+
+<!-- Social proof toast -->
+<div class="sp-toast" id="spToast">
+  <img class="sp-toast-av" src="" alt="" id="spToastAv">
+  <div class="sp-toast-txt">
+    <div class="sp-toast-name" id="spToastName"></div>
+    <div class="sp-toast-action" id="spToastAction"></div>
+    <div class="sp-toast-time" id="spToastTime"></div>
+  </div>
+</div>
 
 <!-- WhatsApp floating button -->
 <a href="https://wa.me/33620757517" target="_blank" class="wa-float" aria-label="Contacter sur WhatsApp">
