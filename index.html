@@ -3,11 +3,59 @@
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WEBcraft — Agence Web</title>
+<title>WEBcraft — Agence Web · Sites livrés en 48h</title>
+<meta name="description" content="WEBcraft crée des sites web qui convertissent pour restaurants, artisans, coiffeurs et commerces locaux. Livraison en 48h, design premium, copywriting inclus.">
+<meta property="og:title" content="WEBcraft — Votre site web livré en 48h">
+<meta property="og:description" content="Design premium, message qui convertit, livraison en 48h. Experts en sites web pour professionnels locaux.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
+/* HERO FLEX (image + text) */
+.hero-flex{display:flex;align-items:center;gap:60px}
+.hero-img-wrap{flex:0 0 420px;position:relative;z-index:1;animation:fadeIn .6s ease}
+@media(max-width:960px){.hero-flex{flex-direction:column}.hero-img-wrap{width:100%;max-width:460px;flex:none}}
+.hero-img{width:100%;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,.55);border:1px solid rgba(168,85,247,.25);display:block}
+.hero-img-badge{position:absolute;bottom:-14px;left:-14px;background:var(--bg3);border:1px solid rgba(168,85,247,.3);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.hib-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:bl 2s infinite}
+.hib-text{font-size:12px;color:var(--white);font-weight:600}
+.hib-sub{font-size:11px;color:var(--muted)}
+/* SOCIAL PROOF STRIP */
+.proof-strip{padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);overflow:hidden}
+.proof-inner{display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center}
+.proof-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);white-space:nowrap}
+.proof-item strong{color:var(--white);font-weight:700}
+.proof-sep{color:var(--border);font-size:20px}
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;align-items:center;gap:12px;background:#25D366;color:#fff;font-family:var(--font);font-size:14px;font-weight:700;padding:14px 20px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .2s}
+.wa-float:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.5);color:#fff}
+.wa-float svg{width:22px;height:22px;flex-shrink:0}
+@media(max-width:600px){.wa-float span{display:none}.wa-float{padding:14px}}
+/* HUMAN SECTION */
+.human-sec{padding:90px 0;background:var(--bg)}
+.human-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+@media(max-width:768px){.human-grid{grid-template-columns:1fr;gap:32px}}
+.human-img-wrap{position:relative}
+.human-img{width:100%;border-radius:20px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.human-quote{position:absolute;bottom:-20px;right:-20px;background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:16px 20px;max-width:240px}
+.hq-text{font-size:13px;color:var(--white);font-style:italic;margin-bottom:8px;line-height:1.5}
+.hq-auth{font-size:11px;color:var(--muted);font-weight:700}
+@media(max-width:768px){.human-quote{position:static;max-width:100%;margin-top:16px}}
+.human-text h2{font-size:clamp(30px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1;margin-bottom:20px}
+.human-text p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+.human-text p strong{color:var(--white);font-weight:600}
+.human-stats{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap}
+.hs-item{text-align:center}
+.hs-num{font-size:32px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs-lbl{font-size:11px;color:var(--muted);letter-spacing:.5px}
+/* IMG CARDS */
+.sec-card-top img{width:100%;height:100%;object-fit:cover;opacity:.7;transition:opacity .3s}
+.sec-card:hover .sec-card-top img{opacity:.9}
+.sec-card-top{position:relative}
+.sec-card-emoji{position:absolute;bottom:10px;right:14px;font-size:32px;line-height:1}
 :root{
   --bg:#07080F;--bg2:#0E1020;--bg3:#141628;
   --white:#F0EEFF;--muted:#6B7280;
@@ -57,7 +105,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;background:r
 .dd-item{display:block;padding:10px 14px;border-radius:8px;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
 .dd-item:hover{background:rgba(168,85,247,.1);color:var(--white)}
 .dd-sect{padding:6px 14px 4px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(168,85,247,.6);margin-top:4px}
-@media(max-width:768px){.nav-links{display:none}}
+@media(max-width:768px){.nav-links{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(7,8,15,.97);backdrop-filter:blur(20px);padding:20px 28px 28px;flex-direction:column;gap:0;border-bottom:1px solid var(--border)}.nav-links.open{display:flex}.nav-links li{border-bottom:1px solid var(--border)}.nav-links li:last-child{border:none}.nav-links a,.nav-links span{display:block;padding:14px 0;font-size:15px}}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.ham span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){.ham{display:flex}}
 
 /* BREADCRUMB */
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:32px;flex-wrap:wrap}
@@ -374,9 +428,10 @@ footer p{font-size:13px;color:var(--muted)}
       </li>
       <li><a onclick="nav(&#39;/#offres&#39;)">Offres</a></li>
       <li><a onclick="nav(&#39;/#methode&#39;)">Méthode</a></li>
-      <li><a onclick="nav(&#39;/#contact&#39;)">Contact</a></li>
+      <li><a href="https://wa.me/33620757517" target="_blank" style="color:#25D366">💬 WhatsApp</a></li>
     </ul>
-    <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Demander un devis →</button>
+    <a href="https://wa.me/33620757517" target="_blank" class="btn-p">💬 Discutons →</a>
+    <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -388,22 +443,46 @@ footer p{font-size:13px;color:var(--muted)}
   <section id="hero">
     <div class="orb1"></div><div class="orb2"></div>
     <div class="container">
-      <div class="hero-content">
-        <div class="badge">Agence web · France · Disponible maintenant</div>
-        <h1 class="hero-h1">Votre site web doit<br><span class="grad">vendre.</span><br><span class="soft">Pas juste exister.</span></h1>
-        <p class="hero-sub">On crée des sites qui transforment vos visiteurs en clients.<br><strong>Design premium, message qui convertit, livraison en moins d'une semaine.</strong></p>
-        <div class="hero-ctas">
-          <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Réserver un appel gratuit →</button>
-          <button class="btn-g" onclick="nav(&#39;/#offres&#39;)">Voir les offres</button>
+      <div class="hero-flex">
+        <div class="hero-content">
+          <div class="badge">Agence web · France · Disponible maintenant</div>
+          <h1 class="hero-h1">Votre site web doit<br><span class="grad">vendre.</span><br><span class="soft">Pas juste exister.</span></h1>
+          <p class="hero-sub">On crée des sites qui transforment vos visiteurs en clients.<br><strong>Design premium, message qui convertit, livraison en 48h.</strong></p>
+          <div class="hero-ctas">
+            <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a>
+            <button class="btn-g" onclick="nav(&#39;/#offres&#39;)">Voir les offres</button>
+          </div>
+          <div class="hero-metrics">
+            <div><div class="metric-num">48h</div><div class="metric-label">Livraison garantie</div></div>
+            <div><div class="metric-num">100%</div><div class="metric-label">Sur mesure</div></div>
+            <div><div class="metric-num">3×</div><div class="metric-label">Plus de contacts</div></div>
+          </div>
         </div>
-        <div class="hero-metrics">
-          <div><div class="metric-num">&lt;1 sem</div><div class="metric-label">Livraison garantie</div></div>
-          <div><div class="metric-num">100%</div><div class="metric-label">Sur mesure</div></div>
-          <div><div class="metric-num">3×</div><div class="metric-label">Plus de contacts</div></div>
+        <div class="hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="Équipe WEBcraft au travail" class="hero-img" loading="eager">
+          <div class="hero-img-badge">
+            <div class="hib-dot"></div>
+            <div><div class="hib-text">Projet en cours</div><div class="hib-sub">Site livré ce matin ✓</div></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- SOCIAL PROOF STRIP -->
+  <div class="proof-strip">
+    <div class="container">
+      <div class="proof-inner">
+        <div class="proof-item">⭐⭐⭐⭐⭐ <strong>4.9/5</strong> · avis clients</div>
+        <div class="proof-sep">·</div>
+        <div class="proof-item">🚀 <strong>+60 sites</strong> livrés en France</div>
+        <div class="proof-sep">·</div>
+        <div class="proof-item">⏱ Délai moyen <strong>48h</strong></div>
+        <div class="proof-sep">·</div>
+        <div class="proof-item">🤝 <strong>100%</strong> des clients satisfaits</div>
+      </div>
+    </div>
+  </div>
 
   <!-- SECTEURS -->
   <section class="sectors-sec">
@@ -415,7 +494,7 @@ footer p{font-size:13px;color:var(--muted)}
       </div>
       <div class="sectors-grid">
         <div class="sec-card" onclick="nav(&#39;/restauration&#39;)">
-          <div class="sec-card-top" style="background:linear-gradient(135deg,#1a0a05,#3d1a0a)">🍽</div>
+          <div class="sec-card-top" style="background:linear-gradient(135deg,#1a0a05,#3d1a0a)"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75" alt="Restaurant" loading="lazy"><span class="sec-card-emoji">🍽</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Restauration</div>
             <div class="sec-card-desc">Pizzerias, restaurants gastronomiques, coffee shops, boulangeries. Des sites qui remplissent les tables.</div>
@@ -423,7 +502,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
         <div class="sec-card" onclick="nav(&#39;/beaute&#39;)">
-          <div class="sec-card-top" style="background:linear-gradient(135deg,#1a0b2e,#3d0a2e)">💅</div>
+          <div class="sec-card-top" style="background:linear-gradient(135deg,#1a0b2e,#3d0a2e)"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=75" alt="Beauté" loading="lazy"><span class="sec-card-emoji">💅</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Beauté</div>
             <div class="sec-card-desc">Salons de coiffure, instituts, spas, nail art. Des sites premium qui remplissent votre agenda.</div>
@@ -431,7 +510,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
         <div class="sec-card" onclick="nav(&#39;/sport-sante&#39;)">
-          <div class="sec-card-top" style="background:linear-gradient(135deg,#071a0a,#0a3d15)">💪</div>
+          <div class="sec-card-top" style="background:linear-gradient(135deg,#071a0a,#0a3d15)"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75" alt="Sport" loading="lazy"><span class="sec-card-emoji">💪</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Sport &amp; Santé</div>
             <div class="sec-card-desc">Coachs, salles de sport, kinés, nutritionnistes. Un site qui remplit votre agenda et vend vos programmes.</div>
@@ -439,7 +518,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
         <div class="sec-card" onclick="nav(&#39;/artisans&#39;)">
-          <div class="sec-card-top" style="background:linear-gradient(135deg,#0A0A08,#1A1A0F)">🔨</div>
+          <div class="sec-card-top" style="background:linear-gradient(135deg,#0A0A08,#1A1A0F)"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=75" alt="Artisan" loading="lazy"><span class="sec-card-emoji">🔨</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Artisans</div>
             <div class="sec-card-desc">Plombiers, électriciens, peintres, maçons. Des leads qualifiés sans passer par les plateformes.</div>
@@ -447,7 +526,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
         <div class="sec-card" onclick="nav(&#39;/commerce-local&#39;)">
-          <div class="sec-card-top" style="background:linear-gradient(135deg,#0D0A18,#1a0a30)">🛍</div>
+          <div class="sec-card-top" style="background:linear-gradient(135deg,#0D0A18,#1a0a30)"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75" alt="Commerce local" loading="lazy"><span class="sec-card-emoji">🛍</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Commerce local</div>
             <div class="sec-card-desc">Fleuristes, cavistes, chocolatiers, librairies. Votre boutique unique, visible partout.</div>
@@ -455,7 +534,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
         <div class="sec-card" onclick="nav(&#39;/hotellerie&#39;)">
-          <div class="sec-card-top" style="background:linear-gradient(135deg,#050D1A,#0A1929)">🏨</div>
+          <div class="sec-card-top" style="background:linear-gradient(135deg,#050D1A,#0A1929)"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=75" alt="Hôtellerie" loading="lazy"><span class="sec-card-emoji">🏨</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Hôtellerie</div>
             <div class="sec-card-desc">Hôtels, gîtes, B&amp;B, campings. Réduisez les commissions Booking et récupérez vos marges.</div>
@@ -529,9 +608,9 @@ footer p{font-size:13px;color:var(--muted)}
             <li class="obul2">Mobile-first et ultra rapide</li>
             <li class="obul2">Formulaire de contact intégré</li>
             <li class="obul2">SEO technique de base</li>
-            <li class="obul2">Livraison en moins d'une semaine</li>
+            <li class="obul2">Livraison en 48h</li>
           </ul>
-          <button class="btn-g" onclick="nav(&#39;/#contact&#39;)">Je démarre →</button>
+          <a href="https://wa.me/33620757517" target="_blank" class="btn-g">💬 Je démarre →</a>
         </div>
         <div class="ocard2 feat">
           <div class="ocard2-badge">Le plus choisi</div>
@@ -547,7 +626,7 @@ footer p{font-size:13px;color:var(--muted)}
             <li class="obul2">SEO on-page complet</li>
             <li class="obul2">Appels de suivi inclus</li>
           </ul>
-          <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Je veux ça →</button>
+          <button class="btn-p" onclick="openCal()">Je veux ça →</button>
         </div>
         <div class="ocard2">
           <div class="ocard2-type" style="color:var(--lime)">Croissance</div>
@@ -562,7 +641,7 @@ footer p{font-size:13px;color:var(--muted)}
             <li class="obul2">Accompagnement mensuel</li>
             <li class="obul2">Reporting &amp; tableaux de bord</li>
           </ul>
-          <button class="btn-g" onclick="nav(&#39;/#contact&#39;)">Discutons-en →</button>
+          <a href="https://wa.me/33620757517" target="_blank" class="btn-g">💬 Discutons sur WhatsApp →</a>
         </div>
       </div>
     </div>
@@ -574,7 +653,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sec-hd">
         <div class="badge">Notre méthode</div>
         <h2>Simple. Rapide.<br><span class="grad">Sans prise de tête.</span></h2>
-        <p>De zéro à un site en ligne en moins d'une semaine.</p>
+        <p>De zéro à un site en ligne en <strong style="color:var(--cb)">48h chrono</strong>.</p>
       </div>
       <div class="msteps">
         <div class="sitem s1"><div class="snl">Étape 01</div><div class="scirc">💬</div><h4>Cadrage</h4><p>Un appel de 45 min pour comprendre votre business, vos clients et vos objectifs. On ne part jamais dans le vague.</p></div>
@@ -595,10 +674,41 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="pgrid">
         <div class="dcard"><div class="dicon d1">🎯</div><h4>Orienté conversion</h4><p>Chaque section a un but précis. On pense à vos clients avant de penser aux couleurs.</p></div>
         <div class="dcard"><div class="dicon d2">✍️</div><h4>Copywriting inclus</h4><p>Pas besoin de rédiger vos textes. On écrit un message clair qui parle directement à vos prospects.</p></div>
-        <div class="dcard"><div class="dicon d3">⚡</div><h4>Livraison rapide</h4><p>Moins d'une semaine. On respecte les délais parce que votre temps a de la valeur.</p></div>
+        <div class="dcard"><div class="dicon d3">⚡</div><h4>Livraison rapide</h4><p>48h. On respecte les délais parce que votre temps a de la valeur.</p></div>
         <div class="dcard"><div class="dicon d4">🔍</div><h4>SEO propre dès le départ</h4><p>Structure technique soignée, balises optimisées, vitesse au top. Google vous aimera.</p></div>
         <div class="dcard"><div class="dicon d5">💎</div><h4>Image premium</h4><p>Vos clients vous jugent en 3 secondes. Ces 3 secondes doivent inspirer confiance.</p></div>
         <div class="dcard"><div class="dicon d6">🤝</div><h4>Accompagnement simple</h4><p>Un interlocuteur unique, des réponses rapides. Pas de jargon, jamais de surprises.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUI SOMMES NOUS -->
+  <section class="human-sec">
+    <div class="container">
+      <div class="sec-hd">
+        <div class="badge">Qui sommes-nous</div>
+        <h2>Un studio à taille humaine.<br><span class="grad">Pas une usine.</span></h2>
+        <p>On est une petite équipe passionnée — pas une agence avec 50 commerciaux et des projets livrés à la chaîne.</p>
+      </div>
+      <div class="human-grid">
+        <div class="human-img-wrap">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="L'équipe WEBcraft" class="human-img" loading="lazy">
+          <div class="human-quote">
+            <div class="hq-text">"On répond aux messages le dimanche. Parce que nos clients ont du boulot le lundi matin."</div>
+            <div class="hq-auth">— L'équipe WEBcraft</div>
+          </div>
+        </div>
+        <div class="human-text">
+          <h2>On ne livre pas des sites.<br>On livre des <span class="grad">résultats.</span></h2>
+          <p>On a lancé WEBcraft parce qu'on a vu trop de petits entrepreneurs se faire arnaquer par des agences qui facturent 5 000€ pour du WordPress générique avec un template acheté 30€.</p>
+          <p><strong>Notre promesse :</strong> un site livré en 48h, conçu pour convertir, au prix juste. Pas de jargon, pas d'abonnement forcé, pas de mauvaise surprise.</p>
+          <p>On travaille avec vous comme si c'était notre propre business. Disponibles, directs, et honnêtes — même quand ce n'est pas ce que vous voulez entendre.</p>
+          <div class="human-stats">
+            <div class="hs-item"><div class="hs-num">60+</div><div class="hs-lbl">Sites livrés</div></div>
+            <div class="hs-item"><div class="hs-num">48h</div><div class="hs-lbl">Délai moyen</div></div>
+            <div class="hs-item"><div class="hs-num">4.9★</div><div class="hs-lbl">Note moyenne</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -608,7 +718,7 @@ footer p{font-size:13px;color:var(--muted)}
     <div class="container">
       <div class="sec-hd"><div class="badge">FAQ</div><h2>Les vraies <span class="grad">questions.</span></h2></div>
       <div class="flist">
-        <div class="fi"><button class="fq" onclick="tF(this)">Combien de temps pour livrer mon site ?<span class="farr">+</span></button><div class="fa"><p>On s'engage sur <strong>moins d'une semaine</strong> pour les sites vitrine. Maquette rapide, validation, développement, mise en ligne — tout dans la foulée.</p></div></div>
+        <div class="fi"><button class="fq" onclick="tF(this)">Combien de temps pour livrer mon site ?<span class="farr">+</span></button><div class="fa"><p>On s'engage sur <strong>48h</strong> pour les sites vitrine. Maquette rapide, validation, développement, mise en ligne — tout dans la foulée.</p></div></div>
         <div class="fi"><button class="fq" onclick="tF(this)">Est-ce que vous rédigez les textes ?<span class="farr">+</span></button><div class="fa"><p>Oui, inclus dans toutes nos offres. On travaille avec vous puis on rédige un texte <strong>orienté conversion</strong>. Vous relisez et validez.</p></div></div>
         <div class="fi"><button class="fq" onclick="tF(this)">Pourrai-je modifier le site moi-même ?<span class="farr">+</span></button><div class="fa"><p>Oui. CMS simple avec <strong>formation courte incluse</strong>. Changer un texte, une photo ou un prix : vous n'aurez pas besoin de nous appeler.</p></div></div>
         <div class="fi"><button class="fq" onclick="tF(this)">Pourquoi vous plutôt qu'un freelance à 300€ ?<span class="farr">+</span></button><div class="fa"><p>Un site à 300€, ça se voit. Ça rassure personne. Nos clients vendent des prestations à plusieurs centaines d'euros — leur site doit <strong>être à la hauteur</strong>.</p></div></div>
@@ -625,10 +735,10 @@ footer p{font-size:13px;color:var(--muted)}
       <h2>Votre site actuel<br><span class="grad">vous coûte</span><br><span class="soft">des clients.</span></h2>
       <p>Un appel de 30 minutes. Gratuit. Sans engagement. On vous dit exactement ce qu'on peut faire — et à quel prix.</p>
       <div class="cta-btns">
-        <a href="tel:+33600000000" class="btn-p">📞 Réserver un appel gratuit</a>
-        <a href="mailto:contact@webcraft.fr" class="btn-g">Envoyer un message</a>
+        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a>
+        <a href="https://wa.me/33620757517" target="_blank" class="btn-g" style="border-color:rgba(37,211,102,.4);color:#25D366">💬 WhatsApp</a>
       </div>
-      <p class="cta-email">Ou directement : <a href="mailto:contact@webcraft.fr">contact@webcraft.fr</a></p>
+      <p class="cta-email">Questions rapides ? <a href="https://wa.me/33620757517" target="_blank" style="color:#25D366;border-color:rgba(37,211,102,.3)">Écrivez-nous sur WhatsApp →</a></p>
     </div>
   </section>
 
@@ -647,13 +757,13 @@ footer p{font-size:13px;color:var(--muted)}
       <h1 class="vh" style="min-height:auto;padding:0;display:block">Un site qui<br><span style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">remplit vos tables.</span><br><span class="soft">Pas juste votre vitrine.</span></h1>
       <p class="vh-sub">On crée des sites pour les restaurateurs qui veulent plus de réservations, plus de commandes en ligne et moins de dépendance aux plateformes qui vous ponctionnent.</p>
       <div class="vh-ctas">
-        <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Réserver un appel gratuit →</button>
+        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a>
         <button class="btn-g" onclick="nav(&#39;/restauration/pizzeria&#39;)">Voir la page Pizzeria</button>
       </div>
       <div class="vh-stats">
         <div><div class="vs-num" style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">+40%</div><div class="vs-lbl">Réservations en ligne</div></div>
         <div><div class="vs-num" style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">-20%</div><div class="vs-lbl">Dépendance aux apps</div></div>
-        <div><div class="vs-num" style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">&lt;1 sem</div><div class="vs-lbl">Livraison</div></div>
+        <div><div class="vs-num" style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">48h</div><div class="vs-lbl">Livraison</div></div>
       </div>
     </div>
   </section>
@@ -715,7 +825,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="badge" style="color:#D4A853;background:rgba(212,168,83,.1);border-color:rgba(212,168,83,.3)">Restaurateurs</div>
       <h2>Chaque table vide<br><span style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">c'est de l'argent</span><br><span class="soft">qui part à la concurrence.</span></h2>
       <p>Appel gratuit de 30 min. On vous montre exactement ce qu'on peut créer pour votre restaurant.</p>
-      <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit →</button></div>
+      <div class="cta-btns"><a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a></div>
     </div>
   </section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Spécialiste sites restaurants</p><div class="footer-links"><span onclick="nav(&#39;/&#39;)">Accueil</span><span onclick="nav(&#39;/restauration/pizzeria&#39;)">Pizzeria</span><span onclick="nav(&#39;/restauration/gastronomique&#39;)">Gastronomique</span></div></div></div></footer>
@@ -732,7 +842,7 @@ footer p{font-size:13px;color:var(--muted)}
       <h1 class="sp-h1">Arrêtez de payer<br><span style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">30% à Uber Eats.</span><br>Votre site commande.</h1>
       <p class="sp-sub">Un site avec commande en ligne directe pour votre pizzeria ou fast-food. <strong>Zéro commission, 100% de la marge pour vous.</strong></p>
       <div class="hero-ctas">
-        <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Calculer mes économies →</button>
+        <button class="btn-p" onclick="openCal()">Calculer mes économies →</button>
         <button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour Restauration</button>
       </div>
     </div>
@@ -754,15 +864,15 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="result-card"><div class="result-num" style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">-30%</div><div class="result-lbl">Commissions plateformes</div></div>
       <div class="result-card"><div class="result-num" style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">+50%</div><div class="result-lbl">Commandes directes</div></div>
       <div class="result-card"><div class="result-num" style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">1ère</div><div class="result-lbl">Position Google local</div></div>
-      <div class="result-card"><div class="result-num" style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">5j</div><div class="result-lbl">Livraison moyenne</div></div>
+      <div class="result-card"><div class="result-num" style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">48h</div><div class="result-lbl">Livraison moyenne</div></div>
     </div>
   </div></section>
   <section class="offers-sec"><div class="container">
     <div class="sec-hd"><h2>Offres <span style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Pizzeria</span></h2></div>
     <div class="offers-grid">
-      <div class="oc"><div class="oc-type">Essentiel</div><h3>Site Vitrine</h3><div class="oc-price">800€ <small>HT</small></div><p class="oc-desc">Pour exister en ligne avec une image pro et un menu digital.</p><ul class="oc-buls"><li class="oc-bul">Design sur mesure pizzeria</li><li class="oc-bul">Menu digital interactif</li><li class="oc-bul">SEO local ciblé</li><li class="oc-bul">Mobile-first</li></ul><button class="btn-g" onclick="nav(&#39;/#contact&#39;)">Je démarre →</button></div>
-      <div class="oc feat"><div class="oc-badge">Recommandé</div><div class="oc-type" style="color:var(--cb)">Performance</div><h3>Site + Commande</h3><div class="oc-price">1 400€ <small>HT</small></div><p class="oc-desc">Site vitrine + commande directe en ligne. Zéro commission.</p><ul class="oc-buls"><li class="oc-bul">Tout du site vitrine</li><li class="oc-bul">Module commande intégré</li><li class="oc-bul">Click &amp; collect</li><li class="oc-bul">Notifications SMS/email</li></ul><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Je veux ça →</button></div>
-      <div class="oc"><div class="oc-type" style="color:var(--lime)">Premium</div><h3>Site + Livraison</h3><div class="oc-price">1 900€ <small>HT</small></div><p class="oc-desc">La solution complète avec gestion de la livraison intégrée.</p><ul class="oc-buls"><li class="oc-bul">Tout du site commande</li><li class="oc-bul">Gestion zones livraison</li><li class="oc-bul">Suivi commandes</li><li class="oc-bul">Dashboard pizzeria</li></ul><button class="btn-g" onclick="nav(&#39;/#contact&#39;)">Discutons-en →</button></div>
+      <div class="oc"><div class="oc-type">Essentiel</div><h3>Site Vitrine</h3><div class="oc-price">800€ <small>HT</small></div><p class="oc-desc">Pour exister en ligne avec une image pro et un menu digital.</p><ul class="oc-buls"><li class="oc-bul">Design sur mesure pizzeria</li><li class="oc-bul">Menu digital interactif</li><li class="oc-bul">SEO local ciblé</li><li class="oc-bul">Mobile-first</li></ul><a href="https://wa.me/33620757517" target="_blank" class="btn-g">💬 Je démarre →</a></div>
+      <div class="oc feat"><div class="oc-badge">Recommandé</div><div class="oc-type" style="color:var(--cb)">Performance</div><h3>Site + Commande</h3><div class="oc-price">1 400€ <small>HT</small></div><p class="oc-desc">Site vitrine + commande directe en ligne. Zéro commission.</p><ul class="oc-buls"><li class="oc-bul">Tout du site vitrine</li><li class="oc-bul">Module commande intégré</li><li class="oc-bul">Click &amp; collect</li><li class="oc-bul">Notifications SMS/email</li></ul><button class="btn-p" onclick="openCal()">Je veux ça →</button></div>
+      <div class="oc"><div class="oc-type" style="color:var(--lime)">Premium</div><h3>Site + Livraison</h3><div class="oc-price">1 900€ <small>HT</small></div><p class="oc-desc">La solution complète avec gestion de la livraison intégrée.</p><ul class="oc-buls"><li class="oc-bul">Tout du site commande</li><li class="oc-bul">Gestion zones livraison</li><li class="oc-bul">Suivi commandes</li><li class="oc-bul">Dashboard pizzeria</li></ul><a href="https://wa.me/33620757517" target="_blank" class="btn-g">💬 Discutons sur WhatsApp →</a></div>
     </div>
   </div></section>
   <section class="faq-sec"><div class="container">
@@ -776,7 +886,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Combien Uber Eats<br><span style="background:linear-gradient(135deg,#EF4444,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous coûte</span><br><span class="soft">par mois ?</span></h2>
     <p>On vous le calcule gratuitement sur notre appel. Et on vous montre exactement combien vous récupériez avec un site de commande directe.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Calculer mes économies gratuitement</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Calculer mes économies gratuitement</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites pizzerias &amp; fast-food</p><div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">← Restauration</span><span onclick="nav(&#39;/restauration/kebab&#39;)">Kebab</span><span onclick="nav(&#39;/restauration/gastronomique&#39;)">Gastronomique</span></div></div></div></footer>
 </div>
@@ -791,7 +901,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#F59E0B;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3)">🥙 Expert Kebab &amp; Snack</div>
       <h1 class="sp-h1">Votre kebab mérite<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'être trouvé</span><br>en premier sur Google.</h1>
       <p class="sp-sub">Un site rapide, visible, avec commande en ligne. <strong>Vos clients affamés vous trouvent avant votre concurrent d'en face.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Être en tête de Google →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Être en tête de Google →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="feat-sec"><div class="container">
@@ -808,7 +918,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Votre snack invisible<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">laisse partir</span><br><span class="soft">vos clients à la concurrence.</span></h2>
     <p>Appel gratuit, 20 minutes. On vous montre comment apparaître en premier dans votre ville.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit maintenant</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit maintenant</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites kebabs &amp; snacks</p><div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">← Restauration</span><span onclick="nav(&#39;/restauration/pizzeria&#39;)">Pizzeria</span></div></div></div></footer>
 </div>
@@ -823,7 +933,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#D4A853;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.3)">🍷 Expert Restaurant Gastronomique</div>
       <h1 class="sp-h1">Un site à la<br><span style="background:linear-gradient(135deg,#D4A853,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">hauteur de votre cuisine.</span></h1>
       <p class="sp-sub">Votre table mérite une vitrine digitale aussi soignée que votre dressage. <strong>Réservations en ligne, storytelling chef, ambiance unique.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Voir une maquette →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Voir une maquette →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="feat-sec"><div class="container">
@@ -840,7 +950,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Votre restaurant<br><span style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">mérite mieux</span><br><span class="soft">qu'une fiche Google.</span></h2>
     <p>Montrez votre univers comme vous le méritez. Appel de 30 min pour voir ce qu'on peut créer ensemble.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Voir une maquette gratuite</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Voir une maquette gratuite</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites restaurants gastronomiques</p><div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">← Restauration</span><span onclick="nav(&#39;/restauration/coffee-shop&#39;)">Coffee shop</span></div></div></div></footer>
 </div>
@@ -855,12 +965,12 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#A16B3C;background:rgba(161,107,60,.1);border:1px solid rgba(161,107,60,.3)">☕ Expert Coffee Shop &amp; Brunch</div>
       <h1 class="sp-h1">Un site aussi<br><span style="background:linear-gradient(135deg,#A16B3C,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">chaleureux</span><br>que votre café.</h1>
       <p class="sp-sub">Lifestyle fort, galerie qui donne envie, agenda des événements. <strong>Votre coffee shop devient la référence du quartier.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site café →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site café →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Votre ambiance unique<br><span style="background:linear-gradient(135deg,#A16B3C,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se vit aussi</span><br><span class="soft">en ligne.</span></h2>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites coffee shops &amp; brunchs</p><div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">← Restauration</span></div></div></div></footer>
 </div>
@@ -875,12 +985,12 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#D97706;background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3)">🥖 Expert Boulangerie &amp; Pâtisserie</div>
       <h1 class="sp-h1">Votre savoir-faire<br><span style="background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">artisanal</span><br>visible partout.</h1>
       <p class="sp-sub">Produits du jour, commandes de gâteaux sur-mesure, horaires à jour. <strong>Vos clients n'appellent plus pour savoir si vous êtes ouverts.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site boulangerie →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site boulangerie →</button><button class="btn-g" onclick="nav(&#39;/restauration&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Votre boulangerie<br><span style="background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">a une âme.</span><br><span class="soft">Votre site aussi.</span></h2>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites boulangeries &amp; pâtisseries</p><div class="footer-links"><span onclick="nav(&#39;/restauration&#39;)">← Restauration</span></div></div></div></footer>
 </div>
@@ -896,7 +1006,7 @@ footer p{font-size:13px;color:var(--muted)}
       <h1 class="vh" style="min-height:auto;padding:0;display:block">Un site aussi<br><span style="background:linear-gradient(135deg,#EC4899,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">soigné que vos</span><br>prestations.</h1>
       <p class="vh-sub">On crée des sites pour les professionnels de la beauté qui veulent un agenda plein, moins de no-shows, et une image premium qui justifie leurs tarifs.</p>
       <div class="vh-ctas">
-        <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Réserver un appel →</button>
+        <button class="btn-p" onclick="openCal()">Réserver un appel →</button>
         <button class="btn-g" onclick="nav(&#39;/beaute/salon-coiffure&#39;)">Voir Salon de coiffure</button>
       </div>
       <div class="vh-stats">
@@ -930,7 +1040,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <div class="badge" style="color:#EC4899;background:rgba(236,72,153,.1);border-color:rgba(236,72,153,.3)">Professionnels beauté</div>
     <h2>Votre agenda<br><span style="background:linear-gradient(135deg,#EC4899,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">peut se remplir</span><br><span class="soft">pendant que vous dormez.</span></h2>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit →</button></div>
+    <div class="cta-btns"><a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Spécialiste sites beauté</p><div class="footer-links"><span onclick="nav(&#39;/&#39;)">Accueil</span><span onclick="nav(&#39;/beaute/salon-coiffure&#39;)">Coiffure</span><span onclick="nav(&#39;/beaute/spa&#39;)">Spa</span></div></div></div></footer>
 </div>
@@ -945,7 +1055,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">💇 Expert Salon de Coiffure</div>
       <h1 class="sp-h1">Votre agenda plein.<br><span style="background:linear-gradient(135deg,#A855F7,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Vos no-shows</span><br>à zéro.</h1>
       <p class="sp-sub">Prise de RDV automatique 24h/24, rappels SMS, galerie qui donne envie. <strong>Votre salon tourne même quand vous coupez des cheveux.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Voir une démo RDV →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Voir une démo RDV →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="feat-sec"><div class="container">
@@ -971,7 +1081,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Combien de RDV<br><span style="background:linear-gradient(135deg,#A855F7,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent">manquez-vous</span><br><span class="soft">chaque semaine ?</span></h2>
     <p>Calculons-le ensemble. Appel gratuit de 20 minutes et on vous montre exactement ce qu'un site peut changer.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites salons de coiffure</p><div class="footer-links"><span onclick="nav(&#39;/beaute&#39;)">← Beauté</span><span onclick="nav(&#39;/beaute/institut&#39;)">Institut</span><span onclick="nav(&#39;/beaute/nail-art&#39;)">Nail Art</span></div></div></div></footer>
 </div>
@@ -984,10 +1094,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#EC4899;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3)">✨ Expert Institut Beauté</div>
       <h1 class="sp-h1">Votre institut<br><span style="background:linear-gradient(135deg,#EC4899,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">attire la clientèle</span><br>qu'il mérite.</h1>
       <p class="sp-sub">Prestations premium, photos avant/après, réservation fluide. <strong>Votre site travaille à recruter des clients haut de gamme pendant que vous faites vos soins.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site institut →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site institut →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos soins valent<br><span style="background:linear-gradient(135deg,#EC4899,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'être vus.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos soins valent<br><span style="background:linear-gradient(135deg,#EC4899,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'être vus.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites instituts beauté</p><div class="footer-links"><span onclick="nav(&#39;/beaute&#39;)">← Beauté</span></div></div></div></footer>
 </div>
 
@@ -998,10 +1108,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">💅 Expert Nail Art</div>
       <h1 class="sp-h1">Votre portfolio<br><span style="background:linear-gradient(135deg,#A855F7,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent">nail art</span><br>qui fait craquer.</h1>
       <p class="sp-sub">Galerie massive de créations, réservation en ligne, tarifs clairs. <strong>Vos clients réservent après 3 secondes sur votre site.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre art mérite<br><span style="background:linear-gradient(135deg,#A855F7,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'être exposé.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre art mérite<br><span style="background:linear-gradient(135deg,#A855F7,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'être exposé.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites nail art</p><div class="footer-links"><span onclick="nav(&#39;/beaute&#39;)">← Beauté</span></div></div></div></footer>
 </div>
 
@@ -1012,10 +1122,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">🧖 Expert Spa &amp; Bien-être</div>
       <h1 class="sp-h1">Un site aussi<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">apaisant</span><br>que votre spa.</h1>
       <p class="sp-sub">Ambiance premium, packages soins, réservation en ligne intuitive. <strong>Votre spa attire une clientèle CSP+ prête à investir dans leur bien-être.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site spa →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site spa →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>L'évasion commence<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">sur votre site.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>L'évasion commence<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">sur votre site.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites spas &amp; bien-être</p><div class="footer-links"><span onclick="nav(&#39;/beaute&#39;)">← Beauté</span></div></div></div></footer>
 </div>
 
@@ -1026,10 +1136,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">🎨 Expert Tatouage &amp; Piercing</div>
       <h1 class="sp-h1">Votre style s'impose.<br><span style="background:linear-gradient(135deg,#A855F7,#6366F1);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Votre portfolio</span><br>convainc.</h1>
       <p class="sp-sub">Portfolio artistique massif, flash tattoo en ligne, prise de RDV, style artistique affiché. <strong>Les clients qui viennent savent déjà qu'ils veulent votre style.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon portfolio →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon portfolio →</button><button class="btn-g" onclick="nav(&#39;/beaute&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre art parle.<br><span style="background:linear-gradient(135deg,#A855F7,#6366F1);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Votre site aussi.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre art parle.<br><span style="background:linear-gradient(135deg,#A855F7,#6366F1);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Votre site aussi.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites tatoueurs &amp; piercing</p><div class="footer-links"><span onclick="nav(&#39;/beaute&#39;)">← Beauté</span></div></div></div></footer>
 </div>
 
@@ -1044,7 +1154,7 @@ footer p{font-size:13px;color:var(--muted)}
       <h1 class="vh" style="min-height:auto;padding:0;display:block">Arrêtez de payer<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">des commissions.</span><br>Vos leads arrivent direct.</h1>
       <p class="vh-sub">On crée des sites pour les artisans qui veulent des demandes de devis qualifiées, sans passer par Houzz, Habitant ou les plateformes qui vous ponctionnent à chaque chantier.</p>
       <div class="vh-ctas">
-        <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Réserver un appel →</button>
+        <button class="btn-p" onclick="openCal()">Réserver un appel →</button>
         <button class="btn-g" onclick="nav(&#39;/artisans/electricien-plombier&#39;)">Voir Électricien / Plombier</button>
       </div>
       <div class="vh-stats">
@@ -1077,7 +1187,7 @@ footer p{font-size:13px;color:var(--muted)}
   </div></section>
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Chaque chantier perdu<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">c'est un concurrent</span><br><span class="soft">mieux référencé que vous.</span></h2>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit →</button></div>
+    <div class="cta-btns"><a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites artisans &amp; BTP</p><div class="footer-links"><span onclick="nav(&#39;/&#39;)">Accueil</span><span onclick="nav(&#39;/artisans/electricien-plombier&#39;)">Élec/Plombier</span><span onclick="nav(&#39;/artisans/peintre&#39;)">Peintre</span></div></div></div></footer>
 </div>
@@ -1092,7 +1202,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#EAB308;background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.3)">⚡ Expert Électricien &amp; Plombier</div>
       <h1 class="sp-h1">Les urgences<br><span style="background:linear-gradient(135deg,#EAB308,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous trouvent</span><br>en 30 secondes.</h1>
       <p class="sp-sub">Quand une canalisation lâche à 23h, vos clients cherchent sur Google. <strong>On vous met en tête de liste avant que votre concurrent réponde.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Apparaître en tête →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Apparaître en tête →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="feat-sec"><div class="container">
@@ -1126,7 +1236,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Combien d'urgences<br><span style="background:linear-gradient(135deg,#EAB308,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous ratez</span><br><span class="soft">chaque semaine ?</span></h2>
     <p>Un appel de 20 minutes. On vous montre comment apparaître en premier sur Google dans votre ville.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Être en tête de Google</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Être en tête de Google</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites électriciens &amp; plombiers</p><div class="footer-links"><span onclick="nav(&#39;/artisans&#39;)">← Artisans</span><span onclick="nav(&#39;/artisans/peintre&#39;)">Peintre</span><span onclick="nav(&#39;/artisans/macon&#39;)">Maçon</span></div></div></div></footer>
 </div>
@@ -1139,10 +1249,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">🖌️ Expert Peintre &amp; Plaquiste</div>
       <h1 class="sp-h1">Vos chantiers<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">avant/après</span><br>vendent pour vous.</h1>
       <p class="sp-sub">Un portfolio de réalisations, un formulaire devis express, votre zone d'intervention. <strong>Les propriétaires qui cherchent un peintre de qualité vous trouvent directement.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos réalisations<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">méritent d'être vues.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos réalisations<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">méritent d'être vues.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites peintres &amp; plaquistes</p><div class="footer-links"><span onclick="nav(&#39;/artisans&#39;)">← Artisans</span></div></div></div></footer>
 </div>
 
@@ -1153,10 +1263,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">🧱 Expert Maçon &amp; Carreleur</div>
       <h1 class="sp-h1">Des chantiers<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">qualifiés</span><br>qui viennent à vous.</h1>
       <p class="sp-sub">Portfolio chantiers, certifications RGE, devis structuré. <strong>Les clients qui vous contactent ont déjà vu votre travail et sont prêts à signer.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos certifications<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous démarquent.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos certifications<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous démarquent.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites maçons &amp; carreleurs</p><div class="footer-links"><span onclick="nav(&#39;/artisans&#39;)">← Artisans</span></div></div></div></footer>
 </div>
 
@@ -1167,10 +1277,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">🪵 Expert Menuisier &amp; Charpentier</div>
       <h1 class="sp-h1">Votre savoir-faire<br><span style="background:linear-gradient(135deg,#84CC16,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">sur-mesure</span><br>attire les bons clients.</h1>
       <p class="sp-sub">Portfolio premium, storytelling artisan, devis sur-mesure. <strong>Les clients qui apprécient le travail bien fait vous trouvent et n'hésitent pas sur le prix.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon portfolio →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon portfolio →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Le sur-mesure<br><span style="background:linear-gradient(135deg,#84CC16,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se voit.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Le sur-mesure<br><span style="background:linear-gradient(135deg,#84CC16,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se voit.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites menuisiers &amp; charpentiers</p><div class="footer-links"><span onclick="nav(&#39;/artisans&#39;)">← Artisans</span></div></div></div></footer>
 </div>
 
@@ -1181,10 +1291,10 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#22C55E;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3)">🌿 Expert Paysagiste</div>
       <h1 class="sp-h1">Vos jardins<br><span style="background:linear-gradient(135deg,#22C55E,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">transforment</span><br>leur propriété.</h1>
       <p class="sp-sub">Galerie de réalisations, devis saisonnier, zone géo. <strong>Les propriétaires aisés qui cherchent un vrai paysagiste vous trouvent avant votre concurrent.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/artisans&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos jardins<br><span style="background:linear-gradient(135deg,#22C55E,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">méritent d'être admirés.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos jardins<br><span style="background:linear-gradient(135deg,#22C55E,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">méritent d'être admirés.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites paysagistes</p><div class="footer-links"><span onclick="nav(&#39;/artisans&#39;)">← Artisans</span></div></div></div></footer>
 </div>
 
@@ -1198,7 +1308,7 @@ footer p{font-size:13px;color:var(--muted)}
       <h1 class="vh" style="min-height:auto;padding:0;display:block">Votre agenda plein.<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Vos programmes</span><br>qui se vendent.</h1>
       <p class="vh-sub">On crée des sites pour les pros du sport et de la santé qui veulent remplir leur agenda, vendre des programmes en ligne et construire une image qui justifie leurs tarifs.</p>
       <div class="vh-ctas">
-        <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Réserver un appel →</button>
+        <button class="btn-p" onclick="openCal()">Réserver un appel →</button>
         <button class="btn-g" onclick="nav(&#39;/sport-sante/coach-sportif&#39;)">Voir Coach sportif</button>
       </div>
       <div class="vh-stats">
@@ -1220,7 +1330,7 @@ footer p{font-size:13px;color:var(--muted)}
   </div></section>
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Vous aidez vos clients<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">à se transformer.</span><br><span class="soft">Votre site aussi.</span></h2>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit →</button></div>
+    <div class="cta-btns"><a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites sport &amp; santé</p><div class="footer-links"><span onclick="nav(&#39;/&#39;)">Accueil</span><span onclick="nav(&#39;/sport-sante/coach-sportif&#39;)">Coach</span></div></div></div></footer>
 </div>
@@ -1233,20 +1343,20 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">🏋️ Expert Coach Sportif</div>
       <h1 class="sp-h1">Votre programme<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">mérite d'être vu.</span><br>Votre agenda aussi.</h1>
       <p class="sp-sub">Site qui crédibilise, réservation séances, vente de programmes en ligne. <strong>Instagram ne suffit plus — votre site vend à votre place, même la nuit.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site coach →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site coach →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div>
     </div>
   </section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos résultats clients<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">parlent d'eux-mêmes.</span><br><span class="soft">Montrez-les.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos résultats clients<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">parlent d'eux-mêmes.</span><br><span class="soft">Montrez-les.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites coachs sportifs</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport &amp; Santé</span></div></div></div></footer>
 </div>
 
-<div id="page-sport-sante-salle-sport" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(34,211,238,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Salle de sport</span></div><div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">🏟️ Expert Salle de Sport</div><h1 class="sp-h1">Remplissez votre salle.<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Vendez vos abonnements</span><br>en ligne.</h1><p class="sp-sub">Planning cours en ligne, inscription abonnements, ambiance communauté. <strong>Votre salle se vend 24h/24.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre communauté<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">commence ici.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites salles de sport</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
+<div id="page-sport-sante-salle-sport" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(34,211,238,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Salle de sport</span></div><div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">🏟️ Expert Salle de Sport</div><h1 class="sp-h1">Remplissez votre salle.<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Vendez vos abonnements</span><br>en ligne.</h1><p class="sp-sub">Planning cours en ligne, inscription abonnements, ambiance communauté. <strong>Votre salle se vend 24h/24.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre communauté<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">commence ici.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites salles de sport</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
 
-<div id="page-sport-sante-kine-osteo" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(34,211,238,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Kiné &amp; Ostéo</span></div><div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">⚕️ Expert Kiné &amp; Ostéo</div><h1 class="sp-h1">Vos patients<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous trouvent.</span><br>Votre agenda se remplit.</h1><p class="sp-sub">RDV en ligne, spécialités affichées, avis patients. <strong>Google vous envoie des patients qualifiés chaque jour.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre expertise<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">visible.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites kinés &amp; ostéos</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
+<div id="page-sport-sante-kine-osteo" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(34,211,238,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Kiné &amp; Ostéo</span></div><div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">⚕️ Expert Kiné &amp; Ostéo</div><h1 class="sp-h1">Vos patients<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous trouvent.</span><br>Votre agenda se remplit.</h1><p class="sp-sub">RDV en ligne, spécialités affichées, avis patients. <strong>Google vous envoie des patients qualifiés chaque jour.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre expertise<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">visible.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites kinés &amp; ostéos</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
 
-<div id="page-sport-sante-nutritionniste" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(132,204,22,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Nutritionniste</span></div><div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">🥗 Expert Nutritionniste</div><h1 class="sp-h1">Vos programmes<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">transforment</span><br>vos clients.</h1><p class="sp-sub">Témoignages résultats, consultations visio, programmes à vendre en ligne. <strong>Un site qui recrute des clients motivés automatiquement.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos résultats<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vendent.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites nutritionnistes</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
+<div id="page-sport-sante-nutritionniste" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(132,204,22,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Nutritionniste</span></div><div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">🥗 Expert Nutritionniste</div><h1 class="sp-h1">Vos programmes<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">transforment</span><br>vos clients.</h1><p class="sp-sub">Témoignages résultats, consultations visio, programmes à vendre en ligne. <strong>Un site qui recrute des clients motivés automatiquement.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos résultats<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vendent.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites nutritionnistes</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
 
-<div id="page-sport-sante-yoga-pilates" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(168,85,247,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Yoga &amp; Pilates</span></div><div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">🧘 Expert Yoga &amp; Pilates</div><h1 class="sp-h1">Votre communauté<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">grandit.</span><br>Votre studio aussi.</h1><p class="sp-sub">Planning cours, abonnements, ambiance zen, témoignages. <strong>Fidélisez et attirez des membres en continu.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon studio →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>La sérénité<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">commence ici.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites yoga &amp; pilates</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
+<div id="page-sport-sante-yoga-pilates" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(168,85,247,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/sport-sante&#39;)">Sport</span><span class="sep">›</span><span class="current">Yoga &amp; Pilates</span></div><div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">🧘 Expert Yoga &amp; Pilates</div><h1 class="sp-h1">Votre communauté<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">grandit.</span><br>Votre studio aussi.</h1><p class="sp-sub">Planning cours, abonnements, ambiance zen, témoignages. <strong>Fidélisez et attirez des membres en continu.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon studio →</button><button class="btn-g" onclick="nav(&#39;/sport-sante&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>La sérénité<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">commence ici.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites yoga &amp; pilates</p><div class="footer-links"><span onclick="nav(&#39;/sport-sante&#39;)">← Sport</span></div></div></div></footer></div>
 
 <!-- ═══ COMMERCE LOCAL ═══ -->
 <div id="page-commerce-local" class="page">
@@ -1256,7 +1366,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="badge" style="color:#F59E0B;background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3)">🛍 Spécialiste Commerce Local</div>
       <h1 class="vh" style="min-height:auto;padding:0;display:block">Votre boutique unique<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">visible partout.</span><br><span class="soft">Amazon ne gagne pas.</span></h1>
       <p class="vh-sub">On crée des sites pour les commerçants indépendants qui veulent fidéliser leur clientèle locale et attirer de nouveaux clients au-delà du bouche-à-oreille.</p>
-      <div class="vh-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Réserver un appel →</button><button class="btn-g" onclick="nav(&#39;/commerce-local/fleuriste&#39;)">Voir Fleuriste</button></div>
+      <div class="vh-ctas"><button class="btn-p" onclick="openCal()">Réserver un appel →</button><button class="btn-g" onclick="nav(&#39;/commerce-local/fleuriste&#39;)">Voir Fleuriste</button></div>
     </div>
   </section>
   <section class="subcat-sec"><div class="container">
@@ -1268,17 +1378,17 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="subcat-card" onclick="nav(&#39;/commerce-local/librairie&#39;)"><div class="sc-img" style="background:linear-gradient(135deg,#0a1020,#1a2540)">📚</div><div class="sc-body"><div class="sc-title">Librairie indépendante</div><div class="sc-desc">Agenda événements, sélections thématiques, commandes réservations, communauté lecteurs.</div><div class="sc-link">Voir la page →</div></div></div>
     </div>
   </div></section>
-  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre histoire<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">mérite</span><br><span class="soft">d'être racontée en ligne.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit →</button></div></div></section>
+  <section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre histoire<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">mérite</span><br><span class="soft">d'être racontée en ligne.</span></h2><div class="cta-btns"><a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/webcraft-agence/appel-gratuit'});return false;" class="btn-p">📅 Réserver un appel gratuit</a></div></div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites commerces locaux</p><div class="footer-links"><span onclick="nav(&#39;/&#39;)">Accueil</span></div></div></div></footer>
 </div>
 
-<div id="page-commerce-local-fleuriste" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(236,72,153,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Fleuriste</span></div><div class="sp-badge" style="color:#EC4899;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3)">🌸 Expert Fleuriste</div><h1 class="sp-h1">Vos créations florales<br><span style="background:linear-gradient(135deg,#EC4899,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">commandées en ligne.</span><br>Livrées avec amour.</h1><p class="sp-sub">Commandes en ligne, galerie créations, mariages, deuil, occasions. <strong>Votre boutique fleurit au-delà de votre rue.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos fleurs<br><span style="background:linear-gradient(135deg,#EC4899,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">voyagent plus loin.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites fleuristes</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
+<div id="page-commerce-local-fleuriste" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(236,72,153,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Fleuriste</span></div><div class="sp-badge" style="color:#EC4899;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3)">🌸 Expert Fleuriste</div><h1 class="sp-h1">Vos créations florales<br><span style="background:linear-gradient(135deg,#EC4899,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">commandées en ligne.</span><br>Livrées avec amour.</h1><p class="sp-sub">Commandes en ligne, galerie créations, mariages, deuil, occasions. <strong>Votre boutique fleurit au-delà de votre rue.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos fleurs<br><span style="background:linear-gradient(135deg,#EC4899,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">voyagent plus loin.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites fleuristes</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
 
-<div id="page-commerce-local-caviste" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(168,85,247,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Caviste</span></div><div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">🍷 Expert Caviste</div><h1 class="sp-h1">Votre expertise<br><span style="background:linear-gradient(135deg,#A855F7,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vinicole</span><br>attire les amateurs.</h1><p class="sp-sub">Catalogue vins, événements dégustation, newsletter. <strong>Les amateurs de bons vins vous trouvent et deviennent des clients fidèles.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre sélection<br><span style="background:linear-gradient(135deg,#A855F7,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">mérite une vitrine.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites cavistes</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
+<div id="page-commerce-local-caviste" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(168,85,247,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Caviste</span></div><div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">🍷 Expert Caviste</div><h1 class="sp-h1">Votre expertise<br><span style="background:linear-gradient(135deg,#A855F7,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vinicole</span><br>attire les amateurs.</h1><p class="sp-sub">Catalogue vins, événements dégustation, newsletter. <strong>Les amateurs de bons vins vous trouvent et deviennent des clients fidèles.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Votre sélection<br><span style="background:linear-gradient(135deg,#A855F7,#D4A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent">mérite une vitrine.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites cavistes</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
 
-<div id="page-commerce-local-chocolatier" class="page"><section class="subpage-hero"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Chocolatier</span></div><div class="sp-badge" style="color:#D97706;background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3)">🍫 Expert Chocolatier</div><h1 class="sp-h1">Vos créations<br><span style="background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">s'offrent en ligne.</span></h1><p class="sp-sub">Boutique coffrets cadeaux, commandes saisonnières, sur-mesure. <strong>Noël, Pâques, Saint-Valentin — votre site vend même quand vous êtes en cuisine.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer ma boutique →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos chocolats<br><span style="background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se vendent.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites chocolatiers</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
+<div id="page-commerce-local-chocolatier" class="page"><section class="subpage-hero"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Chocolatier</span></div><div class="sp-badge" style="color:#D97706;background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3)">🍫 Expert Chocolatier</div><h1 class="sp-h1">Vos créations<br><span style="background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">s'offrent en ligne.</span></h1><p class="sp-sub">Boutique coffrets cadeaux, commandes saisonnières, sur-mesure. <strong>Noël, Pâques, Saint-Valentin — votre site vend même quand vous êtes en cuisine.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer ma boutique →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Vos chocolats<br><span style="background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se vendent.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites chocolatiers</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
 
-<div id="page-commerce-local-librairie" class="page"><section class="subpage-hero"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Librairie</span></div><div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">📚 Expert Librairie</div><h1 class="sp-h1">Votre librairie<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">devient</span><br>un lieu de culture.</h1><p class="sp-sub">Agenda événements, sélections coups de cœur, commandes en ligne, communauté lecteurs. <strong>Votre librairie unique face aux géants.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Les livres ont<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">besoin d'une adresse.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites librairies</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
+<div id="page-commerce-local-librairie" class="page"><section class="subpage-hero"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/commerce-local&#39;)">Commerce</span><span class="sep">›</span><span class="current">Librairie</span></div><div class="sp-badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)">📚 Expert Librairie</div><h1 class="sp-h1">Votre librairie<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">devient</span><br>un lieu de culture.</h1><p class="sp-sub">Agenda événements, sélections coups de cœur, commandes en ligne, communauté lecteurs. <strong>Votre librairie unique face aux géants.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/commerce-local&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Les livres ont<br><span style="background:linear-gradient(135deg,#22D3EE,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">besoin d'une adresse.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites librairies</p><div class="footer-links"><span onclick="nav(&#39;/commerce-local&#39;)">← Commerce</span></div></div></div></footer></div>
 
 <!-- ═══ HOTELLERIE ═══ -->
 <div id="page-hotellerie" class="page">
@@ -1289,7 +1399,7 @@ footer p{font-size:13px;color:var(--muted)}
       <h1 class="vh" style="min-height:auto;padding:0;display:block">Booking prend 20%.<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Votre site</span><br>récupère tout.</h1>
       <p class="vh-sub">On crée des sites de réservation directe pour les hôtels, gîtes et B&amp;B qui veulent réduire leur dépendance aux OTA et récupérer leurs marges.</p>
       <div class="vh-ctas">
-        <button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Calculer mes économies →</button>
+        <button class="btn-p" onclick="openCal()">Calculer mes économies →</button>
         <button class="btn-g" onclick="nav(&#39;/hotellerie/hotel-independant&#39;)">Voir Hôtel indépendant</button>
       </div>
       <div class="vh-stats">
@@ -1311,7 +1421,7 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Combien Booking<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vous a coûté</span><br><span class="soft">cette année ?</span></h2>
     <p>On vous calcule ça en 5 minutes. Et on vous montre combien vous récupériez avec un site de réservation directe.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Calculer mes économies</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Calculer mes économies</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites hôtellerie &amp; tourisme</p><div class="footer-links"><span onclick="nav(&#39;/&#39;)">Accueil</span><span onclick="nav(&#39;/hotellerie/hotel-independant&#39;)">Hôtel</span><span onclick="nav(&#39;/hotellerie/gite&#39;)">Gîte</span></div></div></div></footer>
 </div>
@@ -1323,7 +1433,7 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="sp-badge" style="color:#A855F7;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)">🏨 Expert Hôtel Indépendant</div>
       <h1 class="sp-h1">Chaque nuit vendue<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">directement</span><br>= 20% de plus pour vous.</h1>
       <p class="sp-sub">Réservation directe intégrée, galerie premium, offres exclusives. <strong>Un voyageur qui réserve sur votre site plutôt que sur Booking, c'est 20% de marge récupérée instantanément.</strong></p>
-      <div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Calculer mes économies →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div>
+      <div class="hero-ctas"><button class="btn-p" onclick="openCal()">Calculer mes économies →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div>
     </div>
   </section>
   <section class="feat-sec"><div class="container">
@@ -1349,16 +1459,16 @@ footer p{font-size:13px;color:var(--muted)}
   <section class="cta-fin"><div class="cta-orb"></div><div class="container">
     <h2>Votre hôtel mérite<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">de garder</span><br><span class="soft">ses marges.</span></h2>
     <p>Calculons ensemble combien Booking vous a coûté cette année. Et combien vous pourriez récupérer avec un site de réservation directe.</p>
-    <div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Calculer mes économies gratuitement</button></div>
+    <div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Calculer mes économies gratuitement</button></div>
   </div></section>
   <footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites hôtels indépendants</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span><span onclick="nav(&#39;/hotellerie/gite&#39;)">Gîte</span></div></div></div></footer>
 </div>
 
-<div id="page-hotellerie-chambre-hotes" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(212,168,83,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span class="sep">›</span><span class="current">Chambre d'hôtes</span></div><div class="sp-badge" style="color:#D4A853;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.3)">🛏️ Expert B&amp;B</div><h1 class="sp-h1">Votre maison<br><span style="background:linear-gradient(135deg,#D4A853,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">raconte</span><br>une histoire unique.</h1><p class="sp-sub">Ambiance, petit-déjeuner maison, expérience locale. <strong>Les voyageurs qui cherchent l'authenticité vous trouvent et réservent directement.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>L'authenticité<br><span style="background:linear-gradient(135deg,#D4A853,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se mérite.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites chambres d'hôtes</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span></div></div></div></footer></div>
+<div id="page-hotellerie-chambre-hotes" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(212,168,83,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span class="sep">›</span><span class="current">Chambre d'hôtes</span></div><div class="sp-badge" style="color:#D4A853;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.3)">🛏️ Expert B&amp;B</div><h1 class="sp-h1">Votre maison<br><span style="background:linear-gradient(135deg,#D4A853,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">raconte</span><br>une histoire unique.</h1><p class="sp-sub">Ambiance, petit-déjeuner maison, expérience locale. <strong>Les voyageurs qui cherchent l'authenticité vous trouvent et réservent directement.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>L'authenticité<br><span style="background:linear-gradient(135deg,#D4A853,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se mérite.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites chambres d'hôtes</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span></div></div></div></footer></div>
 
-<div id="page-hotellerie-gite" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(34,197,94,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span class="sep">›</span><span class="current">Gîte &amp; Location</span></div><div class="sp-badge" style="color:#22C55E;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3)">🏡 Expert Gîte</div><h1 class="sp-h1">Airbnb prend 15%.<br><span style="background:linear-gradient(135deg,#22C55E,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Votre site</span><br>garde tout.</h1><p class="sp-sub">Calendrier disponibilité, réservation directe, galerie premium. <strong>Vos vacanciers réservent sans passer par Airbnb. Vous gardez 100% de la nuit.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Calculer mes économies →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Airbnb ne mérite pas<br><span style="background:linear-gradient(135deg,#22C55E,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vos 15%.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Calculer mes économies</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites gîtes &amp; locations</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span></div></div></div></footer></div>
+<div id="page-hotellerie-gite" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(34,197,94,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span class="sep">›</span><span class="current">Gîte &amp; Location</span></div><div class="sp-badge" style="color:#22C55E;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3)">🏡 Expert Gîte</div><h1 class="sp-h1">Airbnb prend 15%.<br><span style="background:linear-gradient(135deg,#22C55E,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Votre site</span><br>garde tout.</h1><p class="sp-sub">Calendrier disponibilité, réservation directe, galerie premium. <strong>Vos vacanciers réservent sans passer par Airbnb. Vous gardez 100% de la nuit.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Calculer mes économies →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>Airbnb ne mérite pas<br><span style="background:linear-gradient(135deg,#22C55E,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vos 15%.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Calculer mes économies</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites gîtes &amp; locations</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span></div></div></div></footer></div>
 
-<div id="page-hotellerie-camping" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(132,204,22,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span class="sep">›</span><span class="current">Camping &amp; Glamping</span></div><div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">⛺ Expert Camping</div><h1 class="sp-h1">Votre saison<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">complète</span><br>dès avril.</h1><p class="sp-sub">Emplacements, activités, réservation en ligne, galerie nature. <strong>Remplissez votre camping avant même que la saison commence.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>La nature<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se réserve d'avance.</span></h2><div class="cta-btns"><button class="btn-p" onclick="nav(&#39;/#contact&#39;)">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites campings &amp; glamping</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span></div></div></div></footer></div>
+<div id="page-hotellerie-camping" class="page"><section class="subpage-hero" style="background:radial-gradient(ellipse 60% 60% at 60% 40%, rgba(132,204,22,.07) 0%,transparent 70%)"><div class="container" style="position:relative;z-index:1"><div class="breadcrumb"><span onclick="nav(&#39;/&#39;)">Accueil</span><span class="sep">›</span><span onclick="nav(&#39;/hotellerie&#39;)">Hôtellerie</span><span class="sep">›</span><span class="current">Camping &amp; Glamping</span></div><div class="sp-badge" style="color:#84CC16;background:rgba(132,204,22,.1);border:1px solid rgba(132,204,22,.3)">⛺ Expert Camping</div><h1 class="sp-h1">Votre saison<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">complète</span><br>dès avril.</h1><p class="sp-sub">Emplacements, activités, réservation en ligne, galerie nature. <strong>Remplissez votre camping avant même que la saison commence.</strong></p><div class="hero-ctas"><button class="btn-p" onclick="openCal()">Créer mon site →</button><button class="btn-g" onclick="nav(&#39;/hotellerie&#39;)">← Retour</button></div></div></section><section class="cta-fin"><div class="cta-orb"></div><div class="container"><h2>La nature<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">se réserve d'avance.</span></h2><div class="cta-btns"><button class="btn-p" onclick="openCal()">📞 Appel gratuit</button></div></div></section><footer><div class="container"><div class="footer-inner"><p>© 2025 WEBcraft · Sites campings &amp; glamping</p><div class="footer-links"><span onclick="nav(&#39;/hotellerie&#39;)">← Hôtellerie</span></div></div></div></footer></div>
 
 <!-- ═══ JS ROUTER ═══ -->
 <script>
@@ -1499,6 +1609,20 @@ function observeAll() {
 }
 observeAll();
 
+// Mobile menu
+function toggleMenu() {
+  const ham = document.getElementById('ham');
+  const links = document.querySelector('.nav-links');
+  ham.classList.toggle('open');
+  links.classList.toggle('open');
+}
+
+// Calendly opener
+function openCal() {
+  Calendly.initPopupWidget({url: 'https://calendly.com/webcraft-agence/appel-gratuit'});
+  return false;
+}
+
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
@@ -1513,5 +1637,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<!-- Calendly JS -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/33620757517" target="_blank" class="wa-float" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span>WhatsApp</span>
+</a>
 
 </body></html>
