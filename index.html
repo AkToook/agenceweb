@@ -374,8 +374,8 @@ footer p{font-size:13px;color:var(--muted)}
 .orb1{position:absolute;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(124,58,237,.18) 0%,transparent 65%);pointer-events:none}
 .orb2{position:absolute;bottom:-20%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(6,182,212,.12) 0%,transparent 65%);pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:860px}
-.hero-h1{font-size:clamp(52px,7.5vw,96px);font-weight:800;line-height:.92;letter-spacing:-3px;color:var(--white);margin-bottom:30px}
-.hero-sub{font-size:19px;color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:48px;font-weight:400}
+.hero-h1{font-size:clamp(58px,8.5vw,110px);font-weight:800;line-height:.90;letter-spacing:-4px;color:var(--white);margin-bottom:32px}
+.hero-sub{font-size:18px;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:48px;font-weight:400}
 .hero-sub strong{color:var(--white);font-weight:600}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:72px}
 .hero-metrics{display:flex;gap:56px;flex-wrap:wrap;padding-top:44px;border-top:1px solid var(--border)}
@@ -611,13 +611,13 @@ footer p{font-size:13px;color:var(--muted)}
   <div class="proof-strip">
     <div class="container">
       <div class="proof-inner">
-        <div class="proof-item">⭐⭐⭐⭐⭐ <strong>4.9/5</strong> · avis clients</div>
+        <div class="proof-item">⭐ <strong><span data-count="4.9" data-suffix="/5">4.9/5</span></strong> · avis clients</div>
         <div class="proof-sep">·</div>
-        <div class="proof-item">🚀 <strong>+60 sites</strong> livrés en France</div>
+        <div class="proof-item">🚀 <strong>+<span data-count="60" data-suffix=" sites">60 sites</span></strong> livrés en France</div>
         <div class="proof-sep">·</div>
         <div class="proof-item">⏱ Délai moyen <strong>48h</strong></div>
         <div class="proof-sep">·</div>
-        <div class="proof-item">🤝 <strong>100%</strong> des clients satisfaits</div>
+        <div class="proof-item">🤝 <strong><span data-count="100" data-suffix="%">100%</span></strong> des clients satisfaits</div>
       </div>
     </div>
   </div>
@@ -764,7 +764,7 @@ footer p{font-size:13px;color:var(--muted)}
       </div>
       <div class="chat-grid">
 
-        <div class="chat-phone">
+        <div class="chat-phone reveal">
           <div class="chat-bar"><span></span><span></span><span></span></div>
           <div class="chat-head">
             <img class="chat-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Marco">
@@ -779,7 +779,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
 
-        <div class="chat-phone">
+        <div class="chat-phone reveal">
           <div class="chat-bar"><span></span><span></span><span></span></div>
           <div class="chat-head">
             <img class="chat-av" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80" alt="Sophie">
@@ -794,7 +794,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
 
-        <div class="chat-phone">
+        <div class="chat-phone reveal">
           <div class="chat-bar"><span></span><span></span><span></span></div>
           <div class="chat-head">
             <img class="chat-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Karim">
@@ -971,10 +971,10 @@ footer p{font-size:13px;color:var(--muted)}
         <p>De zéro à un site en ligne en <strong style="color:var(--cb)">48h chrono</strong>.</p>
       </div>
       <div class="msteps">
-        <div class="sitem s1"><div class="snl">Étape 01</div><div class="scirc">💬</div><h4>Cadrage</h4><p>Un appel de 45 min pour comprendre votre business, vos clients et vos objectifs. On ne part jamais dans le vague.</p></div>
-        <div class="sitem s2"><div class="snl">Étape 02</div><div class="scirc">✍️</div><h4>Message &amp; Structure</h4><p>On structure chaque page avec un objectif clair. Le texte est pensé pour convaincre, pas pour remplir l'espace.</p></div>
-        <div class="sitem s3"><div class="snl">Étape 03</div><div class="scirc">⚡</div><h4>Design &amp; Dev</h4><p>Maquette livrée rapidement. Vous validez. On développe. Premium, rapide, mobile-first. Sans compromis.</p></div>
-        <div class="sitem s4"><div class="snl">Étape 04</div><div class="scirc">🚀</div><h4>Mise en ligne</h4><p>On gère hébergement, domaine, SSL et analytics. Vous recevez les clés. Votre site tourne, vous aussi.</p></div>
+        <div class="sitem s1 reveal reveal-d1"><div class="snl">Étape 01</div><div class="scirc">💬</div><h4>Cadrage</h4><p>Un appel de 45 min pour comprendre votre business, vos clients et vos objectifs. On ne part jamais dans le vague.</p></div>
+        <div class="sitem s2 reveal reveal-d2"><div class="snl">Étape 02</div><div class="scirc">✍️</div><h4>Message &amp; Structure</h4><p>On structure chaque page avec un objectif clair. Le texte est pensé pour convaincre, pas pour remplir l'espace.</p></div>
+        <div class="sitem s3 reveal reveal-d3"><div class="snl">Étape 03</div><div class="scirc">⚡</div><h4>Design &amp; Dev</h4><p>Maquette livrée rapidement. Vous validez. On développe. Premium, rapide, mobile-first. Sans compromis.</p></div>
+        <div class="sitem s4 reveal reveal-d4"><div class="snl">Étape 04</div><div class="scirc">🚀</div><h4>Mise en ligne</h4><p>On gère hébergement, domaine, SSL et analytics. Vous recevez les clés. Votre site tourne, vous aussi.</p></div>
       </div>
     </div>
   </section>
@@ -987,12 +987,12 @@ footer p{font-size:13px;color:var(--muted)}
         <h2>On ne vend pas du design.<br>On vend <span class="grad">des résultats.</span></h2>
       </div>
       <div class="pgrid">
-        <div class="dcard"><div class="dicon d1">🎯</div><h4>Orienté conversion</h4><p>Chaque section a un but précis. On pense à vos clients avant de penser aux couleurs.</p></div>
-        <div class="dcard"><div class="dicon d2">✍️</div><h4>Copywriting inclus</h4><p>Pas besoin de rédiger vos textes. On écrit un message clair qui parle directement à vos prospects.</p></div>
-        <div class="dcard"><div class="dicon d3">⚡</div><h4>Livraison rapide</h4><p>48h. On respecte les délais parce que votre temps a de la valeur.</p></div>
-        <div class="dcard"><div class="dicon d4">🔍</div><h4>SEO propre dès le départ</h4><p>Structure technique soignée, balises optimisées, vitesse au top. Google vous aimera.</p></div>
-        <div class="dcard"><div class="dicon d5">💎</div><h4>Image premium</h4><p>Vos clients vous jugent en 3 secondes. Ces 3 secondes doivent inspirer confiance.</p></div>
-        <div class="dcard"><div class="dicon d6">🤝</div><h4>Accompagnement simple</h4><p>Un interlocuteur unique, des réponses rapides. Pas de jargon, jamais de surprises.</p></div>
+        <div class="dcard tilt reveal"><div class="dicon d1">🎯</div><h4>Orienté conversion</h4><p>Chaque section a un but précis. On pense à vos clients avant de penser aux couleurs.</p></div>
+        <div class="dcard tilt reveal"><div class="dicon d2">✍️</div><h4>Copywriting inclus</h4><p>Pas besoin de rédiger vos textes. On écrit un message clair qui parle directement à vos prospects.</p></div>
+        <div class="dcard tilt reveal"><div class="dicon d3">⚡</div><h4>Livraison rapide</h4><p>48h. On respecte les délais parce que votre temps a de la valeur.</p></div>
+        <div class="dcard tilt reveal"><div class="dicon d4">🔍</div><h4>SEO propre dès le départ</h4><p>Structure technique soignée, balises optimisées, vitesse au top. Google vous aimera.</p></div>
+        <div class="dcard tilt reveal"><div class="dicon d5">💎</div><h4>Image premium</h4><p>Vos clients vous jugent en 3 secondes. Ces 3 secondes doivent inspirer confiance.</p></div>
+        <div class="dcard tilt reveal"><div class="dicon d6">🤝</div><h4>Accompagnement simple</h4><p>Un interlocuteur unique, des réponses rapides. Pas de jargon, jamais de surprises.</p></div>
       </div>
     </div>
   </section>
@@ -1113,9 +1113,9 @@ footer p{font-size:13px;color:var(--muted)}
           <p>On répond aux messages le dimanche. On a refait le site d'un boucher à minuit parce qu'il ouvrait le lendemain matin. C'est comme ça qu'on travaille.</p>
           <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20en%20savoir%20plus%20sur%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="btn-p" style="margin-top:8px;display:inline-flex">💬 Parlez-nous maintenant</a>
           <div class="human-stats" style="margin-top:28px">
-            <div class="hs-item"><div class="hs-num">60+</div><div class="hs-lbl">Sites livrés</div></div>
+            <div class="hs-item"><div class="hs-num"><span data-count="60" data-suffix="+">60+</span></div><div class="hs-lbl">Sites livrés</div></div>
             <div class="hs-item"><div class="hs-num">48h</div><div class="hs-lbl">Délai moyen</div></div>
-            <div class="hs-item"><div class="hs-num">4.9★</div><div class="hs-lbl">Note moyenne</div></div>
+            <div class="hs-item"><div class="hs-num"><span data-count="4.9" data-suffix="★">4.9★</span></div><div class="hs-lbl">Note moyenne</div></div>
           </div>
         </div>
       </div>
