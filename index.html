@@ -122,7 +122,9 @@ body{background:var(--bg);color:var(--white);font-family:var(--font);font-size:1
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 /* UTILS */
-.btn-p{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--violet),var(--vb));color:#fff;font-family:var(--font);font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:15px 30px;border-radius:50px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;box-shadow:0 0 30px rgba(124,58,237,.35)}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--violet),var(--vb));color:#fff;font-family:var(--font);font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:15px 30px;border-radius:50px;text-decoration:none;transition:all .25s;border:none;cursor:pointer;box-shadow:0 0 30px rgba(124,58,237,.35);position:relative;overflow:hidden}
+.btn-p::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);transition:left .5s ease}
+.btn-p:hover::after{left:160%}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(124,58,237,.6)}
 .btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font);font-size:14px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:14px 28px;border-radius:50px;text-decoration:none;border:1px solid rgba(240,238,255,.2);transition:all .2s;cursor:pointer}
 .btn-g:hover{border-color:var(--cb);color:var(--cb);box-shadow:0 0 20px rgba(34,211,238,.15)}
@@ -2124,6 +2126,23 @@ document.querySelectorAll('.tilt').forEach(card=>{
     card.style.transform=`perspective(600px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   });
   card.addEventListener('mouseleave',()=>{card.style.transform=''});
+});
+
+// ── NAV SCROLL STATE ──────────────────────────────────────
+(function(){
+  const nav=document.querySelector('nav');
+  if(!nav) return;
+  window.addEventListener('scroll',()=>{
+    nav.style.background=window.scrollY>60?'rgba(7,8,15,.97)':'rgba(7,8,15,.9)';
+    nav.style.boxShadow=window.scrollY>60?'0 1px 0 rgba(168,85,247,.12)':'none';
+  },{passive:true});
+})();
+
+// ── FORCE REVEAL HERO ON LOAD ──────────────────────────────
+window.addEventListener('load',()=>{
+  document.querySelectorAll('#hero .reveal,#hero .reveal-left,#hero .reveal-right').forEach(el=>{
+    el.classList.add('in');
+  });
 });
 
 // ── SOCIAL PROOF TOAST ────────────────────────────────────
