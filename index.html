@@ -13,6 +13,43 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* ═══ GRAIN TEXTURE ═══ */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ═══ CUSTOM CURSOR ═══ */
+body{cursor:none}
+a,button,[onclick]{cursor:none}
+.cur-dot{position:fixed;width:8px;height:8px;background:var(--vb);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s}
+.cur-ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(168,85,247,.45);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .08s linear}
+body.hovering .cur-dot{width:14px;height:14px;background:var(--cb)}
+body.hovering .cur-ring{width:48px;height:48px;opacity:.6}
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+.scroll-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--violet),var(--vb),var(--cb));z-index:10001;width:0%;transition:width .08s linear;pointer-events:none}
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal-left.in{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal-right.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
+
+/* ═══ TILT CARDS ═══ */
+.tilt{transform-style:preserve-3d;transition:transform .15s ease}
+
+/* ═══ DIAGONAL DIVIDERS ═══ */
+.slant-down::after{content:'';display:block;height:60px;background:inherit;clip-path:polygon(0 0,100% 0,100% 100%);margin-top:-1px}
+.slant-up::before{content:'';display:block;height:60px;background:inherit;clip-path:polygon(0 0,100% 100%,0 100%);margin-bottom:-1px}
+
+/* ═══ MARQUEE WORKS ═══ */
+.marquee-sec{padding:20px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marq 25s linear infinite}
+.marquee-track span{font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(240,238,255,.2)}
+.marquee-track span em{font-style:normal;color:var(--vb)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
 /* HERO FLEX (image + text) */
 .hero-flex{display:flex;align-items:center;gap:60px}
 .hero-img-wrap{flex:0 0 420px;position:relative;z-index:1;animation:fadeIn .6s ease}
@@ -500,6 +537,14 @@ footer p{font-size:13px;color:var(--muted)}
 </head>
 <body>
 
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true"></div>
+<!-- Scroll progress bar -->
+<div class="scroll-bar" id="scrollBar"></div>
+<!-- Custom cursor -->
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+
 <!-- ═══ NAV ═══ -->
 <nav>
   <div class="nav-inner">
@@ -538,9 +583,9 @@ footer p{font-size:13px;color:var(--muted)}
     <div class="container">
       <div class="hero-flex">
         <div class="hero-content">
-          <div class="badge">Agence web · France · Disponible maintenant</div>
-          <h1 class="hero-h1">Votre site web doit<br><span class="grad">vendre.</span><br><span class="soft">Pas juste exister.</span></h1>
-          <p class="hero-sub">On crée des sites qui transforment vos visiteurs en clients.<br><strong>Design premium, message qui convertit, livraison en 48h.</strong></p>
+          <div class="badge reveal">Agence web · France · Disponible maintenant</div>
+          <h1 class="hero-h1 reveal reveal-d1">Votre site web doit<br><span class="grad">vendre.</span><br><span class="soft">Pas juste exister.</span></h1>
+          <p class="hero-sub reveal reveal-d2">On crée des sites qui transforment vos visiteurs en clients.<br><strong>Design premium, message qui convertit, livraison en 48h.</strong></p>
           <div class="hero-ctas">
             <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20appel%20gratuit%20avec%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="btn-p">📅 Réserver un appel gratuit</a>
             <button class="btn-g" onclick="nav(&#39;/#offres&#39;)">Voir les offres</button>
@@ -577,6 +622,14 @@ footer p{font-size:13px;color:var(--muted)}
     </div>
   </div>
 
+  <!-- MARQUEE WORKS -->
+  <div class="marquee-sec">
+    <div class="marquee-track">
+      <span>DESIGN PREMIUM&nbsp;<em>✦</em>&nbsp;</span><span>LIVRAISON 48H&nbsp;<em>✦</em>&nbsp;</span><span>COPYWRITING INCLUS&nbsp;<em>✦</em>&nbsp;</span><span>SEO LOCAL&nbsp;<em>✦</em>&nbsp;</span><span>MOBILE FIRST&nbsp;<em>✦</em>&nbsp;</span><span>RÉSULTATS RÉELS&nbsp;<em>✦</em>&nbsp;</span><span>+60 SITES LIVRÉS&nbsp;<em>✦</em>&nbsp;</span><span>RESTAURANTS&nbsp;<em>✦</em>&nbsp;</span><span>ARTISANS&nbsp;<em>✦</em>&nbsp;</span><span>COIFFEURS&nbsp;<em>✦</em>&nbsp;</span><span>HÔTELS&nbsp;<em>✦</em>&nbsp;</span>
+      <span>DESIGN PREMIUM&nbsp;<em>✦</em>&nbsp;</span><span>LIVRAISON 48H&nbsp;<em>✦</em>&nbsp;</span><span>COPYWRITING INCLUS&nbsp;<em>✦</em>&nbsp;</span><span>SEO LOCAL&nbsp;<em>✦</em>&nbsp;</span><span>MOBILE FIRST&nbsp;<em>✦</em>&nbsp;</span><span>RÉSULTATS RÉELS&nbsp;<em>✦</em>&nbsp;</span><span>+60 SITES LIVRÉS&nbsp;<em>✦</em>&nbsp;</span><span>RESTAURANTS&nbsp;<em>✦</em>&nbsp;</span><span>ARTISANS&nbsp;<em>✦</em>&nbsp;</span><span>COIFFEURS&nbsp;<em>✦</em>&nbsp;</span><span>HÔTELS&nbsp;<em>✦</em>&nbsp;</span>
+    </div>
+  </div>
+
   <!-- TICKER LIVE -->
   <div class="ticker-sec">
     <div class="ticker-track">
@@ -606,7 +659,7 @@ footer p{font-size:13px;color:var(--muted)}
         <p>On ne fait pas des sites génériques. On est spécialisés par industrie — et ça se voit.</p>
       </div>
       <div class="sectors-grid">
-        <div class="sec-card" onclick="nav(&#39;/restauration&#39;)">
+        <div class="sec-card tilt reveal reveal-d1" onclick="nav(&#39;/restauration&#39;)">
           <div class="sec-card-top" style="background:linear-gradient(135deg,#1a0a05,#3d1a0a)"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75" alt="Restaurant" loading="lazy"><span class="sec-card-emoji">🍽</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Restauration</div>
@@ -614,7 +667,7 @@ footer p{font-size:13px;color:var(--muted)}
             <div class="sec-card-link">Voir les offres resto →</div>
           </div>
         </div>
-        <div class="sec-card" onclick="nav(&#39;/beaute&#39;)">
+        <div class="sec-card tilt reveal reveal-d2" onclick="nav(&#39;/beaute&#39;)">
           <div class="sec-card-top" style="background:linear-gradient(135deg,#1a0b2e,#3d0a2e)"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=75" alt="Beauté" loading="lazy"><span class="sec-card-emoji">💅</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Beauté</div>
@@ -622,7 +675,7 @@ footer p{font-size:13px;color:var(--muted)}
             <div class="sec-card-link">Voir les offres beauté →</div>
           </div>
         </div>
-        <div class="sec-card" onclick="nav(&#39;/sport-sante&#39;)">
+        <div class="sec-card tilt reveal reveal-d3" onclick="nav(&#39;/sport-sante&#39;)">
           <div class="sec-card-top" style="background:linear-gradient(135deg,#071a0a,#0a3d15)"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75" alt="Sport" loading="lazy"><span class="sec-card-emoji">💪</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Sport &amp; Santé</div>
@@ -630,7 +683,7 @@ footer p{font-size:13px;color:var(--muted)}
             <div class="sec-card-link">Voir les offres sport →</div>
           </div>
         </div>
-        <div class="sec-card" onclick="nav(&#39;/artisans&#39;)">
+        <div class="sec-card tilt reveal reveal-d4" onclick="nav(&#39;/artisans&#39;)">
           <div class="sec-card-top" style="background:linear-gradient(135deg,#0A0A08,#1A1A0F)"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=75" alt="Artisan" loading="lazy"><span class="sec-card-emoji">🔨</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Artisans</div>
@@ -638,7 +691,7 @@ footer p{font-size:13px;color:var(--muted)}
             <div class="sec-card-link">Voir les offres artisans →</div>
           </div>
         </div>
-        <div class="sec-card" onclick="nav(&#39;/commerce-local&#39;)">
+        <div class="sec-card tilt reveal reveal-d5" onclick="nav(&#39;/commerce-local&#39;)">
           <div class="sec-card-top" style="background:linear-gradient(135deg,#0D0A18,#1a0a30)"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75" alt="Commerce local" loading="lazy"><span class="sec-card-emoji">🛍</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Commerce local</div>
@@ -646,7 +699,7 @@ footer p{font-size:13px;color:var(--muted)}
             <div class="sec-card-link">Voir les offres commerce →</div>
           </div>
         </div>
-        <div class="sec-card" onclick="nav(&#39;/hotellerie&#39;)">
+        <div class="sec-card tilt reveal reveal-d1" onclick="nav(&#39;/hotellerie&#39;)">
           <div class="sec-card-top" style="background:linear-gradient(135deg,#050D1A,#0A1929)"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=75" alt="Hôtellerie" loading="lazy"><span class="sec-card-emoji">🏨</span></div>
           <div class="sec-card-body">
             <div class="sec-card-title">Hôtellerie</div>
@@ -770,7 +823,7 @@ footer p{font-size:13px;color:var(--muted)}
       </div>
       <div class="cases-grid">
 
-        <div class="case-card">
+        <div class="case-card tilt reveal">
           <div class="case-img-wrap">
             <img class="case-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant">
             <div class="case-tag">🍽 Restauration</div>
@@ -789,7 +842,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
 
-        <div class="case-card">
+        <div class="case-card tilt reveal">
           <div class="case-img-wrap">
             <img class="case-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="Salon beauté">
             <div class="case-tag">💅 Beauté</div>
@@ -808,7 +861,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
 
-        <div class="case-card">
+        <div class="case-card tilt reveal">
           <div class="case-img-wrap">
             <img class="case-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Artisan">
             <div class="case-tag">🔨 Artisan</div>
@@ -827,7 +880,7 @@ footer p{font-size:13px;color:var(--muted)}
           </div>
         </div>
 
-        <div class="case-card">
+        <div class="case-card tilt reveal">
           <div class="case-img-wrap">
             <img class="case-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80" alt="Hôtel">
             <div class="case-tag">🏨 Hôtellerie</div>
@@ -859,7 +912,7 @@ footer p{font-size:13px;color:var(--muted)}
         <p>Trois offres claires. Pas de jargon. Pas de surprise.</p>
       </div>
       <div class="offres-grid">
-        <div class="ocard2">
+        <div class="ocard2 tilt reveal">
           <div class="ocard2-type">Essentiel</div>
           <h3>Site Vitrine</h3>
           <div class="oprice2">800€ <small>HT</small></div>
@@ -890,7 +943,7 @@ footer p{font-size:13px;color:var(--muted)}
           </ul>
           <button class="btn-p" onclick="openCal()">Je veux ça →</button>
         </div>
-        <div class="ocard2">
+        <div class="ocard2 tilt reveal">
           <div class="ocard2-type" style="color:var(--lime)">Croissance</div>
           <h3>Pack Acquisition</h3>
           <div class="oprice2">Sur devis</div>
@@ -967,7 +1020,7 @@ footer p{font-size:13px;color:var(--muted)}
 
       <div class="grev-grid">
 
-        <div class="gcard">
+        <div class="gcard tilt reveal">
           <div class="gc-top">
             <img class="gc-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Marco B">
             <div><div class="gc-name">Marco Bernardi</div><div class="gc-date">il y a 2 semaines</div></div>
@@ -978,7 +1031,7 @@ footer p{font-size:13px;color:var(--muted)}
           <div class="gc-likes">👍 14 personnes ont trouvé cet avis utile</div>
         </div>
 
-        <div class="gcard">
+        <div class="gcard tilt reveal">
           <div class="gc-top">
             <img class="gc-av" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80" alt="Sophie D">
             <div><div class="gc-name">Sophie Delacroix</div><div class="gc-date">il y a 1 mois</div></div>
@@ -989,7 +1042,7 @@ footer p{font-size:13px;color:var(--muted)}
           <div class="gc-likes">👍 9 personnes ont trouvé cet avis utile</div>
         </div>
 
-        <div class="gcard">
+        <div class="gcard tilt reveal">
           <div class="gc-top">
             <img class="gc-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Thomas V">
             <div><div class="gc-name">Thomas Vidal</div><div class="gc-date">il y a 3 semaines</div></div>
@@ -1000,7 +1053,7 @@ footer p{font-size:13px;color:var(--muted)}
           <div class="gc-likes">👍 21 personnes ont trouvé cet avis utile</div>
         </div>
 
-        <div class="gcard">
+        <div class="gcard tilt reveal">
           <div class="gc-top">
             <img class="gc-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt="Lucie T">
             <div><div class="gc-name">Lucie Travers</div><div class="gc-date">il y a 5 semaines</div></div>
@@ -1011,7 +1064,7 @@ footer p{font-size:13px;color:var(--muted)}
           <div class="gc-likes">👍 17 personnes ont trouvé cet avis utile</div>
         </div>
 
-        <div class="gcard">
+        <div class="gcard tilt reveal">
           <div class="gc-top">
             <img class="gc-av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt="Karim M">
             <div><div class="gc-name">Karim Mansouri</div><div class="gc-date">il y a 2 mois</div></div>
@@ -1022,7 +1075,7 @@ footer p{font-size:13px;color:var(--muted)}
           <div class="gc-likes">👍 8 personnes ont trouvé cet avis utile</div>
         </div>
 
-        <div class="gcard">
+        <div class="gcard tilt reveal">
           <div class="gc-top">
             <img class="gc-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" alt="Nadia R">
             <div><div class="gc-name">Nadia Rezki</div><div class="gc-date">il y a 1 mois</div></div>
@@ -2008,6 +2061,88 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// ── CUSTOM CURSOR ──────────────────────────────────────────
+(function(){
+  const dot = document.getElementById('curDot');
+  const ring = document.getElementById('curRing');
+  if(!dot||!ring) return;
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  function lerp(a,b,t){return a+(b-a)*t}
+  (function loop(){
+    rx=lerp(rx,mx,.12); ry=lerp(ry,my,.12);
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,[onclick]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+  });
+  document.addEventListener('mouseleave',()=>{dot.style.opacity='0';ring.style.opacity='0'});
+  document.addEventListener('mouseenter',()=>{dot.style.opacity='1';ring.style.opacity='1'});
+})();
+
+// ── SCROLL PROGRESS BAR ────────────────────────────────────
+(function(){
+  const bar = document.getElementById('scrollBar');
+  if(!bar) return;
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    bar.style.width=Math.min(pct,100)+'%';
+  },{passive:true});
+})();
+
+// ── INTERSECTION OBSERVER (reveal animations) ──────────────
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('in');
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
+})();
+
+// ── 3D TILT ON CARDS ──────────────────────────────────────
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*14;
+    const y=((e.clientY-r.top)/r.height-.5)*-14;
+    card.style.transform=`perspective(600px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform=''});
+});
+
+// ── COUNTER ANIMATION ─────────────────────────────────────
+(function(){
+  const counters=document.querySelectorAll('[data-count]');
+  if(!counters.length) return;
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el=e.target;
+      const target=parseFloat(el.dataset.count);
+      const suffix=el.dataset.suffix||'';
+      const dur=1600;
+      const start=performance.now();
+      const isFloat=target%1!==0;
+      (function tick(now){
+        const t=Math.min((now-start)/dur,1);
+        const ease=1-Math.pow(1-t,3);
+        const val=target*ease;
+        el.textContent=(isFloat?val.toFixed(1):Math.round(val))+suffix;
+        if(t<1) requestAnimationFrame(tick);
+      })(start);
+    });
+  },{threshold:.5});
+  counters.forEach(c=>io.observe(c));
+})();
 </script>
 
 <!-- WhatsApp floating button -->
