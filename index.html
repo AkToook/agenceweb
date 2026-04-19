@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
 /* ═══ GRAIN TEXTURE ═══ */
 .grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -563,6 +563,79 @@ footer p{font-size:13px;color:var(--muted)}
 .mco .mpin{padding:4px;text-align:center}
 .mco .mpn{font-size:6px;color:rgba(255,255,255,.5);margin-bottom:1px}
 .mco .mpp{font-size:8px;font-weight:900;color:#F59E0B}
+
+/* ═══ ANTI-AI DESIGN OVERRIDES ═══ */
+
+/* 1. Instrument Serif italic for accent words in headings */
+.serif-it{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400}
+h1 .grad,h2 .grad{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400}
+
+/* 2. Badge — editorial left-border line instead of pill */
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:none!important;
+  border:none!important;
+  border-radius:0!important;
+  border-left:2px solid currentColor!important;
+  padding:2px 0 2px 12px!important;
+  font-size:11px!important;
+  font-weight:500!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.badge::before{display:none!important}
+
+/* 3. Soften gradient — less neon, more editorial */
+.grad{
+  background:linear-gradient(125deg,#c4a0f0 0%,#8b5cf6 45%,#67e8f9 100%)!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  background-clip:text!important;
+}
+
+/* 4. Buttons — natural case, refined style */
+.btn-p,.btn-g,.btn-s{
+  text-transform:none!important;
+  letter-spacing:.01em!important;
+  font-weight:600!important;
+  border-radius:6px!important;
+}
+.btn-p{
+  background:var(--violet)!important;
+  box-shadow:0 1px 2px rgba(0,0,0,.4)!important;
+}
+.btn-p:hover{background:#7c3aed!important;transform:translateY(-1px)!important;box-shadow:0 4px 16px rgba(124,58,237,.35)!important}
+
+/* 5. Card border-radius variation — asymmetric, human */
+.card:nth-child(odd){border-radius:18px 4px 18px 4px!important}
+.card:nth-child(even){border-radius:4px 18px 4px 18px!important}
+.sol-item:nth-child(odd){border-radius:16px 4px 16px 4px!important}
+.sol-item:nth-child(even){border-radius:4px 16px 4px 16px!important}
+.feat-card:nth-child(3n+1){border-radius:20px 4px 20px 4px!important}
+.feat-card:nth-child(3n+2){border-radius:4px 20px 4px 20px!important}
+.feat-card:nth-child(3n){border-radius:12px!important}
+
+/* 6. Section background variety */
+#hero{background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(124,58,237,.18) 0%,transparent 70%),var(--bg)!important}
+.niches-sec,#niches{background:#080810!important}
+.process-sec,#process{background:linear-gradient(180deg,#0a0814 0%,#07080f 100%)!important}
+.trust-sec,#trust{background:#060710!important}
+.faq-sec,#faq{background:linear-gradient(180deg,#07080f 0%,#0a0814 100%)!important}
+.hero-sec{background:none!important}
+
+/* 7. Typography — subtler heading weight contrast */
+h1,h2,h3{letter-spacing:-0.03em}
+h2{font-size:clamp(32px,5vw,60px);line-height:1.08}
+
+/* 8. Nav — thinner, more confident */
+nav{backdrop-filter:blur(18px)!important;border-bottom:1px solid rgba(255,255,255,.04)!important}
+
+/* 9. Section padding — more breathing room */
+section,.sol-sec,.feat-sec,.process-sec,.trust-sec,.faq-sec{padding-top:96px!important;padding-bottom:96px!important}
+
+/* 10. Remove identical pulsing dots (AI tell) */
+.badge .dot,.badge-dot{display:none!important}
+
 </style>
 </head>
 <body>
