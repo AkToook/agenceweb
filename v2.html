@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEBcraft — Sites qui vendent</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<meta name="description" content="WEBcraft crée des sites web qui convertissent. Design premium, livraison 48h, copywriting inclus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..60,300;12..60,400;12..60,700;12..60,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07080F;--white:#F0EEFF;--muted:#6B7280;
+  --v:#7C3AED;--vb:#A855F7;--cb:#22D3EE;
+  --font:'Bricolage Grotesque',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font);overflow-x:hidden;cursor:none}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* CURSOR */
+.cur-dot{position:fixed;width:8px;height:8px;background:var(--vb);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s}
+.cur-ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(168,85,247,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .08s linear}
+body.h .cur-dot{width:16px;height:16px;background:var(--cb)}
+body.h .cur-ring{width:52px;height:52px;opacity:.5}
+
+/* SCROLL BAR */
+.sbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--v),var(--vb),var(--cb));z-index:9997;width:0%;transition:width .1s linear;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 0;transition:all .4s}
+nav.s{background:rgba(7,8,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(168,85,247,.1);padding:14px 0}
+.ni{max-width:1140px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-1px}
+.logo em{font-style:normal;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,.12);color:var(--vb);border:1px solid rgba(168,85,247,.28);font-family:var(--font);font-size:13px;font-weight:700;padding:10px 22px;border-radius:50px;text-decoration:none;transition:all .2s}
+.nav-btn:hover{background:rgba(168,85,247,.22);color:var(--white)}
+
+/* CANVAS HERO */
+#heroCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* SCROLL CONTAINER */
+.scroll-cont{position:relative;z-index:1}
+
+/* PIN ZONE — 5 viewport heights of scroll space */
+.pin-zone{height:500vh;position:relative}
+.pin-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+
+/* HERO CONTENT */
+.hero-inner{text-align:center;padding:0 24px;max-width:900px;position:relative;z-index:2}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--cb);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);
+  padding:8px 20px;border-radius:50px;margin-bottom:40px;
+  opacity:0;transform:translateY(16px);transition:all .8s cubic-bezier(.16,1,.3,1);
+}
+.eyebrow::before{content:'';width:6px;height:6px;background:var(--cb);border-radius:50%;animation:bl 2s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
+.eyebrow.in{opacity:1;transform:none}
+
+.hero-h1{font-size:clamp(64px,11vw,148px);font-weight:800;line-height:.87;letter-spacing:-5px;margin-bottom:36px}
+.h1-line{display:block;overflow:hidden}
+.h1-word{display:inline-block;transform:translateY(110%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.h1-word.in{transform:translateY(0)}
+.h1-grad{background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h1-muted{color:rgba(240,238,255,.14)}
+
+.hero-p{font-size:clamp(16px,1.8vw,19px);color:var(--muted);max-width:480px;margin:0 auto 52px;line-height:1.75;
+  opacity:0;transform:translateY(16px);transition:all .8s .3s cubic-bezier(.16,1,.3,1)}
+.hero-p.in{opacity:1;transform:none}
+.hero-p strong{color:var(--white)}
+
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--v),var(--vb));
+  color:#fff;font-family:var(--font);font-size:15px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:17px 38px;border-radius:50px;text-decoration:none;
+  box-shadow:0 0 50px rgba(124,58,237,.45);
+  opacity:0;transform:translateY(16px);transition:all .8s .55s cubic-bezier(.16,1,.3,1);
+  position:relative;overflow:hidden;
+}
+.hero-cta.in{opacity:1;transform:none}
+.hero-cta::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-20deg);transition:left .5s}
+.hero-cta:hover::after{left:160%}
+.hero-cta:hover{transform:translateY(-3px)!important;box-shadow:0 0 70px rgba(124,58,237,.65);color:#fff}
+
+/* SCROLL HINT */
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+  opacity:0;transition:opacity 1s 1.2s ease}
+.scroll-hint.in{opacity:1}
+.sh-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--vb),transparent);animation:shln 2s ease-in-out infinite}
+@keyframes shln{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* SCROLL PHASE LABELS */
+.phase-label{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,238,255,.35);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s}
+.phase-label.vis{opacity:1}
+
+/* BELOW-FOLD SECTIONS */
+.below{position:relative;z-index:2;background:var(--bg)}
+
+/* MARQUEE */
+.marquee-sec{padding:22px 0;overflow:hidden;border-top:1px solid rgba(168,85,247,.12);border-bottom:1px solid rgba(168,85,247,.12);background:rgba(124,58,237,.04)}
+.mtrack{display:flex;white-space:nowrap;gap:60px;animation:mq 30s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mtrack span{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(240,238,255,.2)}
+.mtrack span em{font-style:normal;color:var(--vb)}
+
+/* CONTAINER */
+.c{max-width:1140px;margin:0 auto;padding:0 28px}
+
+/* SECTION */
+.sec{padding:120px 0}
+
+/* STATS */
+.stats{display:flex;gap:72px;flex-wrap:wrap;padding:60px 0;border-top:1px solid rgba(168,85,247,.1);border-bottom:1px solid rgba(168,85,247,.1)}
+.stat-n{font-size:clamp(52px,7vw,84px);font-weight:800;letter-spacing:-4px;line-height:1;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+
+/* HEADINGS */
+.sh2{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-3px;line-height:.9;margin-bottom:24px}
+.sh2 em{font-style:italic;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sh2 .muted{color:rgba(240,238,255,.18)}
+.sp{font-size:17px;color:var(--muted);line-height:1.8;max-width:540px;margin-bottom:64px}
+
+/* CARDS GRID */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.025);border:1px solid rgba(168,85,247,.1);border-radius:20px;padding:32px;transition:all .3s ease;transform-style:preserve-3d}
+.card:hover{background:rgba(168,85,247,.06);border-color:rgba(168,85,247,.25);transform:translateY(-5px);box-shadow:0 28px 60px rgba(0,0,0,.4)}
+.card-ico{font-size:30px;margin-bottom:18px;display:block}
+.card h3{font-size:18px;font-weight:700;letter-spacing:-.5px;margin-bottom:12px}
+.card p{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* PROCESS */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:72px;position:relative}
+@media(max-width:900px){.process{grid-template-columns:1fr 1fr}}
+.process::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.3),transparent);z-index:0}
+.pstep{text-align:center;padding:0 24px;position:relative;z-index:1}
+.pnum{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--vb));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;margin:0 auto 20px;box-shadow:0 0 30px rgba(124,58,237,.4)}
+.pstep h4{font-size:16px;font-weight:700;margin-bottom:10px}
+.pstep p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:800px){.tgrid{grid-template-columns:1fr}}
+.tcard{background:#111;border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:all .3s}
+.tcard:hover{border-color:rgba(168,85,247,.2);transform:translateY(-3px)}
+.tc-top{display:flex;align-items:center;gap:12px}
+.tc-av{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.tc-name{font-size:14px;font-weight:700}
+.tc-role{font-size:11px;color:var(--muted)}
+.tc-stars{color:#FBBC04;font-size:14px;letter-spacing:1px}
+.tc-text{font-size:14px;color:rgba(240,238,255,.7);line-height:1.7}
+
+/* PRICING */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:800px){.pgrid{grid-template-columns:1fr}}
+.pcard{border-radius:20px;padding:36px;border:1px solid rgba(168,85,247,.15);background:rgba(255,255,255,.02);transition:all .3s;position:relative}
+.pcard.hot{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(168,85,247,.08));border-color:rgba(168,85,247,.4)}
+.pcard.hot::before{content:'Populaire';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--v),var(--vb));font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:50px;white-space:nowrap}
+.pcard:hover{transform:translateY(-5px);box-shadow:0 28px 60px rgba(0,0,0,.4)}
+.pt{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--vb);margin-bottom:12px}
+.ph3{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.pprice{font-size:52px;font-weight:800;letter-spacing:-3px;line-height:1;margin:20px 0;background:linear-gradient(135deg,var(--white),rgba(240,238,255,.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pprice small{font-size:18px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.plist{list-style:none;margin:24px 0 32px;display:flex;flex-direction:column;gap:12px}
+.plist li{font-size:14px;color:rgba(240,238,255,.75);display:flex;align-items:center;gap:10px}
+.plist li::before{content:'✓';color:#22C55E;font-weight:700;flex-shrink:0}
+
+/* BUTTONS */
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--v),var(--vb));color:#fff;font-family:var(--font);font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:14px 28px;border-radius:50px;text-decoration:none;transition:all .2s;border:none;cursor:none;box-shadow:0 0 30px rgba(124,58,237,.35);position:relative;overflow:hidden;width:100%;justify-content:center}
+.btn-p::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-p:hover::after{left:160%}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(124,58,237,.6)}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font);font-size:14px;font-weight:600;padding:13px 28px;border-radius:50px;text-decoration:none;border:1px solid rgba(240,238,255,.18);transition:all .2s;cursor:none;width:100%}
+.btn-g:hover{border-color:var(--cb);color:var(--cb)}
+
+/* CTA SECTION */
+.cta-sec{padding:140px 0;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(124,58,237,.12) 0%,transparent 70%)}
+.cta-sec h2{font-size:clamp(48px,8vw,96px);font-weight:800;letter-spacing:-5px;line-height:.88;margin-bottom:32px}
+.cta-sec p{font-size:18px;color:var(--muted);max-width:480px;margin:0 auto 52px;line-height:1.75}
+.cta-checks{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:40px;padding-top:32px;border-top:1px solid rgba(168,85,247,.1)}
+.cta-checks span{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.cta-checks span::before{content:'✓';color:#22C55E;font-weight:700}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid rgba(168,85,247,.1);font-size:12px;color:var(--muted);text-align:center}
+
+/* WA FLOAT */
+.wa{position:fixed;bottom:28px;right:28px;z-index:8000;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:var(--font);font-size:14px;font-weight:700;padding:14px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .2s}
+.wa:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.5);color:#fff}
+.wa svg{width:20px;height:20px;flex-shrink:0}
+@media(max-width:600px){.wa span{display:none}.wa{padding:14px}}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cb);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:6px 16px;border-radius:50px;margin-bottom:24px}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.r1{transition-delay:.1s}.r2{transition-delay:.2s}.r3{transition-delay:.3s}.r4{transition-delay:.4s}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--vb)}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="sbar" id="sbar"></div>
+<div class="cur-dot" id="cd"></div>
+<div class="cur-ring" id="cr"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="ni">
+    <a href="/agenceweb/" class="logo">WEB<em>craft</em></a>
+    <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20un%20site%20premium%20%F0%9F%91%8B" target="_blank" class="nav-btn">💬 Discutons</a>
+  </div>
+</nav>
+
+<!-- CANVAS -->
+<canvas id="heroCanvas"></canvas>
+
+<!-- SCROLL ZONE -->
+<div class="scroll-cont">
+
+  <!-- PIN ZONE — 5x viewport of scroll space for the animation -->
+  <div class="pin-zone" id="pinZone">
+    <div class="pin-sticky">
+      <div class="hero-inner">
+        <div class="eyebrow" id="ey">Agence web · France · Disponible maintenant</div>
+        <h1 class="hero-h1">
+          <span class="h1-line"><span class="h1-word" id="hw1">Votre site</span></span>
+          <span class="h1-line"><span class="h1-word h1-grad" id="hw2">doit vendre.</span></span>
+          <span class="h1-line"><span class="h1-word h1-muted" id="hw3">Pas juste exister.</span></span>
+        </h1>
+        <p class="hero-p" id="hp">On crée des sites qui transforment vos visiteurs en clients.<br><strong>Design premium · Copywriting inclus · Livraison 48h.</strong></p>
+        <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20appel%20gratuit%20avec%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="hero-cta" id="hc">📅 Réserver un appel gratuit</a>
+      </div>
+      <div class="scroll-hint" id="sh">
+        <span>Scroll</span>
+        <div class="sh-line"></div>
+      </div>
+      <div class="phase-label" id="pl"></div>
+    </div>
+  </div>
+
+  <!-- BELOW FOLD -->
+  <div class="below">
+
+    <!-- MARQUEE -->
+    <div class="marquee-sec">
+      <div class="mtrack">
+        <span>DESIGN PREMIUM <em>✦</em></span><span>LIVRAISON 48H <em>✦</em></span><span>COPYWRITING INCLUS <em>✦</em></span><span>SEO LOCAL <em>✦</em></span><span>MOBILE FIRST <em>✦</em></span><span>3× PLUS DE CLIENTS <em>✦</em></span><span>+60 SITES LIVRÉS <em>✦</em></span><span>RESTAURANTS <em>✦</em></span><span>ARTISANS <em>✦</em></span><span>COIFFEURS <em>✦</em></span>
+        <span>DESIGN PREMIUM <em>✦</em></span><span>LIVRAISON 48H <em>✦</em></span><span>COPYWRITING INCLUS <em>✦</em></span><span>SEO LOCAL <em>✦</em></span><span>MOBILE FIRST <em>✦</em></span><span>3× PLUS DE CLIENTS <em>✦</em></span><span>+60 SITES LIVRÉS <em>✦</em></span><span>RESTAURANTS <em>✦</em></span><span>ARTISANS <em>✦</em></span><span>COIFFEURS <em>✦</em></span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="sec">
+      <div class="c">
+        <div class="stats">
+          <div class="rev"><div class="stat-n" data-count="60" data-suffix="+">60+</div><div class="stat-l">Sites livrés</div></div>
+          <div class="rev r1"><div class="stat-n" data-count="4.9" data-suffix="★">4.9★</div><div class="stat-l">Note moyenne</div></div>
+          <div class="rev r2"><div class="stat-n">48h</div><div class="stat-l">Délai garanti</div></div>
+          <div class="rev r3"><div class="stat-n" data-count="100" data-suffix="%">100%</div><div class="stat-l">Clients satisfaits</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY -->
+    <div class="sec" style="padding-top:0">
+      <div class="c">
+        <div class="badge rev">Pourquoi nous</div>
+        <h2 class="sh2 rev r1">On ne vend pas du design.<br>On vend <em>des résultats.</em></h2>
+        <p class="sp rev r2">Chaque site qu'on livre est conçu pour convertir vos visiteurs en clients payants. Pas pour être beau sur Behance.</p>
+        <div class="grid">
+          <div class="card rev"><span class="card-ico">🎯</span><h3>Orienté conversion</h3><p>Chaque section a un but précis. On pense à vos clients avant de penser aux couleurs.</p></div>
+          <div class="card rev r1"><span class="card-ico">⚡</span><h3>Livraison en 48h</h3><p>De l'appel brief au site en ligne. Pas de jargon, pas d'attente à rallonge.</p></div>
+          <div class="card rev r2"><span class="card-ico">✍️</span><h3>Copywriting inclus</h3><p>On écrit vos textes. Un message clair qui parle directement à vos prospects.</p></div>
+          <div class="card rev r1"><span class="card-ico">🔍</span><h3>SEO local dès le départ</h3><p>Structure technique soignée, balises optimisées. Google vous trouvera en premier.</p></div>
+          <div class="card rev r2"><span class="card-ico">💎</span><h3>Design premium</h3><p>Vos clients vous jugent en 3 secondes. Ces 3 secondes doivent inspirer confiance.</p></div>
+          <div class="card rev r3"><span class="card-ico">🤝</span><h3>Réponse le dimanche</h3><p>On répond aux messages le dimanche. Parce que nos clients ont du boulot le lundi.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="sec" style="background:rgba(255,255,255,.015)">
+      <div class="c">
+        <div class="badge rev">Notre méthode</div>
+        <h2 class="sh2 rev r1">Simple. Rapide.<br><em>Sans prise de tête.</em></h2>
+        <div class="process">
+          <div class="pstep rev"><div class="pnum">01</div><h4>Appel de cadrage</h4><p>45 min pour comprendre votre business, vos clients, vos objectifs. Sans jargon.</p></div>
+          <div class="pstep rev r1"><div class="pnum">02</div><h4>Message & Structure</h4><p>On structure chaque page avec un objectif clair. Le texte est écrit pour convaincre.</p></div>
+          <div class="pstep rev r2"><div class="pnum">03</div><h4>Design & Dev</h4><p>Maquette validée. On développe. Premium, rapide, mobile-first. Sans compromis.</p></div>
+          <div class="pstep rev r3"><div class="pnum">04</div><h4>Mise en ligne</h4><p>On gère hébergement, domaine, SSL. Vous recevez les clés. Le site tourne.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="sec">
+      <div class="c">
+        <div class="badge rev">Avis clients</div>
+        <h2 class="sh2 rev r1">Ce qu'ils disent<br><em>après la livraison.</em></h2>
+        <div class="tgrid" style="margin-top:48px">
+          <div class="tcard rev">
+            <div class="tc-top">
+              <img class="tc-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Marco">
+              <div><div class="tc-name">Marco Bernardi</div><div class="tc-role">Restaurant · Lyon</div></div>
+            </div>
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-text">"J'avais payé 3 000€ pour un site qui ne m'apportait rien. WEBcraft m'a livré quelque chose de beau et efficace en 48h. Dès la première semaine, 23 commandes directes."</p>
+          </div>
+          <div class="tcard rev r1">
+            <div class="tc-top">
+              <img class="tc-av" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80" alt="Sophie">
+              <div><div class="tc-name">Sophie Delacroix</div><div class="tc-role">Spa · Bordeaux</div></div>
+            </div>
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-text">"Ils ont compris l'univers de mon spa sans que j'aie tout à expliquer. Le site est élégant, il rassure mes clientes. Mon agenda est plein 3 semaines à l'avance."</p>
+          </div>
+          <div class="tcard rev r2">
+            <div class="tc-top">
+              <img class="tc-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Thomas">
+              <div><div class="tc-name">Thomas Vidal</div><div class="tc-role">Artisan · Nantes</div></div>
+            </div>
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-text">"Je ne connaissais rien aux sites web. Ils ont tout géré. Maintenant j'ai 3x plus de demandes de devis par mois et les clients arrivent déjà convaincus."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="sec" style="background:rgba(255,255,255,.015)">
+      <div class="c">
+        <div class="badge rev">Nos offres</div>
+        <h2 class="sh2 rev r1">Choisissez votre<br>niveau <em>d'ambition.</em></h2>
+        <p class="sp rev r2">Trois offres claires. Pas de jargon. Pas de surprise.</p>
+        <div class="pgrid">
+          <div class="pcard rev">
+            <div class="pt">Essentiel</div>
+            <h3 class="ph3">Site Vitrine</h3>
+            <div class="pprice">800€ <small>HT</small></div>
+            <ul class="plist">
+              <li>Design sur mesure</li>
+              <li>Copywriting inclus</li>
+              <li>Mobile-first</li>
+              <li>SEO de base</li>
+              <li>Livraison en 48h</li>
+            </ul>
+            <a href="https://wa.me/33620757517?text=Je%20veux%20le%20site%20vitrine%20à%20800€%20%F0%9F%91%8B" target="_blank" class="btn-g">Je veux ce site</a>
+          </div>
+          <div class="pcard hot rev r1">
+            <div class="pt">Premium</div>
+            <h3 class="ph3">Site Conversion</h3>
+            <div class="pprice">1 500€ <small>HT</small></div>
+            <ul class="plist">
+              <li>Tout du vitrine +</li>
+              <li>Copywriting avancé</li>
+              <li>Animations & interactions</li>
+              <li>Google My Business</li>
+              <li>A/B test CTA</li>
+            </ul>
+            <a href="https://wa.me/33620757517?text=Je%20veux%20le%20site%20conversion%20à%201500€%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux ce site →</a>
+          </div>
+          <div class="pcard rev r2">
+            <div class="pt">Complet</div>
+            <h3 class="ph3">Site + Suivi</h3>
+            <div class="pprice">2 500€ <small>HT</small></div>
+            <ul class="plist">
+              <li>Tout du conversion +</li>
+              <li>3 mois de suivi</li>
+              <li>Modifications illimitées</li>
+              <li>Rapport mensuel</li>
+              <li>Priorité absolue</li>
+            </ul>
+            <a href="https://wa.me/33620757517?text=Je%20veux%20l'offre%20complète%20à%202500€%20%F0%9F%91%8B" target="_blank" class="btn-g">Je veux ce site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="cta-sec">
+      <div class="c">
+        <h2 class="rev">Pendant que vous hésitez,<br><em>votre concurrent</em><br><span class="muted" style="color:rgba(240,238,255,.15)">nous appelle.</span></h2>
+        <p class="rev r1">30 minutes. Gratuit. Sans engagement. On regarde votre situation et on vous dit honnêtement ce qu'on peut faire pour vous.</p>
+        <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20appel%20gratuit%20avec%20WEBcraft%20%F0%9F%91%8B" target="_blank" class="hero-cta in rev r2" style="display:inline-flex">💬 Écrire sur WhatsApp maintenant</a>
+        <div class="cta-checks rev r3">
+          <span>Réponse en moins de 2h</span>
+          <span>Zéro engagement</span>
+          <span>Site livré en 48h</span>
+          <span>4.9★ sur 60+ projets</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="c">
+        <p>© 2026 <strong style="color:var(--vb)">WEBcraft</strong> · Sites web qui convertissent · France · <a href="https://wa.me/33620757517" style="color:var(--vb);text-decoration:none">06 20 75 75 17</a></p>
+      </div>
+    </footer>
+
+  </div><!-- /below -->
+</div><!-- /scroll-cont -->
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/33620757517" target="_blank" class="wa">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+// ── CURSOR ──────────────────────────────────────────────────
+(()=>{
+  const d=document.getElementById('cd'),r=document.getElementById('cr');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;d.style.left=mx+'px';d.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('h'));el.addEventListener('mouseleave',()=>document.body.classList.remove('h'))});
+})();
+
+// ── SCROLL BAR ──────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement,pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('sbar').style.width=Math.min(pct,100)+'%';
+  document.getElementById('nav').classList.toggle('s',window.scrollY>60);
+},{passive:true});
+
+// ── CANVAS PARTICLE SYSTEM ──────────────────────────────────
+const canvas=document.getElementById('heroCanvas');
+const ctx=canvas.getContext('2d');
+let W,H,prog=0,targetProg=0;
+const N=220;
+
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+resize();
+addEventListener('resize',resize);
+
+function lerp(a,b,t){return a+(b-a)*t}
+
+class P {
+  constructor(i){
+    this.i=i;
+    this.r=Math.random()*2+.4;
+    this.op=Math.random()*.7+.25;
+    this.ang=Math.random()*Math.PI*2;
+    this.drift=(Math.random()-.5)*.008;
+    this.px=W/2;this.py=H/2;
+    this.vx=0;this.vy=0;
+  }
+
+  spherePos(){
+    const phi=Math.acos(-1+(2*this.i)/N);
+    const theta=Math.sqrt(N*Math.PI)*phi;
+    const R=Math.min(W,H)*.26;
+    return{
+      x:W/2+R*Math.sin(phi)*Math.cos(theta+prog*2),
+      y:H/2+R*Math.sin(phi)*Math.sin(theta+prog*2)*.6
+    }
+  }
+
+  explodePos(){
+    // Scatter particles into web-shaped formation
+    const angle=(this.i/N)*Math.PI*2;
+    const rings=[.12,.24,.36,.48,.6];
+    const ring=rings[this.i%rings.length];
+    const R=Math.min(W,H)*ring;
+    return{
+      x:W/2+Math.cos(angle+this.i*.3)*R,
+      y:H/2+Math.sin(angle+this.i*.3)*R*.55
+    }
+  }
+
+  update(){
+    this.ang+=this.drift;
+    const sp=this.spherePos();
+    const ep=this.explodePos();
+    const tx=lerp(sp.x,ep.x,prog)+Math.sin(this.ang)*6;
+    const ty=lerp(sp.y,ep.y,prog)+Math.cos(this.ang)*6;
+    this.px=lerp(this.px,tx,.055);
+    this.py=lerp(this.py,ty,.055);
+  }
+
+  draw(){
+    const violet=[168,85,247];
+    const cyan=[34,211,238];
+    const r=Math.round(lerp(violet[0],cyan[0],prog));
+    const g=Math.round(lerp(violet[1],cyan[1],prog));
+    const b=Math.round(lerp(violet[2],cyan[2],prog));
+    ctx.beginPath();
+    ctx.arc(this.px,this.py,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${r},${g},${b},${this.op})`;
+    ctx.fill();
+  }
+}
+
+const particles=Array.from({length:N},(_,i)=>new P(i));
+
+// Draw connections
+function drawLines(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].px-particles[j].px;
+      const dy=particles[i].py-particles[j].py;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<75){
+        const alpha=(1-d/75)*.14*(1-prog*.6);
+        ctx.beginPath();
+        ctx.moveTo(particles[i].px,particles[i].py);
+        ctx.lineTo(particles[j].px,particles[j].py);
+        ctx.strokeStyle=`rgba(168,85,247,${alpha})`;
+        ctx.lineWidth=.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+// Glow pulse
+let glowT=0;
+function drawGlow(){
+  glowT+=.012;
+  const gR=Math.min(W,H)*(lerp(.18,.35,prog)+Math.sin(glowT)*.02);
+  const grad=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,gR);
+  const a=(.12+Math.sin(glowT)*.03)*(1-prog*.4);
+  grad.addColorStop(0,`rgba(124,58,237,${a})`);
+  grad.addColorStop(.5,`rgba(124,58,237,${a*.3})`);
+  grad.addColorStop(1,'transparent');
+  ctx.beginPath();
+  ctx.arc(W/2,H/2,gR,0,Math.PI*2);
+  ctx.fillStyle=grad;
+  ctx.fill();
+}
+
+function loop(){
+  ctx.clearRect(0,0,W,H);
+  prog=lerp(prog,targetProg,.05);
+  drawGlow();
+  drawLines();
+  particles.forEach(p=>{p.update();p.draw()});
+  requestAnimationFrame(loop);
+}
+loop();
+
+// ── SCROLL → ANIMATION ─────────────────────────────────────
+const pinZone=document.getElementById('pinZone');
+const phaseLabel=document.getElementById('pl');
+
+const phases=[
+  {min:0,max:.3,label:''},
+  {min:.3,max:.65,label:'Design · Copywriting · SEO'},
+  {min:.65,max:1,label:'Livraison 48h · 100% sur mesure'},
+];
+
+window.addEventListener('scroll',()=>{
+  const pinH=pinZone.offsetHeight-innerHeight;
+  const raw=Math.max(0,Math.min(1,scrollY/Math.max(pinH,1)));
+  targetProg=raw;
+
+  // Phase labels
+  const phase=phases.find(p=>raw>=p.min&&raw<=p.max);
+  if(phase&&phase.label){
+    phaseLabel.textContent=phase.label;
+    phaseLabel.classList.add('vis');
+  } else {
+    phaseLabel.classList.remove('vis');
+  }
+},{passive:true});
+
+// ── HERO ENTRANCE ───────────────────────────────────────────
+addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('ey').classList.add('in');
+    ['hw1','hw2','hw3'].forEach((id,i)=>setTimeout(()=>document.getElementById(id).classList.add('in'),i*120));
+    setTimeout(()=>document.getElementById('hp').classList.add('in'),400);
+    setTimeout(()=>document.getElementById('hc').classList.add('in'),600);
+    setTimeout(()=>document.getElementById('sh').classList.add('in'),900);
+  },150);
+});
+
+// ── REVEAL ON SCROLL ────────────────────────────────────────
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:.1});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+
+// ── COUNTER ANIMATION ───────────────────────────────────────
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    cio.unobserve(e.target);
+    const el=e.target,target=parseFloat(el.dataset.count),suffix=el.dataset.suffix||'';
+    const isFloat=target%1!==0,dur=1800,start=performance.now();
+    (function tick(now){
+      const t=Math.min((now-start)/dur,1),ease=1-Math.pow(1-t,3),val=target*ease;
+      el.textContent=(isFloat?val.toFixed(1):Math.round(val))+suffix;
+      if(t<1)requestAnimationFrame(tick);
+    })(start);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(c=>cio.observe(c));
+
+// ── 3D TILT ON CARDS ────────────────────────────────────────
+document.querySelectorAll('.card,.tcard,.pcard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*12;
+    const y=((e.clientY-r.top)/r.height-.5)*-12;
+    card.style.transform=`perspective(600px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+</script>
+</body>
+</html>
