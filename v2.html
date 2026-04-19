@@ -438,118 +438,146 @@ window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('s',window.scrollY>60);
 },{passive:true});
 
-// ── CANVAS PARTICLE SYSTEM ──────────────────────────────────
+// ── TRUE 3D PARTICLE ENGINE ──────────────────────────────────
 const canvas=document.getElementById('heroCanvas');
 const ctx=canvas.getContext('2d');
-let W,H,prog=0,targetProg=0;
-const N=220;
+let W,H,prog=0,targetProg=0,rotY=0,glowT=0;
+const N=280,FOV=520;
 
-function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+function resize(){
+  W=canvas.width=innerWidth;
+  H=canvas.height=innerHeight;
+}
 resize();
-addEventListener('resize',resize);
+addEventListener('resize',()=>{resize();particles.forEach((p,i)=>p.init(i))});
 
 function lerp(a,b,t){return a+(b-a)*t}
+function easeInOut(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
 
-class P {
-  constructor(i){
+// Project 3D → 2D with perspective
+function project(x3,y3,z3){
+  const s=FOV/(FOV+z3);
+  return{x:W/2+x3*s, y:H/2+y3*s, s, z:z3};
+}
+
+class Particle {
+  constructor(i){this.init(i)}
+
+  init(i){
     this.i=i;
-    this.r=Math.random()*2+.4;
-    this.op=Math.random()*.7+.25;
-    this.ang=Math.random()*Math.PI*2;
-    this.drift=(Math.random()-.5)*.008;
-    this.px=W/2;this.py=H/2;
-    this.vx=0;this.vy=0;
-  }
+    // Sphere surface (Fibonacci lattice for even distribution)
+    const phi=Math.acos(1-(2*(i+.5))/N);
+    const theta=Math.PI*(1+Math.sqrt(5))*i;
+    const R=Math.min(W,H)*.22;
+    this.sx3=R*Math.sin(phi)*Math.cos(theta);
+    this.sy3=R*Math.cos(phi);
+    this.sz3=R*Math.sin(phi)*Math.sin(theta);
 
-  spherePos(){
-    const phi=Math.acos(-1+(2*this.i)/N);
-    const theta=Math.sqrt(N*Math.PI)*phi;
-    const R=Math.min(W,H)*.26;
-    return{
-      x:W/2+R*Math.sin(phi)*Math.cos(theta+prog*2),
-      y:H/2+R*Math.sin(phi)*Math.sin(theta+prog*2)*.6
-    }
-  }
+    // Exploded: burst outward in 3D
+    const eScale=lerp(1.8,3.2,Math.random());
+    const scatter=(Math.random()-.5)*Math.min(W,H)*.15;
+    this.ex3=this.sx3*eScale+scatter;
+    this.ey3=this.sy3*eScale+scatter;
+    this.ez3=this.sz3*eScale+scatter;
 
-  explodePos(){
-    // Scatter particles into web-shaped formation
-    const angle=(this.i/N)*Math.PI*2;
-    const rings=[.12,.24,.36,.48,.6];
-    const ring=rings[this.i%rings.length];
-    const R=Math.min(W,H)*ring;
-    return{
-      x:W/2+Math.cos(angle+this.i*.3)*R,
-      y:H/2+Math.sin(angle+this.i*.3)*R*.55
-    }
+    // Orbit noise
+    this.noiseAng=Math.random()*Math.PI*2;
+    this.noiseDrift=(Math.random()-.5)*.006;
+    this.noiseR=Math.random()*10+4;
+
+    // Visuals
+    this.baseR=Math.random()*1.8+.5;
+    this.baseOp=Math.random()*.65+.3;
+    this.color=Math.random(); // 0=violet 1=cyan
+
+    // Current screen position (lerped)
+    this.cx=W/2;this.cy=H/2;this.cz=0;
   }
 
   update(){
-    this.ang+=this.drift;
-    const sp=this.spherePos();
-    const ep=this.explodePos();
-    const tx=lerp(sp.x,ep.x,prog)+Math.sin(this.ang)*6;
-    const ty=lerp(sp.y,ep.y,prog)+Math.cos(this.ang)*6;
-    this.px=lerp(this.px,tx,.055);
-    this.py=lerp(this.py,ty,.055);
+    this.noiseAng+=this.noiseDrift;
+    const p=easeInOut(prog);
+
+    // Rotate sphere around Y axis
+    const cosR=Math.cos(rotY),sinR=Math.sin(rotY);
+    const rx3=this.sx3*cosR-this.sz3*sinR;
+    const rz3=this.sx3*sinR+this.sz3*cosR;
+
+    const tx3=lerp(rx3,this.ex3,p)+Math.sin(this.noiseAng)*this.noiseR*(1-p*.7);
+    const ty3=lerp(this.sy3,this.ey3,p)+Math.cos(this.noiseAng)*this.noiseR*.5*(1-p*.7);
+    const tz3=lerp(rz3,this.ez3,p);
+
+    const proj=project(tx3,ty3,tz3);
+    this.cx=lerp(this.cx,proj.x,.07);
+    this.cy=lerp(this.cy,proj.y,.07);
+    this.cz=lerp(this.cz,proj.z,.07);
+    this.scale=proj.s;
   }
 
   draw(){
-    const violet=[168,85,247];
-    const cyan=[34,211,238];
-    const r=Math.round(lerp(violet[0],cyan[0],prog));
-    const g=Math.round(lerp(violet[1],cyan[1],prog));
-    const b=Math.round(lerp(violet[2],cyan[2],prog));
+    const p=easeInOut(prog);
+    // Color: violet→cyan as prog increases
+    const r=Math.round(lerp(168,34,p));
+    const g=Math.round(lerp(85,211,p));
+    const b=Math.round(lerp(247,238,p));
+    const size=Math.max(.3,this.baseR*this.scale);
+    const op=this.baseOp*Math.min(1,(this.scale+.3));
     ctx.beginPath();
-    ctx.arc(this.px,this.py,this.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${r},${g},${b},${this.op})`;
+    ctx.arc(this.cx,this.cy,size,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${r},${g},${b},${op})`;
     ctx.fill();
   }
 }
 
-const particles=Array.from({length:N},(_,i)=>new P(i));
+const particles=Array.from({length:N},(_,i)=>new Particle(i));
 
-// Draw connections
-function drawLines(){
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].px-particles[j].px;
-      const dy=particles[i].py-particles[j].py;
+// Sort by Z for painter's algorithm
+function drawScene(){
+  const sorted=[...particles].sort((a,b)=>a.cz-b.cz);
+
+  // Connections — only near particles, fade on explode
+  const connDist=lerp(70,30,easeInOut(prog));
+  const connAlpha=lerp(.18,.04,easeInOut(prog));
+  ctx.lineWidth=.5;
+  for(let i=0;i<sorted.length;i++){
+    for(let j=i+1;j<sorted.length;j++){
+      const dx=sorted[i].cx-sorted[j].cx;
+      const dy=sorted[i].cy-sorted[j].cy;
       const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<75){
-        const alpha=(1-d/75)*.14*(1-prog*.6);
+      if(d<connDist){
+        const a=(1-d/connDist)*connAlpha;
         ctx.beginPath();
-        ctx.moveTo(particles[i].px,particles[i].py);
-        ctx.lineTo(particles[j].px,particles[j].py);
-        ctx.strokeStyle=`rgba(168,85,247,${alpha})`;
-        ctx.lineWidth=.5;
+        ctx.moveTo(sorted[i].cx,sorted[i].cy);
+        ctx.lineTo(sorted[j].cx,sorted[j].cy);
+        ctx.strokeStyle=`rgba(168,85,247,${a})`;
         ctx.stroke();
       }
     }
   }
+  sorted.forEach(p=>p.draw());
 }
 
-// Glow pulse
-let glowT=0;
 function drawGlow(){
-  glowT+=.012;
-  const gR=Math.min(W,H)*(lerp(.18,.35,prog)+Math.sin(glowT)*.02);
+  glowT+=.01;
+  const p=easeInOut(prog);
+  const gR=Math.min(W,H)*(lerp(.22,.45,p)+Math.sin(glowT)*.015);
+  const a=(lerp(.14,.06,p)+Math.sin(glowT)*.02);
+  const vr=Math.round(lerp(124,6,p)),vg=Math.round(lerp(58,182,p)),vb=Math.round(lerp(237,212,p));
   const grad=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,gR);
-  const a=(.12+Math.sin(glowT)*.03)*(1-prog*.4);
-  grad.addColorStop(0,`rgba(124,58,237,${a})`);
-  grad.addColorStop(.5,`rgba(124,58,237,${a*.3})`);
+  grad.addColorStop(0,`rgba(${vr},${vg},${vb},${a})`);
+  grad.addColorStop(.6,`rgba(${vr},${vg},${vb},${a*.2})`);
   grad.addColorStop(1,'transparent');
-  ctx.beginPath();
-  ctx.arc(W/2,H/2,gR,0,Math.PI*2);
-  ctx.fillStyle=grad;
-  ctx.fill();
+  ctx.beginPath();ctx.arc(W/2,H/2,gR,0,Math.PI*2);
+  ctx.fillStyle=grad;ctx.fill();
 }
 
 function loop(){
   ctx.clearRect(0,0,W,H);
-  prog=lerp(prog,targetProg,.05);
+  prog=lerp(prog,targetProg,.04);
+  rotY+=lerp(.004,.0008,prog); // slow rotation as it explodes
   drawGlow();
-  drawLines();
-  particles.forEach(p=>{p.update();p.draw()});
+  drawScene();
+  particles.forEach(p=>p.update());
   requestAnimationFrame(loop);
 }
 loop();
