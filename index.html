@@ -95,6 +95,26 @@ body.hovering .cur-ring{width:48px;height:48px;opacity:.6}
 .hs-item{text-align:center}
 .hs-num{font-size:32px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hs-lbl{font-size:11px;color:var(--muted);letter-spacing:.5px}
+/* ── SOLUTION SECTION ── */
+.sol-sec{padding:80px 0;background:var(--bg2)}
+.sol-intro{text-align:center;margin-bottom:56px}
+.sol-intro h2{font-size:clamp(32px,4.5vw,52px);font-weight:800;letter-spacing:-2px;line-height:.95;margin-bottom:16px}
+.sol-intro p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto}
+.sol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px}
+@media(max-width:768px){.sol-grid{grid-template-columns:1fr}}
+.sol-item{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.12);border-radius:18px;padding:28px;display:flex;gap:20px;align-items:flex-start;transition:all .25s}
+.sol-item:hover{background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.25);transform:translateY(-2px)}
+.sol-ico{font-size:28px;flex-shrink:0;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.sol-body h4{font-size:16px;font-weight:700;letter-spacing:-.3px;margin-bottom:8px}
+.sol-body p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:10px}
+.sol-result{font-size:13px;font-weight:700;color:#22C55E;display:flex;align-items:center;gap:6px}
+.sol-result::before{content:'→'}
+.sol-price-box{background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:20px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.sol-price-box .spb-left{}
+.sol-price-box .spb-tag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sol-price-box .spb-price{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-3px;line-height:1;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sol-price-box .spb-sub{font-size:13px;color:var(--muted);margin-top:8px}
+.sol-price-box .spb-right{display:flex;flex-direction:column;gap:12px}
 /* IMG CARDS */
 .sec-card-top img{width:100%;height:100%;object-fit:cover;opacity:.7;transition:opacity .3s}
 .sec-card:hover .sec-card-top img{opacity:.9}
@@ -1215,6 +1235,78 @@ footer p{font-size:13px;color:var(--muted)}
     </div>
   </section>
 
+  <!-- SOLUTION RESTAURATION -->
+  <section class="sol-sec">
+    <div class="container">
+      <div class="sol-intro">
+        <div class="badge" style="color:#D4A853;background:rgba(212,168,83,.1);border-color:rgba(212,168,83,.3)">Ce qu'on vous livre</div>
+        <h2>Pas un site.<br><span style="background:linear-gradient(135deg,#D4A853,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Un système qui remplit vos tables.</span></h2>
+        <p>Voici exactement ce que vous recevez — et ce que ça change concrètement pour votre chiffre d'affaires.</p>
+      </div>
+      <div class="sol-grid">
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(212,168,83,.1)">🗓</div>
+          <div class="sol-body">
+            <h4>Réservation en ligne 24h/24</h4>
+            <p>Vos clients réservent directement depuis votre site, même à 23h le samedi. Confirmation automatique par SMS. Plus besoin de décrocher.</p>
+            <div class="sol-result">+40% de réservations en moyenne dès le 1er mois</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(212,168,83,.1)">🛒</div>
+          <div class="sol-body">
+            <h4>Commande directe (zéro commission)</h4>
+            <p>Click & collect et livraison sans Uber Eats ni Deliveroo. Vous gardez 100% de chaque commande. Sur un resto qui fait 5 000€/mois sur appli, c'est 1 500€ récupérés.</p>
+            <div class="sol-result">Économisez 15–30% de commission par commande</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(212,168,83,.1)">📱</div>
+          <div class="sol-body">
+            <h4>Menu digital QR code</h4>
+            <p>Menu toujours à jour, photos appétissantes, allergènes, spécialités du jour. Mis à jour en 2 minutes, pas besoin de réimprimer.</p>
+            <div class="sol-result">+25% de valeur du panier moyen (les photos vendent)</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(212,168,83,.1)">🔍</div>
+          <div class="sol-body">
+            <h4>SEO local — "restaurant [votre ville]"</h4>
+            <p>On optimise votre fiche Google My Business, les balises SEO, la vitesse. Vous apparaissez dans les 3 premiers résultats locaux.</p>
+            <div class="sol-result">+200% de visites Google sans publicité payante</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(212,168,83,.1)">📸</div>
+          <div class="sol-body">
+            <h4>Photos & mise en scène de vos plats</h4>
+            <p>On intègre les meilleures photos de votre établissement et de vos plats. Les clients mangent avec les yeux — on leur donne envie avant même qu'ils franchissent la porte.</p>
+            <div class="sol-result">Clients qui viennent déjà convaincus</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(212,168,83,.1)">⭐</div>
+          <div class="sol-body">
+            <h4>Avis clients intégrés en temps réel</h4>
+            <p>Vos avis Google affichés directement sur votre site. Nouveaux clients rassurés avant de réserver. La preuve sociale permanente.</p>
+            <div class="sol-result">+60% de taux de conversion visiteur → réservation</div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-price-box">
+        <div class="spb-left">
+          <div class="spb-tag">Tout ça pour</div>
+          <div class="spb-price">1 200€ <span style="font-size:20px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</span></div>
+          <div class="spb-sub">✓ Livraison en 48h &nbsp;·&nbsp; ✓ Copywriting inclus &nbsp;·&nbsp; ✓ Sans abonnement caché</div>
+        </div>
+        <div class="spb-right">
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20la%20solution%20restaurant%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux cette solution →</a>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20la%20solution%20restaurant" target="_blank" class="btn-g" style="text-align:center">Poser une question d'abord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subcat-sec">
     <div class="container">
       <div class="sec-hd">
@@ -1460,6 +1552,78 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="prob-card"><div class="prob-icon">📸</div><h4>Instagram ne suffit plus pour convaincre</h4><p>Un profil Instagram ne rassure pas. Un site pro avec galerie, tarifs et avis, si. Vos clients décident avant d'appeler.</p></div>
     </div>
   </div></section>
+  <!-- SOLUTION BEAUTÉ -->
+  <section class="sol-sec">
+    <div class="container">
+      <div class="sol-intro">
+        <div class="badge" style="color:#EC4899;background:rgba(236,72,153,.1);border-color:rgba(236,72,153,.3)">Ce qu'on vous livre</div>
+        <h2>Pas un site.<br><span style="background:linear-gradient(135deg,#EC4899,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Un agenda qui se remplit tout seul.</span></h2>
+        <p>Voici exactement ce que vous recevez — et ce que ça change pour votre salon, institut ou spa.</p>
+      </div>
+      <div class="sol-grid">
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(236,72,153,.1)">🗓</div>
+          <div class="sol-body">
+            <h4>Prise de RDV en ligne 24h/24</h4>
+            <p>Vos clientes réservent directement depuis votre site à n'importe quelle heure. Confirmation automatique, rappel SMS 24h avant. Fini le téléphone qui sonne en plein soin.</p>
+            <div class="sol-result">Agenda plein même quand vous ne décrochez pas</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(236,72,153,.1)">💸</div>
+          <div class="sol-body">
+            <h4>Acompte en ligne = zéro no-show</h4>
+            <p>À la réservation, vos clientes paient un acompte de 20–30%. Les no-shows disparaissent presque complètement. Chaque heure de votre agenda a de la valeur.</p>
+            <div class="sol-result">–80% de no-shows dès le premier mois</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(236,72,153,.1)">📸</div>
+          <div class="sol-body">
+            <h4>Galerie avant/après de vos réalisations</h4>
+            <p>Votre meilleur travail affiché en pleine page. Nouvelles clientes convaincues avant même d'appeler. C'est votre portfolio qui vend à votre place.</p>
+            <div class="sol-result">+35% de nouveaux clients qui arrivent déjà décidés</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(236,72,153,.1)">💌</div>
+          <div class="sol-body">
+            <h4>Carte de fidélité digitale</h4>
+            <p>Programme de fidélité intégré au site. Vos clientes cumulent des points à chaque visite, reçoivent leurs offres par SMS. Elles reviennent plus souvent.</p>
+            <div class="sol-result">+60% de clientes qui reviennent (vs. sans programme)</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(236,72,153,.1)">🔍</div>
+          <div class="sol-body">
+            <h4>SEO local — "coiffeur [votre ville]"</h4>
+            <p>Fiche Google My Business optimisée, balises SEO, vitesse. Vous apparaissez avant vos concurrentes quand une cliente cherche en urgence.</p>
+            <div class="sol-result">+150% de nouvelles clientes depuis Google</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(236,72,153,.1)">💎</div>
+          <div class="sol-body">
+            <h4>Image premium qui justifie vos tarifs</h4>
+            <p>Un site qui ressemble à ce que vous faites — soigné, élégant, premium. Les clientes comprennent pourquoi vous valez ce que vous valez. Plus de négociation sur les prix.</p>
+            <div class="sol-result">Clientes qui acceptent vos tarifs sans négocier</div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-price-box">
+        <div class="spb-left">
+          <div class="spb-tag">Tout ça pour</div>
+          <div class="spb-price">1 100€ <span style="font-size:20px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</span></div>
+          <div class="spb-sub">✓ Livraison en 48h &nbsp;·&nbsp; ✓ RDV en ligne inclus &nbsp;·&nbsp; ✓ Sans abonnement</div>
+        </div>
+        <div class="spb-right">
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20la%20solution%20beauté%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux cette solution →</a>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20la%20solution%20beauté" target="_blank" class="btn-g" style="text-align:center">Poser une question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subcat-sec"><div class="container">
     <div class="sec-hd">
       <div class="badge" style="color:#EC4899;background:rgba(236,72,153,.1);border-color:rgba(236,72,153,.3)">Votre spécialité</div>
@@ -1608,6 +1772,78 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="prob-card"><div class="prob-icon">📋</div><h4>Vos réalisations restent dans votre téléphone</h4><p>Vous avez des dizaines de chantiers magnifiques. Personne ne les voit. Un portfolio en ligne change tout.</p></div>
     </div>
   </div></section>
+  <!-- SOLUTION ARTISANS -->
+  <section class="sol-sec">
+    <div class="container">
+      <div class="sol-intro">
+        <div class="badge" style="color:#84CC16;background:rgba(132,204,22,.1);border-color:rgba(132,204,22,.3)">Ce qu'on vous livre</div>
+        <h2>Pas un site.<br><span style="background:linear-gradient(135deg,#84CC16,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Un générateur de chantiers qualifiés.</span></h2>
+        <p>Voici exactement ce que vous recevez — des leads directs, sans commission, sans intermédiaire.</p>
+      </div>
+      <div class="sol-grid">
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(132,204,22,.1)">📋</div>
+          <div class="sol-body">
+            <h4>Formulaire de devis en ligne intelligent</h4>
+            <p>Vos prospects remplissent un formulaire structuré (type de travaux, surface, délai, photos). Vous recevez la demande directement sur votre téléphone. 0% de commission.</p>
+            <div class="sol-result">+60% de demandes de devis qualifiées dès le 1er mois</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(132,204,22,.1)">🚨</div>
+          <div class="sol-body">
+            <h4>Page urgence 24h/24</h4>
+            <p>Une page dédiée aux urgences — fuite, panne, court-circuit — avec votre numéro en grand et cliquable. Quand ça lâche à 23h, c'est vous qu'on appelle en premier.</p>
+            <div class="sol-result">Appels d'urgence = plein tarif, pas de négociation</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(132,204,22,.1)">📸</div>
+          <div class="sol-body">
+            <h4>Portfolio chantiers avant/après</h4>
+            <p>Vos réalisations mises en valeur avec photos avant/après. Vos prospects voient la qualité avant d'appeler. Ils arrivent déjà convaincus de votre sérieux.</p>
+            <div class="sol-result">Clients qui acceptent vos prix sans négocier</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(132,204,22,.1)">🔍</div>
+          <div class="sol-body">
+            <h4>SEO local — "artisan [votre ville]"</h4>
+            <p>On vous positionne en top 3 sur Google Maps et recherche organique. "Plombier urgence Lyon", "électricien Paris 15e" — c'est vous en premier.</p>
+            <div class="sol-result">+300% de visibilité locale sans pub payante</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(132,204,22,.1)">🏆</div>
+          <div class="sol-body">
+            <h4>Certifications & labels affichés</h4>
+            <p>RGE, Qualibat, Qualifelec, assurances — tout affiché en évidence. La réassurance qui fait la différence quand deux artisans sont en concurrence.</p>
+            <div class="sol-result">Taux de conversion devis → chantier multiplié par 2</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(132,204,22,.1)">⭐</div>
+          <div class="sol-body">
+            <h4>Avis Google intégrés en temps réel</h4>
+            <p>Vos avis clients directement sur votre site. Un prospect qui hésite entre vous et un concurrent voit immédiatement 47 avis 5 étoiles. C'est plié.</p>
+            <div class="sol-result">Preuve sociale permanente qui travaille à votre place</div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-price-box">
+        <div class="spb-left">
+          <div class="spb-tag">Tout ça pour</div>
+          <div class="spb-price">1 000€ <span style="font-size:20px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</span></div>
+          <div class="spb-sub">✓ Livraison en 48h &nbsp;·&nbsp; ✓ Formulaire devis inclus &nbsp;·&nbsp; ✓ 0% commission</div>
+        </div>
+        <div class="spb-right">
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20la%20solution%20artisan%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux cette solution →</a>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20la%20solution%20artisan" target="_blank" class="btn-g" style="text-align:center">Poser une question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subcat-sec"><div class="container">
     <div class="sec-hd">
       <div class="badge" style="color:#84CC16;background:rgba(132,204,22,.1);border-color:rgba(132,204,22,.3)">Votre corps de métier</div>
@@ -1754,6 +1990,78 @@ footer p{font-size:13px;color:var(--muted)}
       </div>
     </div>
   </section>
+  <!-- SOLUTION SPORT-SANTÉ -->
+  <section class="sol-sec">
+    <div class="container">
+      <div class="sol-intro">
+        <div class="badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3)">Ce qu'on vous livre</div>
+        <h2>Pas un site.<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Un système qui remplit votre agenda et vend vos programmes.</span></h2>
+        <p>Voici exactement ce que vous recevez — des clients réguliers, des revenus récurrents, une image premium.</p>
+      </div>
+      <div class="sol-grid">
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(34,211,238,.1)">📅</div>
+          <div class="sol-body">
+            <h4>Réservation de séances en ligne</h4>
+            <p>Vos clients réservent leurs créneaux directement — séances individuelles, cours collectifs, visio. Confirmation automatique. Votre agenda se remplit pendant que vous coachez.</p>
+            <div class="sol-result">Agenda plein 3 semaines à l'avance en moyenne</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(34,211,238,.1)">💰</div>
+          <div class="sol-body">
+            <h4>Vente de programmes en ligne</h4>
+            <p>Programmes nutrition, plans d'entraînement, challenges — vendus directement depuis votre site. Revenus passifs 24h/24 sans intermédiaire.</p>
+            <div class="sol-result">+40% de revenus sans heure de travail supplémentaire</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(34,211,238,.1)">🏆</div>
+          <div class="sol-body">
+            <h4>Témoignages résultats clients</h4>
+            <p>Avant/après, témoignages vidéo, transformations — votre preuve sociale massive. Les prospects se reconnaissent dans vos clients et veulent les mêmes résultats.</p>
+            <div class="sol-result">Prospects qui arrivent déjà convaincus et motivés</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(34,211,238,.1)">🎟</div>
+          <div class="sol-body">
+            <h4>Abonnements & packs en ligne</h4>
+            <p>Vente d'abonnements mensuels, packs de séances, accès à votre contenu premium. Revenus récurrents prévisibles chaque mois.</p>
+            <div class="sol-result">Revenus récurrents stables = moins de stress financier</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(34,211,238,.1)">🔍</div>
+          <div class="sol-body">
+            <h4>SEO local — "coach [votre ville]"</h4>
+            <p>Vous apparaissez en premier sur Google quand quelqu'un cherche un coach ou kiné dans votre secteur. Nouveaux clients sans pub payante.</p>
+            <div class="sol-result">+150% de nouveaux clients depuis Google</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(34,211,238,.1)">💎</div>
+          <div class="sol-body">
+            <h4>Image premium qui justifie vos tarifs</h4>
+            <p>Un site qui inspire confiance et crédibilité. Vos clients comprennent pourquoi vous valez plus qu'un coach lambda. Finies les négociations sur vos prix.</p>
+            <div class="sol-result">Clients qui acceptent vos tarifs sans hésiter</div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-price-box">
+        <div class="spb-left">
+          <div class="spb-tag">Tout ça pour</div>
+          <div class="spb-price">1 200€ <span style="font-size:20px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</span></div>
+          <div class="spb-sub">✓ Livraison en 48h &nbsp;·&nbsp; ✓ Réservation & vente incluses &nbsp;·&nbsp; ✓ Sans abonnement</div>
+        </div>
+        <div class="spb-right">
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20la%20solution%20sport%20santé%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux cette solution →</a>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20la%20solution%20sport" target="_blank" class="btn-g" style="text-align:center">Poser une question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subcat-sec"><div class="container">
     <div class="sec-hd"><div class="badge" style="color:#22D3EE;background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3)">Votre spécialité</div><h2>On connaît<br><span style="background:linear-gradient(135deg,#22D3EE,#84CC16);-webkit-background-clip:text;-webkit-text-fill-color:transparent">votre secteur.</span></h2></div>
     <div class="subcat-grid">
@@ -1805,6 +2113,78 @@ footer p{font-size:13px;color:var(--muted)}
       <div class="vh-ctas"><button class="btn-p" onclick="openCal()">Réserver un appel →</button><button class="btn-g" onclick="nav(&#39;/commerce-local/fleuriste&#39;)">Voir Fleuriste</button></div>
     </div>
   </section>
+  <!-- SOLUTION COMMERCE LOCAL -->
+  <section class="sol-sec">
+    <div class="container">
+      <div class="sol-intro">
+        <div class="badge" style="color:#F59E0B;background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3)">Ce qu'on vous livre</div>
+        <h2>Pas un site.<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Une boutique qui attire des clients toute l'année.</span></h2>
+        <p>Voici exactement ce que vous recevez — plus de passage, plus de fidélisation, plus de ventes.</p>
+      </div>
+      <div class="sol-grid">
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(245,158,11,.1)">🛒</div>
+          <div class="sol-body">
+            <h4>Catalogue produits en ligne + Click & Collect</h4>
+            <p>Tous vos produits affichés avec photos, prix, descriptions. Vos clients commandent en ligne et viennent chercher en boutique. Zéro frais de livraison, zéro commission.</p>
+            <div class="sol-result">Nouveaux clients au-delà de votre rue</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(245,158,11,.1)">🎁</div>
+          <div class="sol-body">
+            <h4>Programme de fidélité digital</h4>
+            <p>Carte de fidélité sur votre site, points cumulés, offres exclusives membres. Vos clients reviennent plus souvent et dépensent plus à chaque visite.</p>
+            <div class="sol-result">+50% de fréquence de visite des clients fidèles</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(245,158,11,.1)">📍</div>
+          <div class="sol-body">
+            <h4>Google My Business ultra-optimisé</h4>
+            <p>Fiche Google complète avec photos, horaires, produits, avis — tout optimisé. Quand quelqu'un cherche "fleuriste près de moi", c'est vous qui apparaissez.</p>
+            <div class="sol-result">+200% de passages en boutique depuis Google Maps</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(245,158,11,.1)">📱</div>
+          <div class="sol-body">
+            <h4>SMS & newsletter promotions</h4>
+            <p>Collecte d'emails et numéros sur votre site. Promotions flash, nouveautés, événements envoyés directement à vos clients. Taux d'ouverture SMS : 98%.</p>
+            <div class="sol-result">Clients dormants qui reviennent après une promo SMS</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(245,158,11,.1)">📅</div>
+          <div class="sol-body">
+            <h4>Réservation pour événements & ateliers</h4>
+            <p>Ateliers, dégustations, événements spéciaux — réservation en ligne directement. Remplissez vos événements sans téléphone, sans Excel.</p>
+            <div class="sol-result">Événements complets plusieurs semaines à l'avance</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(245,158,11,.1)">💎</div>
+          <div class="sol-body">
+            <h4>Image artisanale & unique mise en valeur</h4>
+            <p>Ce qui vous différencie d'Amazon et des grandes surfaces, c'est votre histoire, votre expertise, votre passion. On la met en scène pour que vos clients la ressentent.</p>
+            <div class="sol-result">Clients qui choisissent VOUS par conviction, pas par prix</div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-price-box">
+        <div class="spb-left">
+          <div class="spb-tag">Tout ça pour</div>
+          <div class="spb-price">1 100€ <span style="font-size:20px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</span></div>
+          <div class="spb-sub">✓ Livraison en 48h &nbsp;·&nbsp; ✓ Click & collect inclus &nbsp;·&nbsp; ✓ Sans abonnement</div>
+        </div>
+        <div class="spb-right">
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20la%20solution%20commerce%20local%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux cette solution →</a>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20la%20solution%20commerce" target="_blank" class="btn-g" style="text-align:center">Poser une question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subcat-sec"><div class="container">
     <div class="sec-hd"><h2>Votre commerce<br><span style="background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent">a une âme unique.</span></h2></div>
     <div class="subcat-grid">
@@ -1845,6 +2225,78 @@ footer p{font-size:13px;color:var(--muted)}
       </div>
     </div>
   </section>
+  <!-- SOLUTION HÔTELLERIE -->
+  <section class="sol-sec">
+    <div class="container">
+      <div class="sol-intro">
+        <div class="badge" style="color:#A855F7;background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.3)">Ce qu'on vous livre</div>
+        <h2>Pas un site.<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Un moteur de réservation directe qui supprime les commissions.</span></h2>
+        <p>Voici exactement ce que vous recevez — chaque réservation directe = 15 à 20% de marge récupérée.</p>
+      </div>
+      <div class="sol-grid">
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(168,85,247,.1)">🏨</div>
+          <div class="sol-body">
+            <h4>Moteur de réservation directe</h4>
+            <p>Vos clients réservent directement sur votre site — choix des dates, types de chambres, options. Paiement sécurisé. Zéro commission Booking, zéro commission Airbnb.</p>
+            <div class="sol-result">Récupérez 15–20% sur chaque nuit réservée en direct</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(168,85,247,.1)">💰</div>
+          <div class="sol-body">
+            <h4>Offres exclusives "réservation directe"</h4>
+            <p>Petit-déjeuner offert, remise 10%, early check-in — des avantages réservés aux clients qui bookent en direct. Ils ont une raison de contourner Booking.</p>
+            <div class="sol-result">+50% de réservations directes en 3 mois</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(168,85,247,.1)">📸</div>
+          <div class="sol-body">
+            <h4>Galerie immersive de vos chambres</h4>
+            <p>Chaque chambre présentée avec photos HD, description détaillée, équipements. Le client visualise son séjour avant de réserver. Moins de questions, plus de conversions.</p>
+            <div class="sol-result">Taux de conversion visiteur → réservation ×2</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(168,85,247,.1)">📅</div>
+          <div class="sol-body">
+            <h4>Calendrier disponibilités en temps réel</h4>
+            <p>Disponibilités synchronisées, fermetures exceptionnelles, saisons — tout affiché en temps réel. Vos clients savent immédiatement si leur date est libre.</p>
+            <div class="sol-result">Zéro double réservation, zéro friction à l'achat</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(168,85,247,.1)">⭐</div>
+          <div class="sol-body">
+            <h4>Avis TripAdvisor & Google intégrés</h4>
+            <p>Vos meilleurs avis affichés directement sur votre site. Un voyageur qui hésite est rassuré par 80 avis 5 étoiles avant même d'aller comparer sur Booking.</p>
+            <div class="sol-result">Confiance établie avant la réservation</div>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-ico" style="background:rgba(168,85,247,.1)">🔍</div>
+          <div class="sol-body">
+            <h4>SEO local — "hôtel [votre ville]"</h4>
+            <p>Vous apparaissez dans les premiers résultats Google avant Booking et Expedia sur les recherches locales. Des voyageurs qui vous trouvent sans passer par les OTA.</p>
+            <div class="sol-result">+200% de visites directes depuis Google</div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-price-box">
+        <div class="spb-left">
+          <div class="spb-tag">Tout ça pour</div>
+          <div class="spb-price">1 500€ <span style="font-size:20px;font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</span></div>
+          <div class="spb-sub">✓ Livraison en 48h &nbsp;·&nbsp; ✓ Moteur de réservation inclus &nbsp;·&nbsp; ✓ 0% commission</div>
+        </div>
+        <div class="spb-right">
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20je%20veux%20la%20solution%20hôtellerie%20%F0%9F%91%8B" target="_blank" class="btn-p">Je veux cette solution →</a>
+          <a href="https://wa.me/33620757517?text=Bonjour%2C%20combien%20je%20perds%20avec%20Booking%20actuellement%20%3F" target="_blank" class="btn-g" style="text-align:center">Calculer mes économies</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subcat-sec"><div class="container">
     <div class="sec-hd"><h2>Votre type<br><span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'établissement.</span></h2></div>
     <div class="subcat-grid">
