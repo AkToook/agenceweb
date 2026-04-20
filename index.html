@@ -957,84 +957,9 @@ section,.sol-sec,.feat-sec,.process-sec,.trust-sec,.faq-sec{padding-top:96px!imp
         <h2>Des chiffres réels.<br><span class="grad">Des vraies personnes.</span></h2>
         <p>Pas des moyennes. Ce que nos clients ont vécu, chiffres à l'appui.</p>
       </div>
-      <div class="cases-grid">
-
-        <div class="case-card tilt reveal">
-          <div class="case-img-wrap">
-            <img class="case-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant">
-            <div class="case-tag">🍽 Restauration</div>
-          </div>
-          <div class="case-body">
-            <div class="case-client">
-              <img class="case-cav" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Ahmed">
-              <div><div class="case-cn">Ahmed B.</div><div class="case-cc">Restaurant Le Méditerranée · Reims</div></div>
-            </div>
-            <p class="case-quote">"On payait 800€/mois à Uber Eats. Maintenant les clients commandent directement. En 6 semaines on a tout récupéré."</p>
-            <div class="case-stats">
-              <div class="cs-stat"><div class="cs-num">-82%</div><div class="cs-lbl">Commissions</div></div>
-              <div class="cs-stat"><div class="cs-num">+47%</div><div class="cs-lbl">Commandes directes</div></div>
-              <div class="cs-stat"><div class="cs-num">48h</div><div class="cs-lbl">Livraison site</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-card tilt reveal">
-          <div class="case-img-wrap">
-            <img class="case-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="Salon beauté">
-            <div class="case-tag">💅 Beauté</div>
-          </div>
-          <div class="case-body">
-            <div class="case-client">
-              <img class="case-cav" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80" alt="Nadia">
-              <div><div class="case-cn">Nadia R.</div><div class="case-cc">Salon Lumière · Bordeaux</div></div>
-            </div>
-            <p class="case-quote">"Avant je répondais au téléphone toute la journée. Maintenant les RDV tombent seuls, même la nuit. J'ai retrouvé du temps pour mes clientes."</p>
-            <div class="case-stats">
-              <div class="cs-stat"><div class="cs-num">+63%</div><div class="cs-lbl">RDV en ligne</div></div>
-              <div class="cs-stat"><div class="cs-num">-90%</div><div class="cs-lbl">Appels perdus</div></div>
-              <div class="cs-stat"><div class="cs-num">3j</div><div class="cs-lbl">Pour voir les résultats</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-card tilt reveal">
-          <div class="case-img-wrap">
-            <img class="case-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Artisan">
-            <div class="case-tag">🔨 Artisan</div>
-          </div>
-          <div class="case-body">
-            <div class="case-client">
-              <img class="case-cav" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Thomas">
-              <div><div class="case-cn">Thomas V.</div><div class="case-cc">Électricité TVM · Nantes</div></div>
-            </div>
-            <p class="case-quote">"Je suis en première position sur Google 'électricien Nantes'. Je n'aurais jamais cru que ça puisse aller aussi vite. Les chantiers ne manquent plus."</p>
-            <div class="case-stats">
-              <div class="cs-stat"><div class="cs-num">1er</div><div class="cs-lbl">Google local</div></div>
-              <div class="cs-stat"><div class="cs-num">+9</div><div class="cs-lbl">Devis/mois</div></div>
-              <div class="cs-stat"><div class="cs-num">0€</div><div class="cs-lbl">Commission plateforme</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-card tilt reveal">
-          <div class="case-img-wrap">
-            <img class="case-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80" alt="Hôtel">
-            <div class="case-tag">🏨 Hôtellerie</div>
-          </div>
-          <div class="case-body">
-            <div class="case-client">
-              <img class="case-cav" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt="Lucie">
-              <div><div class="case-cn">Lucie T.</div><div class="case-cc">Maison des Landes · Bretagne</div></div>
-            </div>
-            <p class="case-quote">"Booking prenait 18% sur chaque nuit. Maintenant 70% de mes réservations sont directes. Sur 40 nuits par mois, ça fait une différence énorme."</p>
-            <div class="case-stats">
-              <div class="cs-stat"><div class="cs-num">70%</div><div class="cs-lbl">Résa directes</div></div>
-              <div class="cs-stat"><div class="cs-num">+2 200€</div><div class="cs-lbl">Récupérés/mois</div></div>
-              <div class="cs-stat"><div class="cs-num">-18%</div><div class="cs-lbl">Commissions Booking</div></div>
-            </div>
-          </div>
-        </div>
-
+      <div class="cases-grid" id="portfolioGrid">
+        <!-- Rempli dynamiquement depuis portfolio.json -->
+        <div class="case-card" style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">Chargement...</div>
       </div>
     </div>
   </section>
@@ -2832,6 +2757,50 @@ window.addEventListener('load',()=>{
     });
   },{threshold:.5});
   counters.forEach(c=>io.observe(c));
+})();
+
+// ── PORTFOLIO DYNAMIQUE ───────────────────────────────────
+(async()=>{
+  const grid=document.getElementById('portfolioGrid');
+  if(!grid)return;
+  try{
+    const r=await fetch('./portfolio.json?v='+Date.now());
+    const data=await r.json();
+    grid.innerHTML=data.projets.map(p=>`
+      <div class="case-card tilt reveal">
+        <div class="case-img-wrap">
+          <img class="case-img" src="${p.photo}" alt="${p.clientNom}" loading="lazy">
+          <div class="case-tag">${p.tag}</div>
+        </div>
+        <div class="case-body">
+          <div class="case-client">
+            <img class="case-cav" src="${p.avatarUrl}" alt="${p.clientNom}" loading="lazy">
+            <div><div class="case-cn">${p.clientNom}</div><div class="case-cc">${p.clientInfo}</div></div>
+          </div>
+          <p class="case-quote">"${p.citation}"</p>
+          <div class="case-stats">
+            ${p.stats.map(s=>`<div class="cs-stat"><div class="cs-num">${s.num}</div><div class="cs-lbl">${s.label}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>`).join('');
+    // Ré-observer les nouvelles cartes
+    const io2=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+    },{threshold:.1});
+    grid.querySelectorAll('.reveal').forEach(el=>io2.observe(el));
+    // Ré-appliquer tilt
+    grid.querySelectorAll('.tilt').forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=((e.clientX-r.left)/r.width-.5)*14;
+        const y=((e.clientY-r.top)/r.height-.5)*-14;
+        card.style.transform=`perspective(600px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave',()=>{card.style.transform=''});
+    });
+  }catch(e){
+    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">Portfolio en cours de chargement.</div>';
+  }
 })();
 </script>
 

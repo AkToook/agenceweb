@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEBcraft Admin — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07080F;--bg2:#0e0f1a;--white:#F0EEFF;--muted:#6B7280;
+  --v:#7C3AED;--vb:#A855F7;--cb:#22D3EE;--green:#22C55E;--red:#EF4444;
+  --border:rgba(168,85,247,.2);
+  --font:'Bricolage Grotesque',sans-serif;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--font);min-height:100vh;padding:40px 20px}
+.wrap{max-width:780px;margin:0 auto}
+
+/* LOGIN */
+#loginScreen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:24px;text-align:center}
+#loginScreen h1{font-size:32px;font-weight:800;letter-spacing:-.04em}
+#loginScreen p{color:var(--muted);font-size:15px}
+.login-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;width:100%;max-width:360px;display:flex;flex-direction:column;gap:16px}
+.login-box input{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:var(--white);font-family:var(--font);font-size:15px;outline:none;transition:border .2s}
+.login-box input:focus{border-color:var(--vb)}
+.login-box button{background:linear-gradient(135deg,var(--v),var(--vb));color:#fff;border:none;border-radius:8px;padding:13px;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s}
+.login-box button:hover{opacity:.85}
+#loginErr{color:var(--red);font-size:13px;text-align:center;display:none}
+
+/* ADMIN */
+#adminScreen{display:none}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.admin-logo{font-size:20px;font-weight:800;letter-spacing:-.03em}
+.admin-logo em{font-style:normal;background:linear-gradient(135deg,var(--vb),var(--cb));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logout-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--muted);font-family:var(--font);font-size:13px;padding:7px 16px;border-radius:6px;cursor:pointer;transition:all .2s}
+.logout-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* SETUP TOKEN */
+#setupBox{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.25);border-radius:12px;padding:24px;margin-bottom:32px}
+#setupBox h3{font-size:15px;font-weight:700;margin-bottom:8px;color:#F59E0B}
+#setupBox p{font-size:13px;color:rgba(240,238,255,.6);line-height:1.6;margin-bottom:14px}
+#setupBox a{color:var(--cb);text-decoration:none}
+#setupBox a:hover{text-decoration:underline}
+.token-row{display:flex;gap:10px}
+.token-row input{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;color:var(--white);font-family:var(--font);font-size:13px;outline:none}
+.token-row input:focus{border-color:var(--vb)}
+.token-row button{background:var(--v);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.token-ok{font-size:12px;color:var(--green);margin-top:8px;display:none}
+
+/* FORM */
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px}
+.form-card h2{font-size:20px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+.form-card p{font-size:13px;color:var(--muted);margin-bottom:24px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:11px 14px;color:var(--white);font-family:var(--font);font-size:14px;outline:none;transition:border .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--vb)}
+.form-group select option{background:#1a1b2e;color:var(--white)}
+.form-group textarea{resize:vertical;min-height:90px;line-height:1.6}
+.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-group{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px}
+.stat-group label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(168,85,247,.7);display:block;margin-bottom:10px}
+.stat-group input{margin-bottom:8px}
+.stat-group input:last-child{margin-bottom:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.form-row,.stats-row{grid-template-columns:1fr}}
+
+/* PREVIEW */
+.preview-wrap{margin-bottom:18px}
+.preview-wrap label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.photo-preview{width:100%;height:160px;border-radius:10px;object-fit:cover;border:1px solid var(--border);display:block;background:rgba(255,255,255,.03)}
+.avatar-preview{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,85,247,.3);margin-top:8px}
+
+/* SUBMIT */
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--v),var(--vb));color:#fff;border:none;border-radius:10px;padding:16px;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer;position:relative;overflow:hidden;transition:opacity .2s}
+.submit-btn:hover:not(:disabled){opacity:.88}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.submit-btn::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-20deg);transition:left .5s}
+.submit-btn:hover:not(:disabled)::after{left:160%}
+
+/* STATUS */
+#status{margin-top:16px;padding:14px;border-radius:8px;font-size:14px;font-weight:600;text-align:center;display:none}
+#status.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green)}
+#status.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red)}
+#status.loading{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3);color:var(--vb)}
+
+/* PORTFOLIO LIST */
+.portfolio-list{margin-top:40px}
+.portfolio-list h2{font-size:18px;font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
+.plist-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.plist-img{width:52px;height:40px;border-radius:6px;object-fit:cover;flex-shrink:0}
+.plist-info{flex:1;min-width:0}
+.plist-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plist-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.plist-tag{font-size:11px;background:rgba(168,85,247,.1);color:var(--vb);padding:3px 9px;border-radius:20px;flex-shrink:0}
+.del-btn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--red);font-family:var(--font);font-size:12px;font-weight:700;padding:6px 12px;border-radius:6px;cursor:pointer;transition:all .2s;flex-shrink:0}
+.del-btn:hover{background:rgba(239,68,68,.2)}
+.empty-list{text-align:center;padding:32px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN ─────────────────────────────────────────── -->
+<div id="loginScreen">
+  <div>
+    <div style="font-size:36px;margin-bottom:12px">⚡</div>
+    <h1>WEB<span style="background:linear-gradient(135deg,#A855F7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent">craft</span> Admin</h1>
+    <p style="margin-top:8px">Gestion du portfolio</p>
+  </div>
+  <div class="login-box">
+    <input type="password" id="pwInput" placeholder="Mot de passe" autocomplete="current-password">
+    <button onclick="login()">Accéder →</button>
+    <div id="loginErr">Mot de passe incorrect.</div>
+  </div>
+</div>
+
+<!-- ─── ADMIN ─────────────────────────────────────────── -->
+<div id="adminScreen" class="wrap">
+
+  <div class="admin-header">
+    <div class="admin-logo">WEB<em>craft</em> Admin</div>
+    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+  </div>
+
+  <!-- SETUP TOKEN -->
+  <div id="setupBox">
+    <h3>⚙️ Configuration GitHub (une seule fois)</h3>
+    <p>Pour que les ajouts se sauvegardent automatiquement, entre ton token GitHub.<br>
+    Crée-le sur <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a> → coche <strong>repo</strong> → génère.</p>
+    <div class="token-row">
+      <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      <button onclick="saveToken()">Enregistrer</button>
+    </div>
+    <div class="token-ok" id="tokenOk">✓ Token enregistré</div>
+  </div>
+
+  <!-- FORM AJOUT -->
+  <div class="form-card">
+    <h2>Ajouter un projet au portfolio</h2>
+    <p>Remplis les infos du client — le portfolio se met à jour automatiquement.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Prénom + Initiale du client *</label>
+        <input type="text" id="fClientNom" placeholder="Ex : Ahmed B.">
+      </div>
+      <div class="form-group">
+        <label>Nom établissement + Ville *</label>
+        <input type="text" id="fClientInfo" placeholder="Ex : Restaurant Le Méditerranée · Reims">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Niche *</label>
+      <select id="fNiche">
+        <option value="🍽 Restauration">🍽 Restauration</option>
+        <option value="💅 Beauté">💅 Beauté</option>
+        <option value="🔨 Artisan">🔨 Artisan</option>
+        <option value="🏨 Hôtellerie">🏨 Hôtellerie</option>
+        <option value="💪 Sport & Santé">💪 Sport & Santé</option>
+        <option value="🛍 Commerce">🛍 Commerce</option>
+        <option value="🌐 Autre">🌐 Autre</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Citation du client (sans guillemets) *</label>
+      <textarea id="fCitation" placeholder="Ex : On payait 800€/mois à Uber Eats. Maintenant les clients commandent directement..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>3 Résultats clés</label>
+      <div class="stats-row">
+        <div class="stat-group">
+          <label>Résultat 1</label>
+          <input type="text" id="s1num" placeholder="-82%">
+          <input type="text" id="s1lbl" placeholder="Commissions">
+        </div>
+        <div class="stat-group">
+          <label>Résultat 2</label>
+          <input type="text" id="s2num" placeholder="+47%">
+          <input type="text" id="s2lbl" placeholder="Commandes directes">
+        </div>
+        <div class="stat-group">
+          <label>Résultat 3</label>
+          <input type="text" id="s3num" placeholder="48h">
+          <input type="text" id="s3lbl" placeholder="Livraison site">
+        </div>
+        <div class="stat-group" style="border-color:rgba(168,85,247,.08)">
+          <label style="color:rgba(168,85,247,.4)">Optionnel — Photo URL</label>
+          <input type="url" id="fPhoto" placeholder="https://images.unsplash.com/..." oninput="previewPhoto()">
+          <input type="url" id="fAvatar" placeholder="URL photo client (optionnel)" oninput="previewAvatar()">
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-wrap" id="previewWrap" style="display:none">
+      <label>Aperçu</label>
+      <img class="photo-preview" id="photoPreview" src="" alt="">
+      <img class="avatar-preview" id="avatarPreview" src="" alt="">
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="addProject()">
+      ✦ Ajouter au portfolio &amp; publier
+    </button>
+    <div id="status"></div>
+  </div>
+
+  <!-- LISTE PROJETS -->
+  <div class="portfolio-list">
+    <h2>Projets publiés <span id="projCount" style="color:var(--muted);font-size:14px;font-weight:400"></span></h2>
+    <div id="projList"></div>
+  </div>
+
+</div>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────────
+const REPO_OWNER = 'AkToook';
+const REPO_NAME  = 'agenceweb';
+const FILE_PATH  = 'portfolio.json';
+const BRANCH     = 'master';
+
+// Mot de passe admin (change-le ici si besoin)
+const ADMIN_PASSWORD = 'webcraft2026';
+
+// ── PHOTOS PAR DÉFAUT PAR NICHE ────────────────────────────
+const DEFAULT_PHOTOS = {
+  '🍽 Restauration': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80',
+  '💅 Beauté':       'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80',
+  '🔨 Artisan':      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80',
+  '🏨 Hôtellerie':  'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80',
+  '💪 Sport & Santé':'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80',
+  '🛍 Commerce':     'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=700&q=80',
+  '🌐 Autre':        'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=700&q=80',
+};
+const DEFAULT_AVATAR = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80';
+
+// ── LOGIN ──────────────────────────────────────────────────
+function login(){
+  const pw = document.getElementById('pwInput').value;
+  if(pw === ADMIN_PASSWORD){
+    sessionStorage.setItem('wc_auth','1');
+    showAdmin();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+
+function logout(){
+  sessionStorage.removeItem('wc_auth');
+  location.reload();
+}
+
+function showAdmin(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('adminScreen').style.display='block';
+  // Check token
+  const tok = localStorage.getItem('wc_token');
+  if(tok){
+    document.getElementById('tokenInput').value='••••••••••••••••••••';
+    document.getElementById('tokenOk').style.display='block';
+  }
+  loadList();
+}
+
+// Auto-login si session active
+if(sessionStorage.getItem('wc_auth')==='1') showAdmin();
+
+// ── TOKEN ──────────────────────────────────────────────────
+function saveToken(){
+  const val = document.getElementById('tokenInput').value.trim();
+  if(!val || val.startsWith('•')) return;
+  localStorage.setItem('wc_token', val);
+  document.getElementById('tokenOk').style.display='block';
+}
+
+// ── PREVIEW ────────────────────────────────────────────────
+function previewPhoto(){
+  const url = document.getElementById('fPhoto').value;
+  if(!url) return;
+  document.getElementById('photoPreview').src = url;
+  document.getElementById('previewWrap').style.display='block';
+}
+function previewAvatar(){
+  const url = document.getElementById('fAvatar').value;
+  if(!url) return;
+  document.getElementById('avatarPreview').src = url;
+  document.getElementById('previewWrap').style.display='block';
+}
+
+// ── GITHUB API ─────────────────────────────────────────────
+function getToken(){
+  return localStorage.getItem('wc_token')||'';
+}
+
+async function getFileSha(){
+  const tok = getToken();
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`,{
+    headers:{ Authorization:`Bearer ${tok}`, Accept:'application/vnd.github.v3+json' }
+  });
+  if(!res.ok) throw new Error('Impossible de lire portfolio.json (token valide ?)');
+  const data = await res.json();
+  return { sha: data.sha, content: JSON.parse(atob(data.content.replace(/\n/g,''))) };
+}
+
+async function commitFile(content, sha, message){
+  const tok = getToken();
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(content,null,2))));
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,{
+    method:'PUT',
+    headers:{ Authorization:`Bearer ${tok}`, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json' },
+    body: JSON.stringify({ message, content: encoded, sha, branch: BRANCH })
+  });
+  if(!res.ok){
+    const err = await res.json();
+    throw new Error(err.message||'Erreur GitHub API');
+  }
+  return res.json();
+}
+
+// ── ADD PROJECT ────────────────────────────────────────────
+async function addProject(){
+  const btn    = document.getElementById('submitBtn');
+  const status = document.getElementById('status');
+
+  const nom    = document.getElementById('fClientNom').value.trim();
+  const info   = document.getElementById('fClientInfo').value.trim();
+  const niche  = document.getElementById('fNiche').value;
+  const cit    = document.getElementById('fCitation').value.trim();
+  const s1n    = document.getElementById('s1num').value.trim();
+  const s1l    = document.getElementById('s1lbl').value.trim();
+  const s2n    = document.getElementById('s2num').value.trim();
+  const s2l    = document.getElementById('s2lbl').value.trim();
+  const s3n    = document.getElementById('s3num').value.trim();
+  const s3l    = document.getElementById('s3lbl').value.trim();
+  const photo  = document.getElementById('fPhoto').value.trim() || DEFAULT_PHOTOS[niche] || DEFAULT_PHOTOS['🌐 Autre'];
+  const avatar = document.getElementById('fAvatar').value.trim() || DEFAULT_AVATAR;
+
+  if(!nom||!info||!cit||!s1n||!s1l||!s2n||!s2l){
+    showStatus('Remplis au moins : nom, info, citation et 2 résultats.','err');
+    return;
+  }
+  if(!getToken()){
+    showStatus('Entre ton token GitHub dans la section Configuration.','err');
+    return;
+  }
+
+  btn.disabled=true;
+  showStatus('Publication en cours...','loading');
+
+  try{
+    const { sha, content } = await getFileSha();
+    const newId = content.projets.length ? Math.max(...content.projets.map(p=>p.id))+1 : 1;
+    const projet = {
+      id: newId, tag: niche, photo, avatarUrl: avatar,
+      clientNom: nom, clientInfo: info, citation: cit,
+      stats:[
+        {num:s1n,label:s1l},
+        {num:s2n,label:s2l},
+        ...(s3n&&s3l?[{num:s3n,label:s3l}]:[])
+      ]
+    };
+    content.projets.push(projet);
+    await commitFile(content, sha, `Portfolio: ajout ${nom} (${niche})`);
+    showStatus('✓ Projet ajouté ! Le site se met à jour dans ~30 secondes.','ok');
+    resetForm();
+    loadList();
+  } catch(e){
+    showStatus('Erreur : '+e.message,'err');
+  } finally {
+    btn.disabled=false;
+  }
+}
+
+function showStatus(msg,type){
+  const el=document.getElementById('status');
+  el.textContent=msg; el.className=type; el.style.display='block';
+}
+
+function resetForm(){
+  ['fClientNom','fClientInfo','fCitation','fPhoto','fAvatar','s1num','s1lbl','s2num','s2lbl','s3num','s3lbl'].forEach(id=>{
+    document.getElementById(id).value='';
+  });
+  document.getElementById('previewWrap').style.display='none';
+}
+
+// ── LOAD LIST ──────────────────────────────────────────────
+async function loadList(){
+  const list = document.getElementById('projList');
+  const count = document.getElementById('projCount');
+  list.innerHTML='<div class="empty-list">Chargement...</div>';
+  try{
+    const { content } = await getFileSha();
+    const projets = content.projets;
+    count.textContent = `(${projets.length})`;
+    if(!projets.length){
+      list.innerHTML='<div class="empty-list">Aucun projet pour l\'instant.</div>';
+      return;
+    }
+    list.innerHTML = projets.map(p=>`
+      <div class="plist-item" id="pitem-${p.id}">
+        <img class="plist-img" src="${p.photo}" alt="${p.clientNom}">
+        <div class="plist-info">
+          <div class="plist-name">${p.clientNom} — ${p.clientInfo}</div>
+          <div class="plist-sub">${p.citation.slice(0,80)}...</div>
+        </div>
+        <div class="plist-tag">${p.tag}</div>
+        <button class="del-btn" onclick="deleteProject(${p.id})">Supprimer</button>
+      </div>`).join('');
+  } catch(e){
+    list.innerHTML='<div class="empty-list">Impossible de charger (token manquant ?)</div>';
+  }
+}
+
+async function deleteProject(id){
+  if(!confirm('Supprimer ce projet du portfolio ?')) return;
+  try{
+    const { sha, content } = await getFileSha();
+    content.projets = content.projets.filter(p=>p.id!==id);
+    await commitFile(content, sha, `Portfolio: suppression projet #${id}`);
+    showStatus('✓ Projet supprimé.','ok');
+    loadList();
+  } catch(e){
+    showStatus('Erreur : '+e.message,'err');
+  }
+}
+</script>
+</body>
+</html>
