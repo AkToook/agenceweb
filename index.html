@@ -636,6 +636,39 @@ section,.sol-sec,.feat-sec,.process-sec,.trust-sec,.faq-sec{padding-top:96px!imp
 /* 10. Remove identical pulsing dots (AI tell) */
 .badge .dot,.badge-dot{display:none!important}
 
+/* ═══ OFFRES V3 ═══ */
+.offres-v3{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:56px;align-items:start}
+@media(max-width:1200px){.offres-v3{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.offres-v3{grid-template-columns:1fr}}
+
+.ov3-card{background:rgba(255,255,255,.025);border:1px solid rgba(168,85,247,.1);border-radius:6px 20px 6px 20px;padding:28px 22px;display:flex;flex-direction:column;gap:14px;transition:all .3s;position:relative}
+.ov3-card:hover{background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.25);transform:translateY(-4px)}
+.ov3-feat{background:linear-gradient(160deg,rgba(124,58,237,.12),rgba(168,85,247,.06));border-color:rgba(168,85,247,.4)!important;border-radius:20px 6px 20px 6px;box-shadow:0 0 60px rgba(124,58,237,.18)}
+.ov3-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--violet),var(--vb));font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 18px;border-radius:50px;white-space:nowrap;color:#fff}
+.ov3-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--vb)}
+.ov3-name{font-size:22px;font-weight:800;letter-spacing:-.04em;font-family:'Instrument Serif',Georgia,serif;font-style:italic}
+.ov3-price{font-size:30px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.ov3-price small{font-size:13px;font-weight:400;color:var(--muted)}
+.ov3-target{font-size:13px;color:rgba(240,238,255,.65);line-height:1.6;border-left:2px solid rgba(168,85,247,.3);padding-left:10px}
+.ov3-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:4px 0}
+.ov3-list li{font-size:13px;color:rgba(240,238,255,.75);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.ov3-list li::before{content:'✓';color:#22C55E;font-weight:700;flex-shrink:0;margin-top:1px}
+.ov3-upgrade{font-size:11px;color:rgba(168,85,247,.6);font-style:italic;border-top:1px solid rgba(168,85,247,.1);padding-top:10px;margin-top:auto}
+.ov3-guarantee{font-size:12px;color:#22C55E;font-weight:600;margin-top:auto}
+
+/* TARIFS SPÉCIAUX */
+.offres-speciales{margin-top:64px;padding-top:48px;border-top:1px solid rgba(168,85,247,.1)}
+.offres-speciales>h3{font-size:14px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,238,255,.4);margin-bottom:28px;text-align:center}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:800px){.spec-grid{grid-template-columns:1fr}}
+.spec-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:all .3s}
+.spec-card:hover{border-color:rgba(168,85,247,.2);transform:translateY(-3px)}
+.spec-x{background:rgba(124,58,237,.06);border-color:rgba(168,85,247,.2)}
+.spec-ico{font-size:26px}
+.spec-name{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.spec-desc{font-size:13px;color:rgba(240,238,255,.6);line-height:1.65}
+.spec-cond{font-size:11px;color:rgba(240,238,255,.3);font-style:italic;margin-top:auto;padding-top:8px;border-top:1px solid rgba(255,255,255,.05)}
+
 </style>
 </head>
 <body>
@@ -1011,57 +1044,135 @@ section,.sol-sec,.feat-sec,.process-sec,.trust-sec,.faq-sec{padding-top:96px!imp
     <div class="container">
       <div class="sec-hd">
         <div class="badge">Nos offres</div>
-        <h2>Choisissez votre<br>niveau <span class="grad">d'ambition.</span></h2>
-        <p>Trois offres claires. Pas de jargon. Pas de surprise.</p>
+        <h2>L'offre qui vous ressemble.<br><span class="grad">Pas celle qui fait le plus.</span></h2>
+        <p>On a structuré nos offres pour que vous trouviez exactement ce qu'il vous faut — et que l'offre au-dessus vous fasse envie pour les bonnes raisons.</p>
       </div>
-      <div class="offres-grid">
-        <div class="ocard2 tilt reveal">
-          <div class="ocard2-type">Essentiel</div>
-          <h3>Site Vitrine</h3>
-          <div class="oprice2">800€ <small>HT</small></div>
-          <p class="odesc2">Pour exister en ligne avec une image sérieuse qui rassure vos prospects dès le premier regard.</p>
-          <ul class="obuls2">
-            <li class="obul2">Design sur mesure · zéro template</li>
-            <li class="obul2">Jusqu'à 5 pages optimisées</li>
-            <li class="obul2">Mobile-first et ultra rapide</li>
-            <li class="obul2">Formulaire de contact intégré</li>
-            <li class="obul2">SEO technique de base</li>
-            <li class="obul2">Livraison en 48h</li>
+
+      <div class="offres-v3">
+
+        <!-- 1. PRÉSENCE -->
+        <div class="ov3-card reveal">
+          <div class="ov3-tag">Démarrage</div>
+          <div class="ov3-name">Présence</div>
+          <div class="ov3-price">290€ <small>HT</small></div>
+          <div class="ov3-target">Pour celui qui n'a rien en ligne et qui ne veut plus avoir honte de donner son adresse web.</div>
+          <ul class="ov3-list">
+            <li>1 page claire qui dit qui vous êtes</li>
+            <li>Design propre, mobile-first</li>
+            <li>Formulaire de contact + Maps</li>
+            <li>Hébergement configuré</li>
+            <li>Livraison en 48h</li>
           </ul>
-          <a href="https://wa.me/33620757517" target="_blank" class="btn-g">💬 Je démarre →</a>
+          <div class="ov3-upgrade">Upgrade vers Tremplin si vous voulez que Google vous envoie des clients</div>
+          <a href="https://wa.me/33620757517?text=Je%20veux%20l%27offre%20Pr%C3%A9sence%20%C3%A0%20290%E2%82%AC" target="_blank" class="btn-g">Démarrer →</a>
         </div>
-        <div class="ocard2 feat">
-          <div class="ocard2-badge">Le plus choisi</div>
-          <div class="ocard2-type" style="color:var(--cb)">Performance</div>
-          <h3>Refonte Stratégique</h3>
-          <div class="oprice2">1 800€ <small>HT</small></div>
-          <p class="odesc2">Votre site ne convertit pas ? On repart du fond, pas juste du style. Résultat garanti.</p>
-          <ul class="obuls2">
-            <li class="obul2">Audit complet de votre site actuel</li>
-            <li class="obul2">Restructuration du message &amp; pages</li>
-            <li class="obul2">Copywriting orienté conversion inclus</li>
-            <li class="obul2">Design premium 100% sur mesure</li>
-            <li class="obul2">SEO on-page complet</li>
-            <li class="obul2">Appels de suivi inclus</li>
+
+        <!-- 2. TREMPLIN -->
+        <div class="ov3-card reveal reveal-d1">
+          <div class="ov3-tag">Visibilité</div>
+          <div class="ov3-name">Tremplin</div>
+          <div class="ov3-price">590€ <small>HT</small></div>
+          <div class="ov3-target">Pour le professionnel local qui veut que Google lui envoie des clients sans payer de pub.</div>
+          <ul class="ov3-list">
+            <li>Jusqu'à 3 pages stratégiques</li>
+            <li>Copywriting inclus — on écrit pour vous</li>
+            <li>SEO local optimisé</li>
+            <li>Google My Business configuré</li>
+            <li>Livraison en 48h</li>
           </ul>
-          <button class="btn-p" onclick="openCal()">Je veux ça →</button>
+          <div class="ov3-upgrade">Upgrade vers Moteur si vous voulez convertir vos visiteurs en clients</div>
+          <a href="https://wa.me/33620757517?text=Je%20veux%20l%27offre%20Tremplin%20%C3%A0%20590%E2%82%AC" target="_blank" class="btn-g">Démarrer →</a>
         </div>
-        <div class="ocard2 tilt reveal">
-          <div class="ocard2-type" style="color:var(--lime)">Croissance</div>
-          <h3>Pack Acquisition</h3>
-          <div class="oprice2">Sur devis</div>
-          <p class="odesc2">Pour ceux qui veulent vraiment attaquer : site + stratégie d'acquisition de clients en ligne.</p>
-          <ul class="obuls2">
-            <li class="obul2">Tout de la Refonte Stratégique</li>
-            <li class="obul2">Landing pages optimisées pub</li>
-            <li class="obul2">Intégration CRM &amp; leads</li>
-            <li class="obul2">Stratégie SEO 3 mois incluse</li>
-            <li class="obul2">Accompagnement mensuel</li>
-            <li class="obul2">Reporting &amp; tableaux de bord</li>
+
+        <!-- 3. MOTEUR ⭐ -->
+        <div class="ov3-card ov3-feat reveal reveal-d2">
+          <div class="ov3-badge">⭐ Le plus choisi</div>
+          <div class="ov3-tag" style="color:var(--cb)">Conversion</div>
+          <div class="ov3-name">Moteur</div>
+          <div class="ov3-price">1 400€ <small>HT</small></div>
+          <div class="ov3-target">Pour le pro qui veut que son site travaille à sa place — prospects qualifiés, RDV automatiques, image premium.</div>
+          <ul class="ov3-list">
+            <li>5 à 7 pages orientées conversion</li>
+            <li>Copywriting avancé — chaque mot vend</li>
+            <li>Design premium 100% sur mesure</li>
+            <li>SEO on-page complet + schema markup</li>
+            <li>Système de prise de RDV intégré</li>
+            <li>Animations &amp; micro-interactions</li>
+            <li>2 révisions post-livraison incluses</li>
+            <li>Livraison en 48h</li>
           </ul>
-          <a href="https://wa.me/33620757517" target="_blank" class="btn-g">💬 Discutons sur WhatsApp →</a>
+          <div class="ov3-guarantee">✓ Satisfait ou on retravaille gratuitement</div>
+          <a href="https://wa.me/33620757517?text=Je%20veux%20l%27offre%20Moteur%20%C3%A0%201400%E2%82%AC" target="_blank" class="btn-p">Je veux le Moteur →</a>
         </div>
-      </div>
+
+        <!-- 4. ARSENAL -->
+        <div class="ov3-card reveal reveal-d3">
+          <div class="ov3-tag" style="color:#22C55E">Domination</div>
+          <div class="ov3-name">Arsenal</div>
+          <div class="ov3-price">2 500€ <small>HT</small></div>
+          <div class="ov3-target">Pour le business en croissance qui veut un écosystème digital complet — pas juste un site.</div>
+          <ul class="ov3-list">
+            <li>Tout du Moteur, plus :</li>
+            <li>Landing pages dédiées pub / SEO</li>
+            <li>Intégration CRM &amp; capture de leads</li>
+            <li>Module e-commerce ou réservation avancée</li>
+            <li>3 mois de suivi mensuel inclus</li>
+            <li>Rapport de performance mensuel</li>
+          </ul>
+          <div class="ov3-upgrade">Upgrade vers Partenariat si votre CA dépasse 200k€</div>
+          <a href="https://wa.me/33620757517?text=Je%20veux%20l%27offre%20Arsenal%20%C3%A0%202500%E2%82%AC" target="_blank" class="btn-g">Discutons →</a>
+        </div>
+
+        <!-- 5. PARTENARIAT -->
+        <div class="ov3-card reveal reveal-d4">
+          <div class="ov3-tag" style="color:#F59E0B">PME &amp; Franchise</div>
+          <div class="ov3-name">Partenariat</div>
+          <div class="ov3-price">Sur devis <small style="display:block;font-size:11px;margin-top:2px">à partir de 8 000€</small></div>
+          <div class="ov3-target">Pour les PME, franchises et e-commerces sérieux. Le prix est indexé sur votre CA — vous investissez ce que vous êtes capable de récupérer.</div>
+          <ul class="ov3-list">
+            <li>Stratégie digitale complète</li>
+            <li>Architecture multi-pages / multi-sites</li>
+            <li>Intégrations avancées (ERP, CRM, paiement)</li>
+            <li>Équipe dédiée</li>
+            <li>Accompagnement long terme</li>
+          </ul>
+          <a href="https://wa.me/33620757517?text=Je%20veux%20un%20appel%20strat%C3%A9gique%20pour%20un%20partenariat" target="_blank" class="btn-g">Appel stratégique →</a>
+        </div>
+
+      </div><!-- /offres-v3 -->
+
+      <!-- TARIFS SPÉCIAUX -->
+      <div class="offres-speciales reveal">
+        <h3>Tarifs spéciaux</h3>
+        <div class="spec-grid">
+
+          <div class="spec-card reveal">
+            <div class="spec-ico">🎓</div>
+            <div class="spec-name">Tarif Étudiant</div>
+            <div class="spec-desc">Tu lances ton activité pendant tes études ? On t'accompagne avec <strong>−40% sur toutes les offres jusqu'au Moteur</strong>. Parce qu'on a tous commencé quelque part.</div>
+            <div class="spec-cond">Sur présentation de ta carte étudiante · 3 places max par mois</div>
+            <a href="https://wa.me/33620757517?text=Je%20suis%20%C3%A9tudiant%20et%20je%20veux%20le%20tarif%20sp%C3%A9cial" target="_blank" class="btn-g">Je suis étudiant →</a>
+          </div>
+
+          <div class="spec-card spec-x reveal reveal-d1">
+            <div class="spec-ico">🏆</div>
+            <div class="spec-name">Accès Grande École</div>
+            <div class="spec-desc">Polytechnique, CentraleSupélec — vous avez le profil pour construire quelque chose d'ambitieux. On vous offre <strong>2h de consulting stratégique offertes</strong> + accès prioritaire + tarif dédié sur toute la gamme.</div>
+            <div class="spec-cond">Sur vérification de votre école · Offre permanente</div>
+            <a href="https://wa.me/33620757517?text=Je%20suis%20dipl%C3%B4m%C3%A9%20de%20l%27X%20ou%20CentraleSup%C3%A9lec" target="_blank" class="btn-p">Réserver mon consulting →</a>
+          </div>
+
+          <div class="spec-card reveal reveal-d2">
+            <div class="spec-ico">📊</div>
+            <div class="spec-name">Prix indexé sur votre CA</div>
+            <div class="spec-desc">Vous faites entre 200k€ et 2M€ de CA ? On calcule votre investissement en fonction de ce que le site peut vous rapporter — pas en fonction d'un tarif arbitraire.</div>
+            <div class="spec-cond">Éligible à partir de 200k€ de CA · Appel de 30 min requis</div>
+            <a href="https://wa.me/33620757517?text=Je%20veux%20un%20prix%20bas%C3%A9%20sur%20mon%20CA" target="_blank" class="btn-g">Calculer mon investissement →</a>
+          </div>
+
+        </div>
+      </div><!-- /offres-speciales -->
+
     </div>
   </section>
 
